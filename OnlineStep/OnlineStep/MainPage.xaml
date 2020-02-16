@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OnlineStep.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    mc:Ignorable="d">
+
+    <StackLayout>
+
+
+        <Label HorizontalOptions="CenterAndExpand" Text="Welcome to Online Step" />
+        <Button Clicked="Handle_Clicked_Get_Started" Text="Get started" />
+        <!--  XAML binding of view model  -->
+        <Label
+            HorizontalOptions="CenterAndExpand"
+            Text="{Binding WelcomeText}"
+            VerticalOptions="End">
+            <Label.BindingContext>
+                <viewModels:MainViewModel />
+            </Label.BindingContext>
+        </Label>
+
+
+    </StackLayout>
+
+</ContentPage>
