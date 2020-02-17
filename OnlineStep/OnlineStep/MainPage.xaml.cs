@@ -24,12 +24,16 @@ namespace OnlineStep
 
         }
 
-        private async void Handle_Clicked_Get_Started(object sender, EventArgs e)
+        private void Handle_Clicked_Get_Started(object sender, EventArgs e)
         {
-            Debug.WriteLine("Rest start");
-            var courses = await RestClient.GetCoursesAsync();
-            Debug.WriteLine("Rest done");
-            await Navigation.PushAsync(new CourseView(courses));
+
+
+            Navigation.PushAsync(new CourseView());
+
+            //Debug.WriteLine("Rest start");
+            //var courses = await RestClient.GetCoursesAsync();
+            //Debug.WriteLine("Rest done");
+            //await Navigation.PushAsync(new CourseView(courses));
         }
     }
 }

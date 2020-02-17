@@ -16,6 +16,13 @@ namespace OnlineStep.ViewModels
         private ObservableCollection<Course> _courseListDummy;
         private List<Course> _courseList;
 
+        public CourseViewModel()
+        {
+            _test = "I change you";
+            _courseList = RestClient.GetCoursesAsync();
+        }
+
+
         public string Test
         {
             get => _test;
