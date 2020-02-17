@@ -34,7 +34,7 @@ namespace OnlineStep.Services
 
         }
 
-        public static async List<Course> GetCoursesAsync()
+        public static async Task<List<Course>> GetCoursesAsync()
         {
             var productsRaw = await client.GetStringAsync("courses/");
 

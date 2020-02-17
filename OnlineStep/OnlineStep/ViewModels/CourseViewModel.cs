@@ -19,7 +19,14 @@ namespace OnlineStep.ViewModels
         public CourseViewModel()
         {
             _test = "I change you";
-            _courseList = RestClient.GetCoursesAsync();
+            Task.Run(async () => { await init(); }).Wait();
+
+        }
+
+        public async Task init()
+        {
+           var temp = RestClient.GetCoursesAsync();
+            _courseList = await temp;
         }
 
 
