@@ -25,21 +25,16 @@ namespace OnlineStep.Views
 
         }
        
-        
-        //public CourseView(List<Course> courses)
-        //{
-        //    InitializeComponent();
-        //    NavigationPage.SetHasNavigationBar(this, false);
-
-        //    CourseViewModel courseViewModel = new CourseViewModel { CourseList = courses };
-        //    courseViewModel.Test = "kjdashkjdhaskjd";
-        //    BindingContext = courseViewModel;
-        //    Debug.WriteLine("CourseView(): Constructor, ending");
-        //}
 
         private void Item_Selected(object sender, SelectionChangedEventArgs e)
         {
             Debug.WriteLine("Item_Selected" + e);
+        }
+
+        private void OnMore(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Button clicked");
+            throw new NotImplementedException();
         }
     }
 }

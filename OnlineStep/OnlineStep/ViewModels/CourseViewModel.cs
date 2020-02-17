@@ -29,7 +29,6 @@ namespace OnlineStep.ViewModels
             _courseList = await temp;
         }
 
-
         public string Test
         {
             get => _test;

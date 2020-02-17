@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:models="clr-namespace:OnlineStep.Models;assembly=OnlineStep"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     mc:Ignorable="d">
 
@@ -13,16 +12,48 @@
         <viewModels:CourseViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout Orientation="Horizontal">
-        <Label Text="{Binding Path=Test}" />
-        <ListView ItemsSource="{Binding Path=CourseList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Path=Name}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
 
-        </ListView>
-    </StackLayout>
+
+
+    <ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.ContextActions>
+                        <MenuItem
+                            Clicked="OnMore"
+                            CommandParameter="{Binding .}"
+                            Text="{Binding Name}" />
+                    </ViewCell.ContextActions>
+                    <StackLayout Padding="15,0">
+                        <Label Text="{Binding Subject}" />
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+
+    <!--<ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" TextColor="Green" />
+                            <Label Text="{Binding Owner}" TextColor="Black" />
+                            <Button
+                                x:Name="btn12"
+                                BackgroundColor="#105F73"
+                                Text="{Binding Owner}" />
+                        </StackLayout>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
 
 </ContentPage>
+
+
+
