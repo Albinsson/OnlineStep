@@ -22,7 +22,6 @@ namespace OnlineStep.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-
         }
 
         private void Button_Tapped(object sender, EventArgs e)

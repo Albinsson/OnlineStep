@@ -13,8 +13,18 @@ namespace OnlineStep.ViewModels
     public class MainViewModel
     {
       
-        public string WelcomeText => RandomWelcomeText();
+        private string _welcomeText;
 
+        public MainViewModel()
+        {
+            _welcomeText = RandomWelcomeText();
+        }
+
+        public string WelcomeText
+        {
+            get => _welcomeText;
+            set => _welcomeText = value;
+        }
 
         // Example of business-logic.
         public string RandomWelcomeText()
