@@ -26,14 +26,7 @@ namespace OnlineStep
 
         private void Handle_Clicked_Get_Started(object sender, EventArgs e)
         {
-
-
             Navigation.PushAsync(new CourseView());
-
-            //Debug.WriteLine("Rest start");
-            //var courses = await RestClient.GetCoursesAsync();
-            //Debug.WriteLine("Rest done");
-            //await Navigation.PushAsync(new CourseView(courses));
         }
     }
 }

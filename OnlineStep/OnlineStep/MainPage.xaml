@@ -12,17 +12,21 @@
 
         <Label HorizontalOptions="CenterAndExpand" Text="Welcome to Online Step" />
         <Button Clicked="Handle_Clicked_Get_Started" Text="Get started" />
+        <Button
+            Command="{Binding Login}"
+            CommandParameter="Login failed (sent from view, updated from vm)"
+            Text="Login" />
+
         <!--  XAML binding of view model  -->
         <Label
             HorizontalOptions="CenterAndExpand"
             Text="{Binding WelcomeText}"
-            VerticalOptions="End">
-            <Label.BindingContext>
-                <viewModels:MainViewModel />
-            </Label.BindingContext>
-        </Label>
+            VerticalOptions="End" />
+        <Label Text="{Binding LoginText, Mode=TwoWay}" />
 
-
+        <StackLayout.BindingContext>
+            <viewModels:MainViewModel />
+        </StackLayout.BindingContext>
     </StackLayout>
 
 </ContentPage>
