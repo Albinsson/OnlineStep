@@ -34,7 +34,7 @@ namespace OnlineStep.Services
 
         }
 
-        public async Task<List<Course>> GetCoursesAsync()
+        public static async Task<List<Course>> GetCoursesAsync()
         {
             var productsRaw = await client.GetStringAsync("courses/");
 
@@ -61,7 +61,7 @@ namespace OnlineStep.Services
 
         public static async Task LoadWishList()
         {
-            //Load items from wish list
+            System.Threading.Thread.Sleep(1000);
         }
     }
 

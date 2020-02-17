@@ -5,33 +5,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:OnlineStep.Models;assembly=OnlineStep"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     mc:Ignorable="d">
-
 
     <ContentPage.BindingContext>
         <viewModels:CourseViewModel />
     </ContentPage.BindingContext>
 
+    <StackLayout Orientation="Horizontal">
+        <Label Text="{Binding Path=Test}" />
+        <ListView ItemsSource="{Binding Path=CourseList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Path=Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
 
+        </ListView>
+    </StackLayout>
 
-    <CollectionView
-        Margin="10"
-        ItemsSource="{Binding CourseList}"
-        SelectionChanged="Item_Selected"
-        SelectionMode="Single">
-
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <StackLayout Margin="10" Orientation="Vertical">
-                    <Label FontSize="Large" Text="{Binding Name}" />
-                    <Label FontSize="Small" Text="{Binding Subject}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-
-    </CollectionView>
 </ContentPage>

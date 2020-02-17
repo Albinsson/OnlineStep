@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,15 +22,14 @@ namespace OnlineStep
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-           
-
         }
 
-        private void Handle_Clicked_Get_Started(object sender, EventArgs e)
+        private async void Handle_Clicked_Get_Started(object sender, EventArgs e)
         {
-        
-            Navigation.PushAsync(new CourseView());
+            Debug.WriteLine("Rest start");
+            var courses = await RestClient.GetCoursesAsync();
+            Debug.WriteLine("Rest done");
+            await Navigation.PushAsync(new CourseView(courses));
         }
-
     }
 }

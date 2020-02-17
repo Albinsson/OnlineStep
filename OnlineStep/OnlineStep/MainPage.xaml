@@ -10,7 +10,6 @@
 
     <StackLayout>
 
-
         <Label HorizontalOptions="CenterAndExpand" Text="Welcome to Online Step" />
         <Button Clicked="Handle_Clicked_Get_Started" Text="Get started" />
         <!--  XAML binding of view model  -->
