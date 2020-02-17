@@ -13,8 +13,7 @@ namespace OnlineStep.Services
     class RestClient
     {
         
-        private const string WISHLIST_FILE = "wishlist.json";
-        static HttpClient client;
+        static readonly HttpClient Client;
 
         public static List<Course> WishList
         {
@@ -29,14 +28,13 @@ namespace OnlineStep.Services
 
         static RestClient()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri("https://online-step.herokuapp.com/");
+            Client = new HttpClient {BaseAddress = new Uri("https://online-step.herokuapp.com/")};
 
         }
 
         public static async Task<List<Course>> GetCoursesAsync()
         {
-            var productsRaw = await client.GetStringAsync("courses/");
+            var productsRaw = await Client.GetStringAsync("courses/");
 
             var serializer = new JsonSerializer();
             using (var tReader = new StringReader(productsRaw))
@@ -51,18 +49,6 @@ namespace OnlineStep.Services
             }
         }
 
-        public static async Task SaveWishList()
-        {
-            if (WishList != null && WishList.Count > 0)
-            {
-                //Save Products to Wish List
-            }
-        }
-
-        public static async Task LoadWishList()
-        {
-            System.Threading.Thread.Sleep(1000);
-        }
     }
 
 

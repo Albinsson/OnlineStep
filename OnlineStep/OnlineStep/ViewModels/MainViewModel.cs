@@ -1,31 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Input;
-using OnlineStep.Annotations;
 using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-      
         private string _welcomeText;
         private string _loginText = "Please login...";
-       
 
         public MainViewModel()
         {
-            Debug.WriteLine("MainViewModel(): Constructor started");
-
             _welcomeText = RandomWelcomeText();
-            
-
-            Debug.WriteLine("MainViewModel(): Constructor finished");
 
         }
 
@@ -44,9 +30,9 @@ namespace OnlineStep.ViewModels
             {
                 SetProperty(ref _loginText, (value));
             }
-            
-        } 
-        
+
+        }
+
 
         public string WelcomeText
         {
@@ -54,7 +40,7 @@ namespace OnlineStep.ViewModels
             set => _welcomeText = value;
         }
 
-        // Example of business-logic.
+        // Example of business-logic for a random welcome text.
         public string RandomWelcomeText()
         {
             Random r = new Random();

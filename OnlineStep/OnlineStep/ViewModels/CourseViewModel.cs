@@ -8,43 +8,31 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using OnlineStep.Annotations;
+using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
 {
     internal class CourseViewModel : BaseViewModel
     {
-        private string _test = "Xamarin";
-        private ObservableCollection<Course> _courseListDummy;
         private List<Course> _courseList;
-
+        
         public CourseViewModel()
         {
-            _test = "I change you";
-            Task.Run(async () => { await init(); }).Wait();
-
+            Task.Run(async () => { await InitAsyncApiRequest(); }).Wait();
         }
 
-        public async Task init()
+        public async Task InitAsyncApiRequest()
         {
            var temp = RestClient.GetCoursesAsync();
             _courseList = await temp;
         }
 
-        public string Test
-        {
-            get => _test;
-            set => _test = value;
-        }
         public List<Course> CourseList
         {
             get => _courseList;
             set => _courseList = value;
         }
-        public void OnMore(object sender, EventArgs e)
-        {
-            Debug.WriteLine("Button clicked");
 
-        }
     }
 };
 
