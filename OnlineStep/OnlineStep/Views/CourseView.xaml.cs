@@ -24,17 +24,10 @@ namespace OnlineStep.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
         }
-       
 
-        private void Item_Selected(object sender, SelectionChangedEventArgs e)
-        {
-            Debug.WriteLine("Item_Selected" + e);
-        }
-
-        private void OnMore(object sender, EventArgs e)
+        private void Button_Tapped(object sender, EventArgs e)
         {
             Debug.WriteLine("Button clicked");
-            throw new NotImplementedException();
         }
     }
 }

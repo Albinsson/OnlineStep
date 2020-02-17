@@ -12,10 +12,7 @@
         <viewModels:CourseViewModel />
     </ContentPage.BindingContext>
 
-
-
-
-    <ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
+    <!--<ListView ItemsSource="{Binding CourseList}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -24,17 +21,22 @@
                             Clicked="OnMore"
                             CommandParameter="{Binding .}"
                             Text="{Binding Name}" />
+                        <MenuItem
+                            Clicked="OnDelete"
+                            CommandParameter="{Binding .}"
+                            IsDestructive="True"
+                            Text="Delete" />
                     </ViewCell.ContextActions>
                     <StackLayout Padding="15,0">
-                        <Label Text="{Binding Subject}" />
+                        <Label Text="{Binding Name}" />
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 
 
-    <!--<ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
+    <ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -42,16 +44,18 @@
                         <StackLayout>
                             <Label Text="{Binding Name}" TextColor="Green" />
                             <Label Text="{Binding Owner}" TextColor="Black" />
-                            <Button
-                                x:Name="btn12"
-                                BackgroundColor="#105F73"
-                                Text="{Binding Owner}" />
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Button_Tapped"/>
+                            </StackLayout.GestureRecognizers>
+
+
                         </StackLayout>
                     </ViewCell.View>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>-->
+    </ListView>
 
 </ContentPage>
 
