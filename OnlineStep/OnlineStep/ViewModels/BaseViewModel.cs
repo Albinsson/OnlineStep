@@ -32,6 +32,5 @@ namespace OnlineStep.ViewModels
             return true;
         }
 
-        
     }
 }

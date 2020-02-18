@@ -21,8 +21,6 @@ namespace OnlineStep.Views
         {
             Debug.WriteLine("Button clicked");
 
-           
-
             StackLayout stackLayout = (StackLayout)sender;
             string courseId = stackLayout.ClassId;
             Debug.WriteLine("Course ID selected: " + courseId);
