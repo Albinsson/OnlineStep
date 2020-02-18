@@ -14,6 +14,7 @@ namespace OnlineStep.ViewModels
     {
       
         public string WelcomeText => RandomWelcomeText();
+        
 
 
         // Example of business-logic.

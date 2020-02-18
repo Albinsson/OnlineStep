@@ -13,8 +13,6 @@
     </ContentPage.BindingContext>
 
 
-
-
     <ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
         <ListView.ItemTemplate>
             <DataTemplate>
