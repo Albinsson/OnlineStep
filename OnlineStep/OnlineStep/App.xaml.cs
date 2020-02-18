@@ -1,7 +1,5 @@
-﻿using System;
-using OnlineStep.Views;
+﻿using OnlineStep.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace OnlineStep
 {

@@ -18,7 +18,7 @@
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
-                        <StackLayout ClassId="{Binding _id}">
+                        <StackLayout ClassId="{Binding id}">
 
                             <!--<Label Text="{Binding Name}" TextColor="Green" />
                             <Label Text="{Binding Owner}" TextColor="Black" />-->
