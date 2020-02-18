@@ -34,7 +34,6 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("InitAsyncApiRequest()");
                 Debug.WriteLine(ex);
             }
-
         }
 
         public List<Course> CourseList

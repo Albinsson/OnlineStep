@@ -49,8 +49,28 @@ namespace OnlineStep.Services
                     return courses;
                 }
             }
-
         }
+
+        public static async Task<List<Chapter>> GetChaptersAsync(string _id)
+        {
+
+            Debug.WriteLine("public static async Task<List<Course>> GetCoursesAsync()");
+            var productsRaw = await Client.GetStringAsync("courses/" + _id);
+
+            var serializer = new JsonSerializer();
+            using (var tReader = new StringReader(productsRaw))
+            {
+                using (var jReader = new JsonTextReader(tReader))
+                {
+                    var chapters = serializer.Deserialize<List<Chapter>>(
+                        jReader);
+
+                    return chapters;
+                }
+            }
+        }
+
+
 
     }
 

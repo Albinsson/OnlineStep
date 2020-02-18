@@ -22,10 +22,7 @@
                             <Label Text="{Binding Name}" TextColor="Green" />
                             <Label Text="{Binding Owner}" TextColor="Black" />
 
-
                             <StackLayout.GestureRecognizers>
-
-
                                 <TapGestureRecognizer Tapped="Button_Tapped" />
                             </StackLayout.GestureRecognizers>
 

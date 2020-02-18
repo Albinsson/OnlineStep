@@ -12,7 +12,6 @@ namespace OnlineStep.ViewModels
         public MainViewModel()
         {
             _welcomeText = RandomWelcomeText();
-
         }
 
         public ICommand Login
@@ -30,7 +29,6 @@ namespace OnlineStep.ViewModels
             {
                 SetProperty(ref _loginText, (value));
             }
-
         }
 
 

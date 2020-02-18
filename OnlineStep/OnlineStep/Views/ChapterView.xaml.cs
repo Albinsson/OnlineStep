@@ -21,5 +21,10 @@ namespace OnlineStep.Views
             //Debug.WriteLine("ChapterView(string chapterId)");
             //Debug.WriteLine(chapterId);
         }
+
+        private void Button_Tapped(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Button Clicked");
+        }
     }
 }
