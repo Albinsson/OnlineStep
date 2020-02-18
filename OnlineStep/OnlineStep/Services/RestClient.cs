@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -31,9 +32,10 @@ namespace OnlineStep.Services
             Client = new HttpClient {BaseAddress = new Uri("https://online-step.herokuapp.com/")};
 
         }
-
+        
         public static async Task<List<Course>> GetCoursesAsync()
         {
+            Debug.WriteLine("public static async Task<List<Course>> GetCoursesAsync()");
             var productsRaw = await Client.GetStringAsync("courses/");
 
             var serializer = new JsonSerializer();
@@ -47,6 +49,7 @@ namespace OnlineStep.Services
                     return courses;
                 }
             }
+
         }
 
     }

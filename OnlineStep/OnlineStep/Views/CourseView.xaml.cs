@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using OnlineStep.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,12 +20,17 @@ namespace OnlineStep.Views
         private void Button_Tapped(object sender, EventArgs e)
         {
             Debug.WriteLine("Button clicked");
-            
+
+           
+
             StackLayout stackLayout = (StackLayout)sender;
             string courseId = stackLayout.ClassId;
             Debug.WriteLine("Course ID selected: " + courseId);
 
-            Navigation.PushAsync(new ChapterView(courseId));
+            ((CourseViewModel) this.BindingContext).SetChapterId = courseId;
+
+            //Navigation.PushAsync(new ChapterView(courseId));
+            Navigation.PushAsync(new ChapterView());
         }
     }
 }

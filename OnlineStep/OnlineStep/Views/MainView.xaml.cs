@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using OnlineStep.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,6 +20,7 @@ namespace OnlineStep.Views
 
         private void Handle_Clicked_Get_Started(object sender, EventArgs e)
         {
+            
             Navigation.PushAsync(new CourseView());
         }
     }

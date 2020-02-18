@@ -13,13 +13,13 @@ namespace OnlineStep.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChapterView : ContentPage
     {
-        public ChapterView(string chapterId)
+        public ChapterView()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            Debug.WriteLine("ChapterView(string chapterId)");
-            Debug.WriteLine(chapterId);
+            //Debug.WriteLine("ChapterView(string chapterId)");
+            //Debug.WriteLine(chapterId);
         }
     }
 }

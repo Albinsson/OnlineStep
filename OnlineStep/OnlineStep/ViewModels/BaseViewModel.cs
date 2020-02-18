@@ -10,6 +10,7 @@ namespace OnlineStep.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        public string CurrentChapterID; 
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -30,5 +31,7 @@ namespace OnlineStep.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        
     }
 }
