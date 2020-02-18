@@ -1,18 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-             mc:Ignorable="d"
-             x:Class="OnlineStep.Views.MainView">
+<ContentPage
+    x:Class="OnlineStep.Views.MainView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    mc:Ignorable="d">
+
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary Source="/Styles/Text.xaml" />
+    </ContentPage.Resources>
     <StackLayout>
 
         <StackLayout.BindingContext>
             <viewModels:MainViewModel />
         </StackLayout.BindingContext>
 
-        <Label HorizontalOptions="CenterAndExpand" Text="Welcome to Online Step" />
+        <Label
+            HorizontalOptions="CenterAndExpand"
+            Style="{StaticResource TextHeadline}"
+            Text="Welcome to Online Step" />
 
         <!--  The clicked action should be handle by a viewmodel  -->
         <Button Clicked="Handle_Clicked_Get_Started" Text="Get started" />
@@ -22,6 +31,7 @@
             Command="{Binding Login}"
             CommandParameter="Login failed (sent from view, updated from vm)"
             Text="Login" />
+
 
         <!--  Example of a random welcome text  -->
         <Label
