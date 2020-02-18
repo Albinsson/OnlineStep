@@ -132,4 +132,7 @@
       <Name>OnlineStep</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\angryimg.png" />
+  </ItemGroup>
 </Project>

@@ -3,34 +3,23 @@
 
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Style TargetType="{x:Type Button}">
+    <Style x:Key="MainPageButton" TargetType="{x:Type Button}">
         <Setter Property="HeightRequest" Value="50" />
-        <Setter Property="WidthRequest" Value="90" />
-        <Setter Property="BorderWidth" Value="2" />
-        <Setter Property="BackgroundColor" Value="BurlyWood" />
+        <Setter Property="WidthRequest" Value="70" />
+        <Setter Property="BackgroundColor" Value="AntiqueWhite" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="15" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="10" />
-        <Setter Property="BorderWidth" Value="3" />
-        <Setter Property="BorderRadius" Value="7" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="BorderRadius" Value="10" />
         <Setter Property="TextColor" Value="Black" />
-        <Setter Property="android:VisualElement.Elevation" Value="30" />
     </Style>
 
-    <yummy:PancakeView
-        x:Key="RainbowBackground"
-        BackgroundGradientEndColor="AliceBlue"
-        BackgroundGradientStartColor="Aqua"
-        Elevation="-10"
-        HorizontalOptions="FillAndExpand"
-        IsClippedToBounds="false"
-        Opacity="0.5" />
+   
 
 
 

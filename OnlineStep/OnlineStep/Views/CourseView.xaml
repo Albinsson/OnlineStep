@@ -6,6 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
     <ContentPage.BindingContext>
@@ -19,8 +20,28 @@
                     <ViewCell.View>
                         <StackLayout ClassId="{Binding _id}">
 
-                            <Label Text="{Binding Name}" TextColor="Green" />
-                            <Label Text="{Binding Owner}" TextColor="Black" />
+                            <!--<Label Text="{Binding Name}" TextColor="Green" />
+                            <Label Text="{Binding Owner}" TextColor="Black" />-->
+
+
+                            <yummy:PancakeView
+                                BackgroundColor="Purple"
+                                BorderThickness="4"
+                                CornerRadius="40,0,0,100"
+                                HasShadow="true"
+                                HeightRequest="500"
+                                HorizontalOptions="FillAndExpand" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Binding Name}"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+                            <Label
+                                HorizontalOptions="Center"
+                                Text="{Binding Author}"
+                                TextColor="White"
+                                VerticalOptions="Center" />
+
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Tapped" />

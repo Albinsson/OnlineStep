@@ -6,13 +6,15 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    BackgroundImageSource="angryimg.png"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
-    <StackLayout>
+
+    <StackLayout VerticalOptions="End">
 
         <StackLayout.BindingContext>
             <viewModels:MainViewModel />
@@ -24,22 +26,27 @@
             Text="Welcome to Online Step" />
 
         <!--  The clicked action should be handle by a viewmodel  -->
-        <Button Clicked="Handle_Clicked_Get_Started" Text="Get started" />
+        <Button
+            Clicked="Handle_Clicked_Get_Started"
+            Style="{StaticResource MainPageButton}"
+            Text="Get started" />
 
         <!--  Example of a button changing a viewmodel  -->
         <Button
             Command="{Binding Login}"
             CommandParameter="Login failed (sent from view, updated from vm)"
+            Style="{StaticResource MainPageButton}"
             Text="Login" />
 
 
         <!--  Example of a random welcome text  -->
         <Label
             HorizontalOptions="CenterAndExpand"
+            Style="{DynamicResource TextSubhead}"
             Text="{Binding WelcomeText}"
             VerticalOptions="End" />
 
         <!--  Displays and changes the value when login button is clicked  -->
-        <Label Text="{Binding LoginText, Mode=TwoWay}" />
+        <Label Style="{DynamicResource TextSubhead}" Text="{Binding LoginText, Mode=TwoWay}" />
     </StackLayout>
 </ContentPage>
