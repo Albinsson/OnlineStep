@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="OnlineStep.Views.CourseView"
+    x:Class="OnlineStep.Views.ChapterView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -10,10 +10,11 @@
     mc:Ignorable="d">
 
     <ContentPage.BindingContext>
-        <viewModels:CourseViewModel />
+        <viewModels:ChapterViewModel />
     </ContentPage.BindingContext>
 
-    <ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
+
+    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -21,29 +22,25 @@
                         <StackLayout ClassId="{Binding id}">
 
                             <!--<Label Text="{Binding Name}" TextColor="Green" />
-                            <Label Text="{Binding Owner}" TextColor="Black" />-->
-
-
+                            <Label Text="{Binding Author}" TextColor="Black" />-->
                             <yummy:PancakeView
                                 BackgroundColor="Purple"
                                 BorderThickness="4"
                                 CornerRadius="40,0,0,100"
                                 HasShadow="true"
-                                HeightRequest="500"
-                                HorizontalOptions="FillAndExpand" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="{Binding Name}"
-                                TextColor="White"
-                                VerticalOptions="Center" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="{Binding Author}"
-                                TextColor="White"
-                                VerticalOptions="Center" />
+                                HeightRequest="150"
+                                HorizontalOptions="FillAndExpand">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Name, Author}"
+                                    TextColor="White"
+                                    VerticalOptions="Center" />
 
+                            </yummy:PancakeView>
 
                             <StackLayout.GestureRecognizers>
+
+
                                 <TapGestureRecognizer Tapped="Button_Tapped" />
                             </StackLayout.GestureRecognizers>
 
@@ -54,7 +51,6 @@
         </ListView.ItemTemplate>
     </ListView>
 
+
+
 </ContentPage>
-
-
-

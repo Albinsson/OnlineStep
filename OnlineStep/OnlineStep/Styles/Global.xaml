@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="MainPageButton" TargetType="{x:Type Button}">
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="WidthRequest" Value="70" />
+        <Setter Property="BackgroundColor" Value="AntiqueWhite" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="Margin" Value="10" />
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="BorderRadius" Value="10" />
+        <Setter Property="TextColor" Value="Black" />
+    </Style>
+
+   
+
+
+
+
+</ResourceDictionary>

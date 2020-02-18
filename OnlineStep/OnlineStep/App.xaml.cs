@@ -1,6 +1,5 @@
-﻿using System;
+﻿using OnlineStep.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace OnlineStep
 {
@@ -9,8 +8,7 @@ namespace OnlineStep
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new MainView());
         }
 
         protected override void OnStart()

@@ -38,10 +38,10 @@ namespace OnlineStep.Annotations
   /// so checking for <c>null</c> is required before its usage.
   /// </summary>
   /// <example><code>
-  /// [CanBeNull] object Test() => null;
+  /// [CanBeNull] object LoginText() => null;
   /// 
   /// void UseTest() {
-  ///   var p = Test();
+  ///   var p = LoginText();
   ///   var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
   /// }
   /// </code></example>
@@ -152,7 +152,7 @@ namespace OnlineStep.Annotations
   ///     [ValueProvider("TestNamespace.Constants")] public int myField;
   ///     public void Foo([ValueProvider("TestNamespace.Constants")] string str) { }
   ///
-  ///     public void Test()
+  ///     public void LoginText()
   ///     {
   ///       Foo(/*try completion here*/);//
   ///       myField = /*try completion here*/
@@ -331,7 +331,7 @@ namespace OnlineStep.Annotations
   /// class NoEquality { }
   /// 
   /// class UsesNoEquality {
-  ///   void Test() {
+  ///   void LoginText() {
   ///     var ca1 = new NoEquality();
   ///     var ca2 = new NoEquality();
   ///     if (ca1 != null) { // OK
@@ -900,7 +900,7 @@ namespace OnlineStep.Annotations
   ///     return this.ElementAt(0);
   ///   }
   /// }
-  /// class Test
+  /// class LoginText
   /// {
   ///   public void Foo()
   ///   {

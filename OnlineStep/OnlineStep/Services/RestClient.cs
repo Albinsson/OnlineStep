@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OnlineStep.Models;
@@ -13,8 +12,7 @@ namespace OnlineStep.Services
     class RestClient
     {
         
-        private const string WISHLIST_FILE = "wishlist.json";
-        static HttpClient client;
+        static readonly HttpClient Client;
 
         public static List<Course> WishList
         {
@@ -29,14 +27,14 @@ namespace OnlineStep.Services
 
         static RestClient()
         {
-            client = new HttpClient();
-            client.BaseAddress = new Uri("https://online-step.herokuapp.com/");
+            Client = new HttpClient {BaseAddress = new Uri("https://online-step.herokuapp.com/")};
 
         }
-
+        
         public static async Task<List<Course>> GetCoursesAsync()
         {
-            var productsRaw = await client.GetStringAsync("courses/");
+            Debug.WriteLine("public static async Task<List<Course>> GetCoursesAsync()");
+            var productsRaw = await Client.GetStringAsync("courses/");
 
             var serializer = new JsonSerializer();
             using (var tReader = new StringReader(productsRaw))
@@ -51,18 +49,27 @@ namespace OnlineStep.Services
             }
         }
 
-        public static async Task SaveWishList()
+        public static async Task<List<Chapter>> GetChaptersAsync(string _id)
         {
-            if (WishList != null && WishList.Count > 0)
+
+            Debug.WriteLine("public static async Task<List<Course>> GetCoursesAsync()");
+            var productsRaw = await Client.GetStringAsync("courses/" + _id);
+
+            var serializer = new JsonSerializer();
+            using (var tReader = new StringReader(productsRaw))
             {
-                //Save Products to Wish List
+                using (var jReader = new JsonTextReader(tReader))
+                {
+                    var chapters = serializer.Deserialize<List<Chapter>>(
+                        jReader);
+
+                    return chapters;
+                }
             }
         }
 
-        public static async Task LoadWishList()
-        {
-            System.Threading.Thread.Sleep(1000);
-        }
+
+
     }
 
 
