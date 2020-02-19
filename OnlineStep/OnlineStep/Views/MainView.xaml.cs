@@ -13,10 +13,6 @@ namespace OnlineStep.Views
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        private void Handle_Clicked_Get_Started(object sender, EventArgs e)
-        {
-            
-            Navigation.PushAsync(new CourseView());
-        }
+
     }
 }

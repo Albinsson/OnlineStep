@@ -16,19 +16,5 @@ namespace OnlineStep.Views
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        //This part should probably be handle by a viewmodel
-        private void Button_Tapped(object sender, EventArgs e)
-        {
-            Debug.WriteLine("Button clicked");
-
-            StackLayout stackLayout = (StackLayout)sender;
-            string courseId = stackLayout.ClassId;
-            Debug.WriteLine("Course ID selected: " + courseId);
-
-            ((CourseViewModel) this.BindingContext).SetChapterId = courseId;
-
-            //Navigation.PushAsync(new ChapterView(courseId));
-            Navigation.PushAsync(new ChapterView());
-        }
     }
 }

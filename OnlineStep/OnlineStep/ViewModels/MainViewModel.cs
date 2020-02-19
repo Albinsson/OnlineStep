@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
+using OnlineStep.Navigation.Interfaces;
 using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
@@ -9,10 +11,19 @@ namespace OnlineStep.ViewModels
         private string _welcomeText;
         private string _loginText = "Please login...";
 
+        private readonly INavigator _navigator;
+
         public MainViewModel()
         {
             _welcomeText = RandomWelcomeText();
         }
+
+        public MainViewModel(INavigator navigator)
+        {
+            Debug.WriteLine("public MainViewModel(INavigator navigator)");
+            _navigator = navigator;
+        }
+
 
         public ICommand Login
         {
@@ -21,6 +32,12 @@ namespace OnlineStep.ViewModels
                 return new Command<string>((x) => LoginText = (x));
             }
         }
+
+
+        public ICommand GoToNextView => new Command(() =>
+        {
+            _navigator.PushAsync<CourseViewModel>();
+        });
 
         public string LoginText
         {
