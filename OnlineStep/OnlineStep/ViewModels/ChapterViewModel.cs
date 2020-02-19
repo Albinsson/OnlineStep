@@ -18,18 +18,10 @@ namespace OnlineStep.ViewModels
         private DbHelper dbHelper;
         private readonly INavigator _navigator;
 
-        public ChapterViewModel()
-        {
-            Debug.WriteLine("ChapterViewModel()");
-            Debug.WriteLine(CurrentChapterID);
-
-            //Task.Run(async () => { await InitAsyncApiRequest(); }).Wait();
-            dbHelper = new DbHelper();
-        }
 
         public ChapterViewModel(INavigator navigator)
         {
-            Debug.WriteLine("public MainViewModel(INavigator navigator)");
+            Debug.WriteLine("public ChapterViewModel(INavigator navigator)");
             InitAsyncApiRequest();
             _navigator = navigator;
         }

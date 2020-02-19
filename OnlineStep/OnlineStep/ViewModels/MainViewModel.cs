@@ -25,13 +25,13 @@ namespace OnlineStep.ViewModels
         }
 
 
-        public ICommand Login
-        {
-            get
-            {
-                return new Command<string>((x) => LoginText = (x));
-            }
-        }
+        //public ICommand Login
+        //{
+        //    get
+        //    {
+        //        return new Command<string>((x) => LoginText = (x));
+        //    }
+        //}
 
 
         public ICommand GoToNextView => new Command(() =>
@@ -39,14 +39,14 @@ namespace OnlineStep.ViewModels
             _navigator.PushAsync<CourseViewModel>();
         });
 
-        public string LoginText
-        {
-            get => _loginText;
-            set
-            {
-                SetProperty(ref _loginText, (value));
-            }
-        }
+        //public string LoginText
+        //{
+        //    get => _loginText;
+        //    set
+        //    {
+        //        SetProperty(ref _loginText, (value));
+        //    }
+        //}
 
 
         public string WelcomeText

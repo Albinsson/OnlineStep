@@ -28,11 +28,7 @@
             Text="Get started" />
 
         <!--  Example of a button changing a viewmodel  -->
-        <Button
-            Command="{Binding Login}"
-            CommandParameter="Login failed (sent from view, updated from vm)"
-            Style="{StaticResource MainPageButton}"
-            Text="Login" />
+        <Button Text="Login" />
 
 
         <!--  Example of a random welcome text  -->
@@ -42,7 +38,5 @@
             Text="{Binding WelcomeText}"
             VerticalOptions="End" />
 
-        <!--  Displays and changes the value when login button is clicked  -->
-        <Label Style="{DynamicResource TextSubhead}" Text="{Binding LoginText, Mode=TwoWay}" />
     </StackLayout>
 </ContentPage>

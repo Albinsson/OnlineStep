@@ -18,29 +18,10 @@ namespace OnlineStep.ViewModels
         public StackLayout _id { get; set; }
         private readonly INavigator _navigator;
 
-        //public Command GoToNextView
-        //{
-        //    get
-        //    {
-        //        return new Command((() =>
-        //        {
-        //            string courseId = _id.ClassId;
-        //            _navigator.PushAsync<ChapterViewModel>();
-        //        }));
-        //    }
-        //}
-
-
-        //public CourseViewModel()
-        //{
-        //    Debug.WriteLine("CourseViewModel()"); 
-        //    //Task.Run(async () => { await InitAsyncApiRequest(); }).Wait();
-            
-            
-        //}
+  
         public CourseViewModel(INavigator navigator)
         {
-            Debug.WriteLine("public MainViewModel(INavigator navigator)");
+            Debug.WriteLine("public CourseViewModel(INavigator navigator)");
             InitAsyncApiRequest();
             _navigator = navigator;
         }
@@ -51,23 +32,20 @@ namespace OnlineStep.ViewModels
             DbHelper dbHelper = new DbHelper();
             courseList = dbHelper.GetCourses();
             Debug.WriteLine(courseList.Count);
-            //try
-            //{
-            //    Debug.WriteLine("InitAsyncApiRequest()");
-            //    var temp = RestClient.GetCoursesAsync();
-            //    courseList = await temp;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.WriteLine("InitAsyncApiRequest()");
-            //    Debug.WriteLine(ex);
-            //}
+
         }
 
-        public ICommand GoToChapterView => new Command((id) =>
+        public ICommand GoToChapterView => new Command<string>((id) =>
         {
             Debug.WriteLine("Going to chapter: " + id);
-            _navigator.PushAsync<ChapterViewModel>();
+            CurrentChapterID = id;
+            Debug.WriteLine("Chapter id set to : " + CurrentChapterID);
+
+            //_navigator.PushAsync<ChapterViewModel>();
+            //_navigator.PopAsync();
+            
+
+            Debug.WriteLine("_navigator.PushAsync<ChapterViewModel>();" + id);
         });
 
         public List<Course> CourseList
@@ -76,35 +54,20 @@ namespace OnlineStep.ViewModels
             set => courseList = value;
         }
 
-        public ICommand SetCurrentChapterId
-        {
-            get
-            {
-                return new Command<string>((x) => CurrentChapterID = (x));
-            }
-        }
-
-        public String SetChapterId
-        {
-            set => CurrentChapterID = value;
-        }
-      
-        //public ICommand GoToNextView => new Command(() =>
+        //public ICommand SetCurrentChapterId
         //{
-        //    Debug.WriteLine("Button clicked");
+        //    get
+        //    {
+        //        return new Command<string>((x) => CurrentChapterID = (x));
+        //    }
+        //}
 
+        //public String SetChapterId
+        //{
+        //    set => CurrentChapterID = value;
+        //}
+        
 
-        //    string courseId = _id.ClassId;
-        //    Debug.WriteLine("Course ID selected: " + courseId);
-
-        //    //((ChapterViewModel)this.BindingContext).SetChapterId = courseId;
-        //    _navigator.PushAsync<ChapterViewModel>();
-        //});
-
-        public void NavigateTest()
-        {
-            
-        }
     }
 };
 

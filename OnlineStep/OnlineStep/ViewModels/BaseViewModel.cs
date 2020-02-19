@@ -7,33 +7,22 @@ using OnlineStep.Navigation.Interfaces;
 
 namespace OnlineStep.ViewModels
 {
-    public class BaseViewModel : IViewModelBase
+    public abstract class BaseViewModel : IViewModelBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public string CurrentChapterID;
 
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //[NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyname = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
+            }
+        
+
 
         public List<Object> PageList { get; set; }
 
 
-
-        protected bool SetProperty<T>(ref T backfield, T value,
-            [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backfield, value))
-            {
-                return false;
-            }
-
-            backfield = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
 
     }
 }
