@@ -16,10 +16,6 @@
 
     <StackLayout VerticalOptions="End">
 
-        <StackLayout.BindingContext>
-            <viewModels:MainViewModel />
-        </StackLayout.BindingContext>
-
         <Label
             HorizontalOptions="CenterAndExpand"
             Style="{StaticResource TextHeadline}"
@@ -27,7 +23,7 @@
 
         <!--  The clicked action should be handle by a viewmodel  -->
         <Button
-            Clicked="Handle_Clicked_Get_Started"
+            Command="{Binding GoToNextView}"
             Style="{StaticResource MainPageButton}"
             Text="Get started" />
 

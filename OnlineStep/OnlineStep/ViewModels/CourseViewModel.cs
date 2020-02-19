@@ -13,6 +13,7 @@ namespace OnlineStep.ViewModels
     internal class CourseViewModel : BaseViewModel
     {
         private List<Course> courseList;
+        private StackLayout id;
         
         public CourseViewModel()
         {
@@ -53,6 +54,11 @@ namespace OnlineStep.ViewModels
         public String SetChapterId
         {
             set => CurrentChapterID = value;
+        }
+
+        public void NavigateTest()
+        {
+            
         }
     }
 };

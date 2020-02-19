@@ -28,6 +28,7 @@ namespace OnlineStep.Views
             ((CourseViewModel) this.BindingContext).SetChapterId = courseId;
 
             //Navigation.PushAsync(new ChapterView(courseId));
+            
             Navigation.PushAsync(new ChapterView());
         }
     }

@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using OnlineStep.Models;
+using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
+using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
 {
@@ -11,6 +14,7 @@ namespace OnlineStep.ViewModels
     {
 
         private List<Chapter> chapterList;
+        private readonly INavigator _navigator;
 
         public ChapterViewModel()
         {
@@ -20,9 +24,14 @@ namespace OnlineStep.ViewModels
             Task.Run(async () => { await InitAsyncApiRequest(); }).Wait();
         }
 
+        public ChapterViewModel(INavigator navigator)
+        {
+            Debug.WriteLine("public MainViewModel(INavigator navigator)");
+            _navigator = navigator;
+        }
+
         public async Task InitAsyncApiRequest()
         {
-
             try
             {
                 if (CurrentChapterID == String.Empty) { throw new ArgumentException("CurrentChapterID cannot be null or empty string");}
@@ -38,6 +47,11 @@ namespace OnlineStep.ViewModels
 
             }
         }
+
+        public ICommand GoToNextView => new Command(() =>
+        {
+            _navigator.PushAsync<CourseViewModel>();
+        });
 
         public List<Chapter> ChapterList
         {

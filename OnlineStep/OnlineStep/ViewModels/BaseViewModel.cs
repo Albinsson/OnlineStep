@@ -2,13 +2,14 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using OnlineStep.Annotations;
+using OnlineStep.Navigation.Interfaces;
 
 namespace OnlineStep.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : IViewModelBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public string CurrentChapterID; 
+        public string CurrentChapterID;
 
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -16,15 +17,15 @@ namespace OnlineStep.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        // Our Code starts here
 
         protected bool SetProperty<T>(ref T backfield, T value,
-            [CallerMemberName]string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(backfield, value))
             {
                 return false;
             }
+
             backfield = value;
             OnPropertyChanged(propertyName);
             return true;
@@ -32,3 +33,7 @@ namespace OnlineStep.ViewModels
 
     }
 }
+
+
+
+    

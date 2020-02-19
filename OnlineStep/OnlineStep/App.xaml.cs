@@ -1,4 +1,6 @@
-﻿using OnlineStep.Views;
+﻿using OnlineStep.Navigation;
+using OnlineStep.ViewModels;
+using OnlineStep.Views;
 using Xamarin.Forms;
 
 namespace OnlineStep
@@ -8,7 +10,14 @@ namespace OnlineStep
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new MainView());
+            //MainPage = new NavigationPage(new MainView());
+            LoadTypes();
+        }
+
+        private void LoadTypes()
+        {
+            var bootstrapper = new Bootstrapper(this);
+            bootstrapper.Run();
         }
 
         protected override void OnStart()
