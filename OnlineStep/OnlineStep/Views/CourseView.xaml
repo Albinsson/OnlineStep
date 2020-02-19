@@ -26,28 +26,28 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>-->
+    <ListView ItemsSource="{Binding CourseList}" SelectionMode="Single">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Button Text="{Binding Name}" TextColor="Black" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}" CommandParameter="{Binding _id}" ></Button>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
-    <ListView ItemsSource="{Binding CourseList}" SelectionMode="None">
+    <!--<ListView ItemsSource="{Binding CourseList}" SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <ViewCell.View>
                         <StackLayout ClassId="{Binding _id}">
 
-                            <Label Text="{Binding Name}" TextColor="Green" />
-                            <Label Text="{Binding Owner}" TextColor="Black" />
-
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="{Binding Name}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-                            <Label
-                                HorizontalOptions="Center"
-                                Text="{Binding Author}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
+                            <Label Text="{Binding Name}" TextColor="Green"/>
+                            <Label Text="{Binding Owner}" TextColor="Black"/>
+                                    
                             <StackLayout.GestureRecognizers>
+                                
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}" CommandParameter="{Binding _id}" />
                             </StackLayout.GestureRecognizers>
 
@@ -56,7 +56,7 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 
 </ContentPage>
 

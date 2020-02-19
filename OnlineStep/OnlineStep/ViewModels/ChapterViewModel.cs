@@ -29,7 +29,7 @@ namespace OnlineStep.ViewModels
 
         public ChapterViewModel(INavigator navigator)
         {
-            Debug.WriteLine("public MainViewModel(INavigator navigator)");
+            Debug.WriteLine("ChapterViewModel Constructor");
             InitAsyncApiRequest();
             _navigator = navigator;
         }

@@ -1,20 +1,19 @@
 ﻿using OnlineStep.Models;
-using OnlineStep.Services;
-using System;
-using System.Collections.Generic;
-
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using OnlineStep.Helpers;
 using OnlineStep.Navigation.Interfaces;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Windows.Input;
+using static Android.Content.ClipData;
 
 namespace OnlineStep.ViewModels
 {
     internal class CourseViewModel : BaseViewModel
     {
         private List<Course> courseList;
+        private Item _selectedItem;
+
         public StackLayout _id { get; set; }
         private readonly INavigator _navigator;
 
@@ -40,14 +39,15 @@ namespace OnlineStep.ViewModels
         //}
         public CourseViewModel(INavigator navigator)
         {
-            Debug.WriteLine("public MainViewModel(INavigator navigator)");
             InitAsyncApiRequest();
             _navigator = navigator;
         }
+
+       
+
         //TODO: Rename me
         public void InitAsyncApiRequest()
         {
-            Debug.WriteLine("Hello");
             DbHelper dbHelper = new DbHelper();
             courseList = dbHelper.GetCourses();
             Debug.WriteLine(courseList.Count);
@@ -64,11 +64,19 @@ namespace OnlineStep.ViewModels
             //}
         }
 
-        public ICommand GoToChapterView => new Command((id) =>
+
+        public Command GoToChapterView => new Command((id) =>
         {
             Debug.WriteLine("Going to chapter: " + id);
             _navigator.PushAsync<ChapterViewModel>();
         });
+
+        //void GoToChapterView()
+        //{
+        //    string id = _id.ClassId;
+        //    Debug.WriteLine("Going to chapter: " + id);
+        //    _navigator.PushAsync<ChapterViewModel>();
+        //}
 
         public List<Course> CourseList
         {
@@ -84,27 +92,28 @@ namespace OnlineStep.ViewModels
             }
         }
 
-        public String SetChapterId
+        public string SetChapterId
         {
             set => CurrentChapterID = value;
         }
-      
-        //public ICommand GoToNextView => new Command(() =>
+
+        //public Item SelectedItem
         //{
-        //    Debug.WriteLine("Button clicked");
+        //    get
+        //    {
+        //        return _selectedItem;
+        //    }
 
+        //    set
+        //    {
+        //        _selectedItem = value;
+        //        if (_selectedItem == null) return;
 
-        //    string courseId = _id.ClassId;
-        //    Debug.WriteLine("Course ID selected: " + courseId);
+        //        GoToChapterView.Execute(_selectedItem);
+        //        SelectedItem = null;
+        //    }
+        //}
 
-        //    //((ChapterViewModel)this.BindingContext).SetChapterId = courseId;
-        //    _navigator.PushAsync<ChapterViewModel>();
-        //});
-
-        public void NavigateTest()
-        {
-            
-        }
     }
 };
 

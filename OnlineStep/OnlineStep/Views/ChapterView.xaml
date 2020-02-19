@@ -10,7 +10,7 @@
     mc:Ignorable="d">
 
 
-    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="None">
+    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
@@ -35,9 +35,7 @@
                             <!--</yummy:PancakeView>-->
 
                             <StackLayout.GestureRecognizers>
-
-
-                                <TapGestureRecognizer Command="{Binding GoToNextView}" />
+                                <!--<TapGestureRecognizer Command="{Binding GoToNextView}" />-->
                             </StackLayout.GestureRecognizers>
 
                         </StackLayout>

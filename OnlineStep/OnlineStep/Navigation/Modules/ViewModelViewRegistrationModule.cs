@@ -16,6 +16,9 @@ namespace OnlineStep.Navigation.Modules
 
             builder.RegisterType<CourseView>();
             builder.RegisterType<CourseViewModel>();
+
+            builder.RegisterType<ChapterView>();
+            builder.RegisterType<ChapterViewModel>();
         }
     }
 }

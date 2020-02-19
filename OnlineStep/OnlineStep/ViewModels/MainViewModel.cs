@@ -1,29 +1,26 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Input;
 using OnlineStep.Navigation.Interfaces;
 using Xamarin.Forms;
+using Debug = System.Diagnostics.Debug;
 
 namespace OnlineStep.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private string _welcomeText;
         private string _loginText = "Please login...";
 
         private readonly INavigator _navigator;
 
         public MainViewModel()
         {
-            _welcomeText = RandomWelcomeText();
+            WelcomeText = RandomWelcomeText();
         }
 
         public MainViewModel(INavigator navigator)
         {
-            Debug.WriteLine("public MainViewModel(INavigator navigator)");
             _navigator = navigator;
         }
-
 
         public ICommand Login
         {
@@ -36,6 +33,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToNextView => new Command(() =>
         {
+            Debug.WriteLine("Hello");
             _navigator.PushAsync<CourseViewModel>();
         });
 
@@ -49,11 +47,7 @@ namespace OnlineStep.ViewModels
         }
 
 
-        public string WelcomeText
-        {
-            get => _welcomeText;
-            set => _welcomeText = value;
-        }
+        public string WelcomeText { get; set; }
 
         // Example of business-logic for a random welcome text.
         public string RandomWelcomeText()

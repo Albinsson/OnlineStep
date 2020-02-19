@@ -20,13 +20,11 @@ namespace OnlineStep.ViewModels
 
         public List<Object> PageList { get; set; }
 
-
-
         protected bool SetProperty<T>(ref T backfield, T value,
             [CallerMemberName] string propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(backfield, value))
-            {
+            {             
                 return false;
             }
 
