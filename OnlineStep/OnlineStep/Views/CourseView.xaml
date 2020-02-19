@@ -45,6 +45,7 @@
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="Button_Tapped" />
+                                
                             </StackLayout.GestureRecognizers>
 
                         </StackLayout>
