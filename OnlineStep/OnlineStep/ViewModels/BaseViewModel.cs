@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using OnlineStep.Annotations;
@@ -16,6 +17,9 @@ namespace OnlineStep.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public List<Object> PageList { get; set; }
+
 
 
         protected bool SetProperty<T>(ref T backfield, T value,
