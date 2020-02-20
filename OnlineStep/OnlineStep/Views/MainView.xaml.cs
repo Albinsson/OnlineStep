@@ -12,7 +12,5 @@ namespace OnlineStep.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
-
-
     }
 }

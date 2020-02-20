@@ -9,7 +9,6 @@ namespace OnlineStep.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseView : ContentPage
     {
-
         public CourseView()
         {
             InitializeComponent();
