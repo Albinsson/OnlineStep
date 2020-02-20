@@ -21,20 +21,24 @@ namespace OnlineStep.ViewModels
         private List<Chapter> chapterList;
         private readonly DbHelper dbHelper = new DbHelper();
         private readonly INavigator _navigator;
+        private DataCenter DataCenter;
+        private Data Data;
 
 
         public ChapterViewModel(INavigator navigator)
         {
-            Debug.WriteLine("ChapterViewModel Constructor");
-            
+            Debug.WriteLine("ChapterViewModel Constructor");           
+            DataCenter = DataCenterFactory.GetDataCenter("CourseViewModel");
+            Debug.WriteLine("After DataCenter");
             InitAsyncApiRequest();
             _navigator = navigator;
         }
 
         public void InitAsyncApiRequest()
         {
-            var chapterID = Preferences.Get("chapterID", "default_value");
-            ChapterList = dbHelper.GetChapters(chapterID);
+            //var chapterID = Preferences.Get("chapterID", "default_value");
+            Data = DataCenter.GetProcedure("SetChapterID");
+            ChapterList = dbHelper.GetChapters(Data.Obj.ToString());
             Debug.WriteLine(ChapterList.Count);
         }
 

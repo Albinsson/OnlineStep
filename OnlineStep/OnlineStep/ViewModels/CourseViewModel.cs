@@ -16,29 +16,28 @@ namespace OnlineStep.ViewModels
     {
         private List<Course> courseList;
         private readonly INavigator _navigator;
+        private DataCenter DataCenter;
 
   
         public CourseViewModel(INavigator navigator)
         {
             InitAsyncApiRequest();
             _navigator = navigator;
+            DataCenter = new DataCenter { ContainerId = this.GetType().ToString() };
         }
         //TODO: Rename me
         public void InitAsyncApiRequest()
         {
             DbHelper dbHelper = new DbHelper();
-            courseList = dbHelper.GetCourses();
-            Debug.WriteLine(courseList.Count);
-
+            courseList = dbHelper.GetCourses();           
         }
 
         public ICommand GoToChapterView => new Command<string>((id) =>
         {
-
-            Preferences.Set("chapterID", id);
-            var chapterID = Preferences.Get("chapterID", "default_value");
+            //Preferences.Set("chapterID", id);
+            DataCenter.CreateProcedure("SetChapterID", id);
+            //var chapterID = Preferences.Get("chapterID", "default_value");
             _navigator.PushAsync<ChapterViewModel>();
-
         });
 
         public List<Course> CourseList
