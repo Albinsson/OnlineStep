@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using Newtonsoft.Json;
 using OnlineStep.Models;
@@ -13,8 +14,8 @@ namespace OnlineStep.Helpers
         private RestCLient_A RestCLient;
         private string Url = "https://online-step.herokuapp.com/";
         private string Courses = "courses/";
-        private string Chapters = "Courses/Chapters/";
-        private string Pages = "Chapter/Pages/";
+        private string Chapters = "courses/chapters/";
+        private string Pages = "chapter/pages/";
 
         public DbHelper()
         {
@@ -34,6 +35,8 @@ namespace OnlineStep.Helpers
 
         public List<Chapter> GetChapters(string id)
         {
+            Debug.WriteLine("public List<Chapter> GetChapters(string id)");
+            Debug.WriteLine( Url + Chapters + id);
             RestCLient = new RestCLient_A {HttpMethod = RestCLient_A.HttpVerb.GET, EndPoint = Url + Chapters + id};
             string chapters = RestCLient.DoRequest();
             List<Chapter> chapterList = new List<Chapter>();

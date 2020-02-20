@@ -15,7 +15,7 @@ namespace OnlineStep.ViewModels
     internal class CourseViewModel : BaseViewModel
     {
         private List<Course> courseList;
-        public StackLayout _id { get; set; }
+        //public StackLayout _id { get; set; }
         private readonly INavigator _navigator;
 
   
@@ -37,11 +37,14 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToChapterView => new Command<string>((id) =>
         {
-            Debug.WriteLine("Going to chapter: " + id);
-            CurrentChapterID = id;
-            Debug.WriteLine("Chapter id set to : " + CurrentChapterID);
+            Debug.WriteLine("Going to course: " + id);
+            CurrentCourseID = id;
+            Test = "Set from course view model";
+            Debug.WriteLine("Course id set to : " + CurrentCourseID);
 
-            //_navigator.PushAsync<ChapterViewModel>();
+            ///_navigator.PushAsync<DeleteMeViewModel>();
+
+            _navigator.PushAsync<DeleteMeViewModel>();
             //_navigator.PopAsync();
             
 
@@ -58,13 +61,13 @@ namespace OnlineStep.ViewModels
         //{
         //    get
         //    {
-        //        return new Command<string>((x) => CurrentChapterID = (x));
+        //        return new Command<string>((x) => CurrentCourseID = (x));
         //    }
         //}
 
         //public String SetChapterId
         //{
-        //    set => CurrentChapterID = value;
+        //    set => CurrentCourseID = value;
         //}
         
 

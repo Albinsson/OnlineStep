@@ -9,7 +9,6 @@ namespace OnlineStep.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private string _welcomeText;
-        private string _loginText = "Please login...";
 
         private readonly INavigator _navigator;
 

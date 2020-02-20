@@ -9,13 +9,16 @@ using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
 using Xamarin.Forms;
 
+
+
+
 namespace OnlineStep.ViewModels
 {
     class ChapterViewModel : BaseViewModel
     {
 
         private List<Chapter> chapterList;
-        private DbHelper dbHelper;
+        private readonly DbHelper dbHelper = new DbHelper();
         private readonly INavigator _navigator;
 
 
@@ -28,14 +31,14 @@ namespace OnlineStep.ViewModels
 
         public void InitAsyncApiRequest()
         {
-            ChapterList = dbHelper.GetChapters(CurrentChapterID);
+            ChapterList = dbHelper.GetChapters(CurrentCourseID);
             Debug.WriteLine(ChapterList.Count);
             //try
             //{
-            //    if (CurrentChapterID == String.Empty) { throw new ArgumentException("CurrentChapterID cannot be null or empty string");}
+            //    if (CurrentCourseID == String.Empty) { throw new ArgumentException("CurrentCourseID cannot be null or empty string");}
 
             //    Debug.WriteLine("InitAsyncApiRequest()");
-            //    var temp = RestClient.GetChaptersAsync(CurrentChapterID);
+            //    var temp = RestClient.GetChaptersAsync(CurrentCourseID);
             //    chapterList = await temp;
             //}
             //catch (Exception ex)

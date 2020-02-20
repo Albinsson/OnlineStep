@@ -18,7 +18,10 @@ namespace OnlineStep.Navigation.Modules
             builder.RegisterType<CourseViewModel>();
 
             builder.RegisterType<ChapterView>();
-            builder.RegisterType<ChapterViewModel>();
+            builder.RegisterType<ChapterViewModel>(); 
+            
+            builder.RegisterType<DeletMeView>();
+            builder.RegisterType<DeleteMeViewModel>();
 
 
         }

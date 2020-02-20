@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OnlineStep.Views.DeletMeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    mc:Ignorable="d">
+
+    <StackLayout Margin="20">
+        <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Text="ListView with a Data Template" />
+        <ListView Margin="0,20,0,0" ItemsSource="{Binding ChapterList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.3*" />
+                            </Grid.ColumnDefinitions>
+                            <Label FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
+                            <Label
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding Name}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+
+</ContentPage>
