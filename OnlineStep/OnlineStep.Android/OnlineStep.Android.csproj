@@ -84,7 +84,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\balloon.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineStep\OnlineStep.csproj">
       <Project>{7190C369-84B0-45CC-AA5C-44AD93792784}</Project>

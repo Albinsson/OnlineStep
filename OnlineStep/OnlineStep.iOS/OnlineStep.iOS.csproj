@@ -135,4 +135,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\angryimg.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\balloon.jpg" />
+  </ItemGroup>
 </Project>
