@@ -7,43 +7,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="None">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout ClassId="{Binding _id}">
-
-                            <!--<Label Text="{Binding Name}" TextColor="Green" />
-                            <Label Text="{Binding Author}" TextColor="Black" />-->
-                            <!--<yummy:PancakeView
-                                BackgroundColor="Purple"
-                                BorderThickness="4"
-                                CornerRadius="40,0,0,100"
-                                HasShadow="true"
-                                HeightRequest="150"
-                                HorizontalOptions="FillAndExpand">-->
+    <StackLayout Margin="20">
+        <Label
+            FontAttributes="Bold"
+            HorizontalOptions="Center"
+            Text="ListView with a Data Template" />
+        <ListView Margin="0,20,0,0" ItemsSource="{Binding ChapterList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="0.2*" />
+                                <ColumnDefinition Width="0.3*" />
+                            </Grid.ColumnDefinitions>
+                            <Label FontAttributes="Bold" Text="{Binding Name}" />
+                            <Label Grid.Column="1" Text="{Binding Name}" />
                             <Label
-                                HorizontalOptions="Center"
-                                Text="{Binding Name}"
-                                TextColor="Black"
-                                VerticalOptions="Center" />
-
-                            <!--</yummy:PancakeView>-->
-
-                            <StackLayout.GestureRecognizers>
-
-
-                                <TapGestureRecognizer Command="{Binding GoToNextView}" />
-                            </StackLayout.GestureRecognizers>
-
-                        </StackLayout>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-
-
+                                Grid.Column="2"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding Name}" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 
 </ContentPage>

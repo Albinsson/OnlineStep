@@ -7,6 +7,7 @@ using OnlineStep.Helpers;
 using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 
@@ -21,40 +22,20 @@ namespace OnlineStep.ViewModels
         private readonly DbHelper dbHelper = new DbHelper();
         private readonly INavigator _navigator;
 
-        public ChapterViewModel()
-        {
-            Debug.WriteLine("ChapterViewModel()");
-            Debug.WriteLine(CurrentChapterID);
-
-            //Task.Run(async () => { await InitAsyncApiRequest(); }).Wait();
-            dbHelper = new DbHelper();
-        }
 
         public ChapterViewModel(INavigator navigator)
         {
             Debug.WriteLine("ChapterViewModel Constructor");
+            
             InitAsyncApiRequest();
             _navigator = navigator;
         }
 
         public void InitAsyncApiRequest()
         {
-            ChapterList = dbHelper.GetChapters(CurrentCourseID);
+            var chapterID = Preferences.Get("chapterID", "default_value");
+            ChapterList = dbHelper.GetChapters(chapterID);
             Debug.WriteLine(ChapterList.Count);
-            //try
-            //{
-            //    if (CurrentCourseID == String.Empty) { throw new ArgumentException("CurrentCourseID cannot be null or empty string");}
-
-            //    Debug.WriteLine("InitAsyncApiRequest()");
-            //    var temp = RestClient.GetChaptersAsync(CurrentCourseID);
-            //    chapterList = await temp;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Debug.WriteLine("InitAsyncApiRequest()");
-            //    Debug.WriteLine(ex);
-
-            //}
         }
 
         public ICommand GoToNextView => new Command((id) =>

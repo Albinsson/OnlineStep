@@ -15,7 +15,7 @@ namespace OnlineStep.Helpers
         private string Url = "https://online-step.herokuapp.com/";
         private string Courses = "courses/";
         private string Chapters = "courses/chapters/";
-        private string Pages = "chapter/pages/";
+        private string Pages = "chapters/pages/";
 
         public DbHelper()
         {

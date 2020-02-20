@@ -8,56 +8,20 @@
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
-    <!--<StackLayout>
-        <ListView ItemsSource="{Binding CourseList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Name}"
-                                   VerticalOptions="Center" />
-                            <Button Text="Delete"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToNextView}"
-                                    CommandParameter="{Binding}"
-                                    HorizontalOptions="EndAndExpand" />
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>-->
+
     <ListView ItemsSource="{Binding CourseList}" SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Button Text="{Binding Name}" TextColor="Black" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}" CommandParameter="{Binding _id}" ></Button>
+                    <Button
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
+                        CommandParameter="{Binding _id}"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
-    <!--<ListView ItemsSource="{Binding CourseList}" SelectionMode="Single">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <ViewCell.View>
-                        <StackLayout ClassId="{Binding _id}">
-
-                            <Label Text="{Binding Name}" TextColor="Green"/>
-                            <Label Text="{Binding Owner}" TextColor="Black"/>
-                                    
-                            <StackLayout.GestureRecognizers>
-                                
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}" CommandParameter="{Binding _id}" />
-                            </StackLayout.GestureRecognizers>
-
-                        </StackLayout>
-                    </ViewCell.View>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
-
 </ContentPage>
 
 

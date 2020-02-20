@@ -10,9 +10,6 @@ namespace OnlineStep.ViewModels
     public abstract class BaseViewModel : IViewModelBase
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public string CurrentCourseID { set; get; }
-
-        public string Test = "Test";
 
         //[NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyname = null)
@@ -21,7 +18,7 @@ namespace OnlineStep.ViewModels
             }
 
 
-
+        //TODO
         public List<Object> PageList { get; set; }
 
 
