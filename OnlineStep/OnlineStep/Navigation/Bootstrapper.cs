@@ -53,6 +53,8 @@ namespace OnlineStep.Navigation
             viewFactory.Register<MainViewModel, MainView>();
             viewFactory.Register<CourseViewModel, CourseView>();
             viewFactory.Register<ChapterViewModel, ChapterView>();
+            viewFactory.Register<PageViewModel, McqView>();
+            viewFactory.Register<PageViewModel, ClozeView>();
         }
     }
 }

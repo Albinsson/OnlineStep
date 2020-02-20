@@ -22,7 +22,6 @@ namespace OnlineStep.ViewModels
         public List<Object> PageList { get; set; }
 
 
-
     }
 }
 

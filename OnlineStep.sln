@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStep.Android", "Onlin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStep.iOS", "OnlineStep\OnlineStep.iOS\OnlineStep.iOS.csproj", "{7E591F47-3FBE-4C8E-9249-BB2B42191456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineStep", "OnlineStep\OnlineStep\OnlineStep.csproj", "{2D09942A-5A4C-40FB-BE51-C85EAC896B4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineStep", "OnlineStep\OnlineStep\OnlineStep.csproj", "{2D09942A-5A4C-40FB-BE51-C85EAC896B4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

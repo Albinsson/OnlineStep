@@ -5,9 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     mc:Ignorable="d">
 
-    <StackLayout Margin="20">
+    <!--<StackLayout Margin="20">
         <Label
             FontAttributes="Bold"
             HorizontalOptions="Center"
@@ -33,6 +34,20 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
+    </StackLayout>-->
+
+    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="Single">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Button
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                        CommandParameter="{Binding _id}"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 
 </ContentPage>

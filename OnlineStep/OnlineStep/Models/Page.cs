@@ -12,6 +12,10 @@ namespace OnlineStep.Models
         public string question { get; set; }
         public string correctAnswer { get; set; }
 
+        //public Cloze Cloze { get; set; }
+
+        //public Mcq Mcq { get; set; }
+
         public class RootObject
         {
             public string _id { get; set; }

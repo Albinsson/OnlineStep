@@ -38,10 +38,12 @@ namespace OnlineStep.ViewModels
             Debug.WriteLine(ChapterList.Count);
         }
 
-        public ICommand GoToNextView => new Command((id) =>
+        public ICommand GoToPageView => new Command((id) =>
         {
+            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
+            pageList = dbHelper.GetPages(id.ToString());
             
-            _navigator.PushAsync<CourseViewModel>();
+            _navigator.PushAsync<PageViewModel>();
         });
 
         public List<Chapter> ChapterList
