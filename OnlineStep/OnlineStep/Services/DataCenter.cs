@@ -18,11 +18,17 @@ namespace OnlineStep.Services
         }
 
 
-        public static void CreateProcedure(string procedureName, object dataType)
+        public static void CreateSingletonProcedure(string procedureName, object dataType)
         {
             CheckPrefix(procedureName);                    
             Data data = new Data { Name = ModifyName(procedureName), Obj = dataType };
             ProcedureList.Add(data);          
+        }
+
+        //TODO: same principle but instead use Data.ObjList variable to populate
+        public static void CreateListProcedure(string procedureName, List<object> dataTypeList)
+        {
+
         }
 
         static string ModifyName(string procedureName)
@@ -46,7 +52,7 @@ namespace OnlineStep.Services
             if (!procedureName.Contains("Set") || procedureName.Contains("Put")) throw new Exception("Your procedure name's prefix must contain 'Set' or 'Get'");
         }
 
-        public static Data GetProcedure(string procedureName)
+        public static Data GetSingletonProcedure(string procedureName)
         {
             Data data = new Data();
             foreach(var i in ProcedureList)
@@ -57,6 +63,13 @@ namespace OnlineStep.Services
                     data.Obj = i.Obj;
                 }
             }
+            return data;
+        }
+
+        //TODO: still same principle as above
+        public static Data GetListProcedure(string procedureName)
+        {
+            Data data = new Data();
             return data;
         }
 

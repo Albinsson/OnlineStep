@@ -21,7 +21,6 @@ namespace OnlineStep.ViewModels
         private List<Chapter> chapterList;
         private readonly DbHelper dbHelper = new DbHelper();
         private readonly INavigator _navigator;
-        private DataCenter DataCenter;
         private Data Data;
 
 
@@ -33,7 +32,7 @@ namespace OnlineStep.ViewModels
 
         public void InitAsyncApiRequest()
         {
-            Data = DataCenter.GetProcedure("GetChapterID");
+            Data = DataCenter.GetSingletonProcedure("GetChapterID");
             ChapterList = dbHelper.GetChapters(Data.Obj.ToString());
             Debug.WriteLine(ChapterList.Count);
         }
