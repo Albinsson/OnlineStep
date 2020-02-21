@@ -32,7 +32,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToChapterView => new Command<string>((id) =>
         {
-            DataCenter.CreateProcedure("SetChapterID", id);
+            DataCenter.CreateSingletonProcedure("SetChapterID", id);
             _navigator.PushAsync<ChapterViewModel>();
         });
 

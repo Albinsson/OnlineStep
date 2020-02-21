@@ -8,5 +8,6 @@ namespace OnlineStep.Helpers
     {
         public object Obj { get; set; }
         public string Name { get; set; }
+        public List<object> ObjList { get; set; }
     }
 }
