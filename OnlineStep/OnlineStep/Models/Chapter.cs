@@ -2,7 +2,7 @@
 
 namespace OnlineStep.Models
 {
-    internal class Chapter
+    public class Chapter
     {
         public List<string> Pages { get; set; }
         public string _id { get; set; }
