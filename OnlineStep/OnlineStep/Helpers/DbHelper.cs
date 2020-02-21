@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace OnlineStep.Helpers
 {
-    class DbHelper
+    public class DbHelper
     {
         private RestCLient_A RestCLient;
         private string Url = "https://online-step.herokuapp.com/";
