@@ -23,7 +23,8 @@ namespace OnlineStep.ViewModels
         {
             InitAsyncApiRequest();
             _navigator = navigator;
-            DataCenter = new DataCenter { ContainerId = this.GetType().ToString() };
+            DataCenter = new DataCenter { ContainerId = this.GetType().ToString()};
+            DataCenterFactory.DataCenterList.Add(DataCenter);           
         }
         //TODO: Rename me
         public void InitAsyncApiRequest()

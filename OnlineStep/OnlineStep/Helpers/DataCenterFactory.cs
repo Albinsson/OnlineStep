@@ -18,6 +18,7 @@ namespace OnlineStep.Helpers
         public static DataCenter GetDataCenter(string centerId)
         {
             Console.WriteLine("GetDataCenter", centerId);
+            Console.WriteLine("DataCenterList", DataCenterList[0].ContainerId);
             DataCenter dataCenter = new DataCenter();
             foreach (var i in DataCenterList)
             {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Xamarin.Forms;
 using OnlineStep.Helpers;
+using System;
 
 namespace OnlineStep.Services
 {
@@ -16,6 +17,7 @@ namespace OnlineStep.Services
         {
             ProcedureList = new List<Data>();
             DataCenterFactory.DataCenterList.Add(this);
+            Console.WriteLine("DataCenterConstructor", this.ContainerId);
         }
 
 
