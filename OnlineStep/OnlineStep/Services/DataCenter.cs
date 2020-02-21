@@ -28,7 +28,9 @@ namespace OnlineStep.Services
         //TODO: same principle but instead use Data.ObjList variable to populate
         public static void CreateListProcedure(string procedureName, List<object> dataTypeList)
         {
-
+            CheckPrefix(procedureName);
+            Data data = new Data { Name = ModifyName(procedureName), ObjList = dataTypeList };
+            ProcedureList.Add(data);
         }
 
         static string ModifyName(string procedureName)
@@ -70,6 +72,14 @@ namespace OnlineStep.Services
         public static Data GetListProcedure(string procedureName)
         {
             Data data = new Data();
+            foreach(var i in ProcedureList)
+            {
+                if (i.Name.Equals(procedureName))
+                {
+                    data.Name = i.Name;
+                    data.ObjList = i.ObjList;
+                }
+            }
             return data;
         }
 

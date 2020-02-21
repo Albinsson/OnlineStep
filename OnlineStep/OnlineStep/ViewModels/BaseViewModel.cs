@@ -19,7 +19,6 @@ namespace OnlineStep.ViewModels
 
         //TODO
         public List<Object> PageList { get; set; }
-
     }
 }
 

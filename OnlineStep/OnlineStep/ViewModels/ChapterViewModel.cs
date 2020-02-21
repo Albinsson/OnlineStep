@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using OnlineStep.Helpers;
@@ -39,8 +40,10 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToPageView => new Command((id) =>
         {
-            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
-            pageList = dbHelper.GetPages(id.ToString());          
+            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();           
+            pageList = dbHelper.GetPages(id.ToString());
+            var objList = pageList.ConvertAll(x => (object)x);           
+            DataCenter.CreateListProcedure("SetPageList", objList);
             _navigator.PushAsync<PageViewModel>();
         });
 
