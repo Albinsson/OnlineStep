@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.Dynamic;
 using System.Text;
-using System.Threading;
-using OnlineStep.Annotations;
-using OnlineStep.Helpers;
+using System.Windows.Input;
 using OnlineStep.Navigation.Interfaces;
-using OnlineStep.Views;
 using Xamarin.Forms;
-using Page = OnlineStep.Models.Page;
 
 namespace OnlineStep.ViewModels
 {
-    class PageViewModel : BaseViewModel
+    class ClozeViewModel : BaseViewModel 
     {
         private readonly INavigator _navigator;
-
-        protected PageViewModel(INavigator navigator)
+        public ClozeViewModel(INavigator navigator)
         {
             Debug.WriteLine("PageViewModel Constructor: ");
             _navigator = navigator;
         }
 
-        }
+  
+        public ICommand GoToNextPage => new Command(() =>
+        {
+            //TODO
+           
+        });
+
     }
+}
 
