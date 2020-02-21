@@ -10,7 +10,6 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     BackgroundImageSource="balloon.jpg"
     mc:Ignorable="d">
-
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
@@ -26,22 +25,23 @@
             <DataTemplate>
                 <ViewCell>
                     <yummy:PancakeView
-                        Margin="20,15,20,15"
-                        Padding="10"
+                        Margin="75,15,75,10"
                         BackgroundGradientAngle="45"
                         BackgroundGradientEndColor="#f7e843"
                         BackgroundGradientStartColor="#FF33AA"
                         CornerRadius="15"
                         IsClippedToBounds="True">
-                        <Frame Margin="20,15,20,15" BackgroundColor="Transparent">
+                        <Frame Padding="0" BackgroundColor="Transparent">
                             <Button
-                                BackgroundColor="White"
+                                BackgroundColor="Transparent"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
                                 CommandParameter="{Binding _id}"
                                 Font="Bold"
                                 FontSize="18"
+                                HorizontalOptions="Fill"
                                 Text="{Binding Name}"
-                                TextColor="Black" />
+                                TextColor="Black"
+                                VerticalOptions="Fill" />
 
 
                         </Frame>
