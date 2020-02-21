@@ -26,18 +26,14 @@ namespace OnlineStep.ViewModels
 
 
         public ChapterViewModel(INavigator navigator)
-        {
-            Debug.WriteLine("ChapterViewModel Constructor");           
-            DataCenter = DataCenterFactory.GetDataCenter("CourseViewModel");
-            Debug.WriteLine("After DataCenter");
+        {       
             InitAsyncApiRequest();
             _navigator = navigator;
         }
 
         public void InitAsyncApiRequest()
         {
-            //var chapterID = Preferences.Get("chapterID", "default_value");
-            Data = DataCenter.GetProcedure("SetChapterID");
+            Data = DataCenter.GetProcedure("GetChapterID");
             ChapterList = dbHelper.GetChapters(Data.Obj.ToString());
             Debug.WriteLine(ChapterList.Count);
         }
@@ -45,8 +41,7 @@ namespace OnlineStep.ViewModels
         public ICommand GoToPageView => new Command((id) =>
         {
             List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
-            pageList = dbHelper.GetPages(id.ToString());
-            
+            pageList = dbHelper.GetPages(id.ToString());          
             _navigator.PushAsync<PageViewModel>();
         });
 
