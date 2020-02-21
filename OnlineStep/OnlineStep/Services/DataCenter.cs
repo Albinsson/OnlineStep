@@ -7,27 +7,46 @@ namespace OnlineStep.Services
 {
     public class DataCenter
     {
-        public string ContainerId { get; set; }
 
         //private List<(object obj, string str)> ProcedureList { get; set; }
 
-        private List<Data> ProcedureList { get; set; }
+        private static List<Data> ProcedureList { get; set; }
         
-        public DataCenter()
+        static DataCenter()
         {
             ProcedureList = new List<Data>();
-            DataCenterFactory.DataCenterList.Add(this);
-            Console.WriteLine("DataCenterConstructor", this.ContainerId);
         }
 
 
-        public void CreateProcedure(string procedureName, object dataType)
+        public static void CreateProcedure(string procedureName, object dataType)
         {
-            Data data = new Data { Name = procedureName, Obj = dataType };
+            CheckPrefix(procedureName);                    
+            Data data = new Data { Name = ModifyName(procedureName), Obj = dataType };
             ProcedureList.Add(data);          
         }
 
-        public Data GetProcedure(string procedureName)
+        static string ModifyName(string procedureName)
+        {
+            string modifiedProcedureName = string.Empty;
+            string[] prefixList = new string[2] { "Set", "Put" };
+
+            foreach (var i in prefixList)
+            {
+                if (procedureName.Contains(i))
+                {
+                    modifiedProcedureName = procedureName.Replace(i, "Get");
+                    break;
+                }
+            }
+            return modifiedProcedureName;
+        }
+
+        static void CheckPrefix(string procedureName)
+        {
+            if (!procedureName.Contains("Set") || procedureName.Contains("Put")) throw new Exception("Your procedure name's prefix must contain 'Set' or 'Get'");
+        }
+
+        public static Data GetProcedure(string procedureName)
         {
             Data data = new Data();
             foreach(var i in ProcedureList)
