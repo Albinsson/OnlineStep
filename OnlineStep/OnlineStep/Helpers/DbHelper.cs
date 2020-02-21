@@ -46,6 +46,8 @@ namespace OnlineStep.Helpers
 
         public List<Models.Page.RootObject> GetPages(string id)
         {
+            Debug.WriteLine("Page ID", id);
+            Debug.WriteLine("Url", Url + Pages + id);
             RestCLient = new RestCLient_A {HttpMethod = RestCLient_A.HttpVerb.GET, EndPoint = Url + Pages + id};
             string pages = RestCLient.DoRequest();
             List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
