@@ -21,7 +21,11 @@ namespace OnlineStep.Navigation.Modules
             builder.RegisterType<ChapterViewModel>();
 
             builder.RegisterType<McqView>();
+            builder.RegisterType<McqViewModel>();
+
             builder.RegisterType<ClozeView>();
+            builder.RegisterType<ClozeViewModel>();
+
             builder.RegisterType<PageViewModel>();
 
         }
