@@ -6,12 +6,20 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
+
+
     <ContentPage.Content>
         <StackLayout>
             <Label
                 HorizontalOptions="CenterAndExpand"
                 Text="Welcome to MCQ"
                 VerticalOptions="CenterAndExpand" />
+
+
+
+            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

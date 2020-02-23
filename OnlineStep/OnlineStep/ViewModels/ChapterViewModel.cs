@@ -39,9 +39,12 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToPageView => new Command((id) =>
         {
-            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
-            pageList = dbHelper.GetPages(id.ToString());          
-            _navigator.PushAsync<PageViewModel>();
+            //List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
+            //pageList = dbHelper.GetPages(id.ToString());
+
+            PageNavigator.pageList = dbHelper.GetPages(id.ToString());
+            PageNavigator.PushNextPage(_navigator);
+
         });
 
         public List<Chapter> ChapterList
