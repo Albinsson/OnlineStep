@@ -6,6 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     mc:Ignorable="d">
 
     <!--<StackLayout Margin="20">
@@ -40,11 +41,13 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Button
+                    <local:CustomGrid>
+                        <Button
                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
                         CommandParameter="{Binding _id}"
                         Text="{Binding Name}"
                         TextColor="Black" />
+                    </local:CustomGrid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

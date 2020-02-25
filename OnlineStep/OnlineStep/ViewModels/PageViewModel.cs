@@ -28,8 +28,7 @@ namespace OnlineStep.ViewModels
         {
             foreach(var i in Data.ObjList)
             {
-                Debug.WriteLine("DistributeData", i.GetType());
-                
+                Debug.WriteLine("DistributeData", i.GetType());               
             }
         }
 
