@@ -34,17 +34,20 @@ namespace OnlineStep.ViewModels
         {
             Data = DataCenter.GetSingletonProcedure("GetChapterID");
             ChapterList = dbHelper.GetChapters(Data.Obj.ToString());
-            Debug.WriteLine(ChapterList.Count);
+            var objList = ChapterList.ConvertAll(x => (object)x);
+            DataCenter.CreateListProcedure("SetChapters", objList);
+            Debug.WriteLine(ChapterList.Count);          
         }
 
         public ICommand GoToPageView => new Command((id) =>
         {
-            //List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
-            //pageList = dbHelper.GetPages(id.ToString());
+            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
+            pageList = dbHelper.GetPages(id.ToString());
+            var objList = pageList.ConvertAll(x => (object)x);
+            DataCenter.CreateListProcedure("SetPageList", objList);         
 
             PageNavigator.pageList = dbHelper.GetPages(id.ToString());
             PageNavigator.PushNextPage(_navigator);
-
         });
 
         public List<Chapter> ChapterList

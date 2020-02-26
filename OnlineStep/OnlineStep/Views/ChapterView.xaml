@@ -6,6 +6,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     mc:Ignorable="d">
 
     <!--<StackLayout Margin="20">
@@ -36,31 +37,30 @@
         </ListView>
     </StackLayout>-->
 
-    <ListView
-        HasUnevenRows="True"
-        ItemsSource="{Binding ChapterList}"
-        SelectionMode="Single">
+    <!--<CarouselView ItemsSource="{Binding ChapterList}">
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <Button
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                        CommandParameter="{Binding _id}"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>-->
+
+    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="2*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="200" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <local:CustomGrid>
                         <Button
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
-                            CommandParameter="{Binding _id}"
-                            Text="{Binding Name}"
-                            TextColor="Black" />
-                    </Grid>
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                        CommandParameter="{Binding _id}"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
+                    </local:CustomGrid>
                 </ViewCell>
-
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
