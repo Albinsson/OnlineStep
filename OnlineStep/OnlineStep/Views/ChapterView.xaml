@@ -36,16 +36,31 @@
         </ListView>
     </StackLayout>-->
 
-    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="Single">
+    <ListView
+        HasUnevenRows="True"
+        ItemsSource="{Binding ChapterList}"
+        SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Button
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
-                        CommandParameter="{Binding _id}"
-                        Text="{Binding Name}"
-                        TextColor="Black" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="200" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                            CommandParameter="{Binding _id}"
+                            Text="{Binding Name}"
+                            TextColor="Black" />
+                    </Grid>
                 </ViewCell>
+
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
