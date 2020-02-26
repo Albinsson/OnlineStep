@@ -37,6 +37,7 @@ namespace OnlineStep.ViewModels
             var objList = ChapterList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetChapters", objList);
             Debug.WriteLine(ChapterList.Count);
+            
         }
 
         public ICommand GoToPageView => new Command((id) =>
@@ -44,8 +45,7 @@ namespace OnlineStep.ViewModels
             List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
             pageList = dbHelper.GetPages(id.ToString());
             var objList = pageList.ConvertAll(x => (object)x);
-            DataCenter.CreateListProcedure("SetPageList", objList);
-
+            DataCenter.CreateListProcedure("SetPageList", objList);         
 
             PageNavigator.pageList = dbHelper.GetPages(id.ToString());
             PageNavigator.PushNextPage(_navigator);
