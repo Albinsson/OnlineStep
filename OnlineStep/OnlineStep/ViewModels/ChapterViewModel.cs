@@ -36,8 +36,7 @@ namespace OnlineStep.ViewModels
             ChapterList = dbHelper.GetChapters(Data.Obj.ToString());
             var objList = ChapterList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetChapters", objList);
-            Debug.WriteLine(ChapterList.Count);
-            
+            Debug.WriteLine(ChapterList.Count);          
         }
 
         public ICommand GoToPageView => new Command((id) =>

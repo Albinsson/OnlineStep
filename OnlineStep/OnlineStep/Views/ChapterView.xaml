@@ -37,6 +37,18 @@
         </ListView>
     </StackLayout>-->
 
+    <!--<CarouselView ItemsSource="{Binding ChapterList}">
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <Button
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                        CommandParameter="{Binding _id}"
+                        Text="{Binding Name}"
+                        TextColor="Black" />
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>-->
+
     <ListView ItemsSource="{Binding ChapterList}" SelectionMode="Single">
         <ListView.ItemTemplate>
             <DataTemplate>

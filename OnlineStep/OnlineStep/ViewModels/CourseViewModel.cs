@@ -15,9 +15,18 @@ namespace OnlineStep.ViewModels
     internal class CourseViewModel : BaseViewModel
     {
         private List<Course> courseList;
+        public List<Course> CourseList
+        {
+            get => courseList;
+            set => courseList = value;
+        }
+        private List<Chapter> chapterList;
+        public List<Chapter> ChapterList { get => chapterList; set => chapterList = value; }
         private readonly INavigator _navigator;
+        private readonly DbHelper dbHelper = new DbHelper();
+        private Data Data;
 
-  
+
         public CourseViewModel(INavigator navigator)
         {
             InitAsyncApiRequest();
@@ -32,16 +41,12 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToChapterView => new Command<string>((id) =>
         {
-            DataCenter.CreateSingletonProcedure("SetChapterID", id);
+            DataCenter.CreateSingletonProcedure("SetChapterID", id);           
             _navigator.PushAsync<ChapterViewModel>();
         });
 
-        public List<Course> CourseList
-        {
-            get => courseList;
-            set => courseList = value;
-        }
-
+       
+        
     }
 };
 
