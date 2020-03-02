@@ -35,6 +35,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToNextView => new Command(() =>
         {
+            Debug.WriteLine("Hejhej");
             _navigator.PushAsync<CourseViewModel>();
         });
 

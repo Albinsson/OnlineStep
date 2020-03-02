@@ -25,26 +25,28 @@
             <DataTemplate>
                 <ViewCell>
                     <yummy:PancakeView
-                        Margin="75,15,75,10"
-                        BackgroundGradientAngle="45"
-                        BackgroundGradientEndColor="#f7e843"
-                        BackgroundGradientStartColor="#FF33AA"
-                        CornerRadius="15"
-                        IsClippedToBounds="True">
-                        <Frame Padding="0" BackgroundColor="Transparent">
-                            <Button
-                                BackgroundColor="Transparent"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
-                                CommandParameter="{Binding _id}"
-                                Font="Bold"
-                                FontSize="18"
-                                HorizontalOptions="Fill"
-                                Text="{Binding Name}"
-                                TextColor="Black"
-                                VerticalOptions="Fill" />
+                        BackgroundColor="Transparent"
+                        BorderIsDashed="true"
+                        CornerRadius="60,0,0,60"
+                        HeightRequest="150"
+                        HorizontalOptions="FillAndExpand">
+
+                        <ImageButton
+                            Aspect="AspectFill"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
+                            CommandParameter="{Binding _id}"
+                            HorizontalOptions="Center"
+                            Source="Courses_Engelska.jpg"
+                            VerticalOptions="CenterAndExpand" />
+                        <!--
+                            Font="Bold"
+                            FontSize="18"
+                            TextColor="Black"
+                        -->
+                        <!--  Text="{Binding Name}"  -->
 
 
-                        </Frame>
+
                     </yummy:PancakeView>
                 </ViewCell>
             </DataTemplate>

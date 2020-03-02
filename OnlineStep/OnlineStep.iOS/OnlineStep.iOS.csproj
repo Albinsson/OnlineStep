@@ -138,4 +138,19 @@
   <ItemGroup>
     <BundleResource Include="Resources\balloon.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Engelska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_History.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Matte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Spanska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Svenska.jpg" />
+  </ItemGroup>
 </Project>
