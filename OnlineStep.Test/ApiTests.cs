@@ -12,6 +12,42 @@ namespace OnlineStep.Test
     public class DbHelperTest
     {
         [TestMethod]
+        public void ChapterLevelTest()
+        {
+            /*
+             * Test if the number of pages are correct from the API
+             */
+
+            //Arrange
+            DbHelper dbHelper = new DbHelper();
+            String courserID = "5e3bd92155de5958085644e3";
+            List<List<Chapter>> listOfChapters = new List<List<Chapter>>();
+
+
+
+            //Act 
+
+            listOfChapters = dbHelper.GetChaptersByLevel(courserID);
+
+
+            Debug.WriteLine(listOfChapters[0].Count);
+            Debug.WriteLine(listOfChapters[1].Count);
+            Debug.WriteLine(listOfChapters[2].Count);
+            Debug.WriteLine(listOfChapters[3].Count);
+
+            Debug.WriteLine(listOfChapters[3][0].Name);
+            Debug.WriteLine(listOfChapters[3][1].Name);
+
+            Debug.WriteLine("Size");
+            Debug.WriteLine(listOfChapters.Count);
+
+            //Assert
+
+            Assert.AreEqual( 1, listOfChapters[0].Count);
+        }
+
+
+        [TestMethod]
         public void PagesApiRequestTest()
         {
             /*
@@ -37,9 +73,9 @@ namespace OnlineStep.Test
         public void PageTypeTest()
         {
 
-         /*
-         * Test the type of pages returned from the API
-         */
+            /*
+            * Test the type of pages returned from the API
+            */
 
             //Arrange
             DbHelper dbHelper = new DbHelper();
