@@ -4,65 +4,78 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     mc:Ignorable="d">
 
-    <!--<StackLayout Margin="20">
-        <Label
-            FontAttributes="Bold"
-            HorizontalOptions="Center"
-            Text="ListView with a Data Template" />
-        <ListView Margin="0,20,0,0" ItemsSource="{Binding ChapterList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*" />
-                                <ColumnDefinition Width="0.2*" />
-                                <ColumnDefinition Width="0.3*" />
-                            </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Text="{Binding Name}" />
-                            <Label Grid.Column="1" Text="{Binding Name}" />
-                            <Label
-                                Grid.Column="2"
-                                HorizontalTextAlignment="End"
-                                Text="{Binding Name}" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>-->
-
-    <!--<CarouselView ItemsSource="{Binding ChapterList}">
-        <CarouselView.ItemTemplate>
-            <DataTemplate>
-                <Button
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
-                        CommandParameter="{Binding _id}"
-                        Text="{Binding Name}"
-                        TextColor="Black" />
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>-->
-
-    <ListView ItemsSource="{Binding ChapterList}" SelectionMode="Single">
+    <ListView ItemsSource="{Binding ChapterList}">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <local:CustomGrid>
-                        <Button
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
-                        CommandParameter="{Binding _id}"
-                        Text="{Binding Name}"
-                        TextColor="Black" />
-                    </local:CustomGrid>
+                    <!--<StackLayout>
+                        <local:ItemsControl>
+                            <local:ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <ImageButton Source="faggel.png" />
+                                        <Label Text="{Binding Name}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </local:ItemsControl.ItemTemplate>
+                        </local:ItemsControl>
+                    </StackLayout>-->
+                    <Button Text="{Binding Name}" />
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
+
+    <!--<Grid HorizontalOptions="CenterAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ImageButton
+            Grid.Row="0"
+            Grid.Column="1"
+            Source="faggel.png" />
+        <ImageButton
+            Grid.Row="1"
+            Grid.Column="0"
+            Source="faggel.png"
+            VerticalOptions="CenterAndExpand" />
+        <ImageButton
+            Grid.Row="1"
+            Grid.Column="1"
+            Source="faggel.png"
+            VerticalOptions="CenterAndExpand" />
+        <ImageButton
+            Grid.Row="2"
+            Grid.Column="0"
+            HorizontalOptions="Center"
+            Source="faggel.png"
+            VerticalOptions="Center" />
+        <ImageButton
+            Grid.Row="2"
+            Grid.Column="1"
+            HorizontalOptions="Center"
+            Source="faggel.png"
+            VerticalOptions="Center" />
+        <ImageButton
+            Grid.Row="2"
+            Grid.Column="2"
+            HorizontalOptions="Center"
+            Source="faggel.png"
+            VerticalOptions="Center" />
+
+    </Grid>-->
+
 
 </ContentPage>

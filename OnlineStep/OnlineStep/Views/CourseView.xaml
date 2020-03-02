@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    BackgroundImageSource="balloon.jpg"
+    BackgroundColor="White"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
@@ -25,28 +25,26 @@
             <DataTemplate>
                 <ViewCell>
                     <yummy:PancakeView
+                        Margin="8,8,8,0"
                         BackgroundColor="Transparent"
                         BorderIsDashed="true"
-                        CornerRadius="60,0,0,60"
-                        HeightRequest="150"
+                        CornerRadius="8"
                         HorizontalOptions="FillAndExpand">
-
-                        <ImageButton
-                            Aspect="AspectFill"
-                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
-                            CommandParameter="{Binding _id}"
-                            HorizontalOptions="Center"
-                            Source="Courses_Engelska.jpg"
-                            VerticalOptions="CenterAndExpand" />
-                        <!--
-                            Font="Bold"
-                            FontSize="18"
-                            TextColor="Black"
-                        -->
-                        <!--  Text="{Binding Name}"  -->
-
-
-
+                        <Grid>
+                            <ImageButton
+                                Grid.Row="0"
+                                Aspect="AspectFill"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
+                                CommandParameter="{Binding _id}"
+                                HorizontalOptions="Center"
+                                Source="{Binding Img}"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                Grid.Column="0"
+                                Margin="30,65,0,0"
+                                FontSize="20"
+                                Text="{Binding Name}" />
+                        </Grid>
                     </yummy:PancakeView>
                 </ViewCell>
             </DataTemplate>

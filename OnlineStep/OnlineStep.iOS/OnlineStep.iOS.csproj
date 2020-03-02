@@ -153,4 +153,7 @@
   <ItemGroup>
     <None Include="Resources\Courses_Svenska.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\faggel.png" />
+  </ItemGroup>
 </Project>
