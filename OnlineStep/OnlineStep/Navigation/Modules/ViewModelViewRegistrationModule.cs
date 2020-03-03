@@ -25,9 +25,6 @@ namespace OnlineStep.Navigation.Modules
 
             builder.RegisterType<ClozeView>();
             builder.RegisterType<ClozeViewModel>();
-
-            builder.RegisterType<PageViewModel>();
-
         }
     }
 }

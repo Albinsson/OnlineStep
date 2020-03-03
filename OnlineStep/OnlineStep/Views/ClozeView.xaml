@@ -7,13 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Cloze!"
-                VerticalOptions="CenterAndExpand" />
-
-            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
-        </StackLayout>
+        <ListView ItemsSource="{Binding Cloze}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding title}"/>
+                            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
