@@ -23,11 +23,26 @@ namespace OnlineStep.ViewModels
         private Data Data;
         private List<ChapterLevels> chapterLevelsList;
 
+        private List<ChapterLevels> chapterLevels;
+
+        public List<ChapterLevels> ChapterLevels
+        {
+            get => chapterLevels;
+            set => chapterLevels = value;
+        }
+
+        private void Init()
+        {
+            Data = DataCenter.GetSingletonProcedure("GetChapterID");
+            chapterLevels = dbHelper.GetChaptersByLevel(Data.Obj.ToString());
+        }
+
         public List<Chapter> ChapterList
         {
             get => chapterList;
             set => chapterList = value;
         }
+
         public List<ChapterLevels> ChapterLevelsList
         {
             get => chapterLevelsList;
@@ -37,10 +52,14 @@ namespace OnlineStep.ViewModels
         public ChapterViewModel(INavigator navigator)
         {
 
-            InitAsyncApiRequest();
+            //InitAsyncApiRequest();
+
+            Init();
 
             _navigator = navigator;
         }
+
+    
 
         public void InitAsyncApiRequest()
         {
@@ -64,8 +83,9 @@ namespace OnlineStep.ViewModels
                 chapterLevelsList.Add(cListLevel);
                 index++;               
             }
-            ChapterLevelsList.ForEach(i => Console.WriteLine(i.Level));
+            ChapterLevelsList.ForEach(i => Console.WriteLine(i.ChapterList.Count));
             Debug.WriteLine("ChapterLevelList count: " + ChapterLevelsList.Count);
+            Debug.WriteLine(ChapterLevelsList[0].ChapterList[0].Name);
         }
 
 

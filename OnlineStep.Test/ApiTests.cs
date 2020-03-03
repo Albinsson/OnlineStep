@@ -21,29 +21,25 @@ namespace OnlineStep.Test
             //Arrange
             DbHelper dbHelper = new DbHelper();
             String courserID = "5e3bd92155de5958085644e3";
-            List<List<Chapter>> listOfChapters = new List<List<Chapter>>();
-
-
+            List<ChapterLevels> listOfChapters = new List<ChapterLevels>();
 
             //Act 
-
             listOfChapters = dbHelper.GetChaptersByLevel(courserID);
 
 
-            Debug.WriteLine(listOfChapters[0].Count);
-            Debug.WriteLine(listOfChapters[1].Count);
-            Debug.WriteLine(listOfChapters[2].Count);
-            Debug.WriteLine(listOfChapters[3].Count);
+            Debug.WriteLine(listOfChapters[0].ChapterList.Count);
+            Debug.WriteLine(listOfChapters[1].ChapterList.Count);
+            Debug.WriteLine(listOfChapters[2].ChapterList.Count);
+            Debug.WriteLine(listOfChapters[3].ChapterList.Count);
 
-            Debug.WriteLine(listOfChapters[3][0].Name);
-            Debug.WriteLine(listOfChapters[3][1].Name);
+            Debug.WriteLine(listOfChapters[3].ChapterList[0].Name);
+            Debug.WriteLine(listOfChapters[3].ChapterList[1].Name);
 
             Debug.WriteLine("Size");
             Debug.WriteLine(listOfChapters.Count);
 
             //Assert
-
-            Assert.AreEqual( 1, listOfChapters[0].Count);
+            Assert.AreEqual( 1, listOfChapters[0].Level);
         }
 
 

@@ -55,7 +55,7 @@ namespace OnlineStep.Helpers
             return pageList;
         }
 
-        public List<List<Chapter>> GetChaptersByLevel(string id)
+        public List<ChapterLevels> GetChaptersByLevel(string id)
         {
             Debug.WriteLine("public List<Chapter> GetChapters(string id)");
             Debug.WriteLine(Url + Chapters + id);
@@ -64,18 +64,32 @@ namespace OnlineStep.Helpers
             List<Chapter> chapterList = new List<Chapter>();
             chapterList = JsonConvert.DeserializeObject<List<Chapter>>(chapters);
 
-
-            List<List<Chapter>> listOfChapters = new List<List<Chapter>>();
+            List<ChapterLevels> listOfChapters = new List<ChapterLevels>();
 
             foreach (var chapter in chapterList)
             {
+
                 while (int.Parse(chapter.Level) > listOfChapters.Count)
                 {
-                    listOfChapters.Add(new List<Chapter>());
+                    listOfChapters.Add(new ChapterLevels(){ChapterList = new List<Chapter>()});
                 }
-                listOfChapters[int.Parse(chapter.Level) - 1].Add(chapter);
+                listOfChapters[int.Parse(chapter.Level) - 1].ChapterList.Add(chapter);
+                listOfChapters[int.Parse(chapter.Level) - 1].Level = chapter.Level;
+
             }
             return listOfChapters;
+
+            //List<List<Chapter>> listOfChapters = new List<List<Chapter>>();
+
+            //foreach (var chapter in chapterList)
+            //{
+            //    while (int.Parse(chapter.Level) > listOfChapters.Count)
+            //    {
+            //        listOfChapters.Add(new List<Chapter>());
+            //    }
+            //    listOfChapters[int.Parse(chapter.Level) - 1].Add(chapter);
+            //}
+            //return listOfChapters;
         }
     }
 }
