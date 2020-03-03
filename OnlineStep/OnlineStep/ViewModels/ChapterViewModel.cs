@@ -49,6 +49,7 @@ namespace OnlineStep.ViewModels
             DataCenter.CreateListProcedure("SetPageList", objList);
 
             PageNavigator.pageList = dbHelper.GetPages(id.ToString());
+            PageNavigator.index = 0;
             PageNavigator.PushNextPage(_navigator);
         });
 
