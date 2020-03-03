@@ -9,73 +9,73 @@
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     mc:Ignorable="d">
 
-    <ListView ItemsSource="{Binding ChapterList}">
+    <ListView
+        BackgroundColor="Transparent"
+        HasUnevenRows="True"
+        ItemsSource="{Binding ChapterLevels}"
+        SelectionMode="None"
+        SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <!--<StackLayout>
-                        <local:ItemsControl>
+                    <StackLayout>
+
+                        <Button Text="{Binding Level}" />
+
+                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout>
-                                        <ImageButton Source="faggel.png" />
-                                        <Label Text="{Binding Name}" />
-                                    </StackLayout>
+                                    <Label Text="{Binding Name}" />
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>
                         </local:ItemsControl>
-                    </StackLayout>-->
-                    <Button Text="{Binding Name}" />
+
+                    </StackLayout>
+
+
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
 
-    <!--<Grid HorizontalOptions="CenterAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <ImageButton
-            Grid.Row="0"
-            Grid.Column="1"
-            Source="faggel.png" />
-        <ImageButton
-            Grid.Row="1"
-            Grid.Column="0"
-            Source="faggel.png"
-            VerticalOptions="CenterAndExpand" />
-        <ImageButton
-            Grid.Row="1"
-            Grid.Column="1"
-            Source="faggel.png"
-            VerticalOptions="CenterAndExpand" />
-        <ImageButton
-            Grid.Row="2"
-            Grid.Column="0"
-            HorizontalOptions="Center"
-            Source="faggel.png"
-            VerticalOptions="Center" />
-        <ImageButton
-            Grid.Row="2"
-            Grid.Column="1"
-            HorizontalOptions="Center"
-            Source="faggel.png"
-            VerticalOptions="Center" />
-        <ImageButton
-            Grid.Row="2"
-            Grid.Column="2"
-            HorizontalOptions="Center"
-            Source="faggel.png"
-            VerticalOptions="Center" />
 
-    </Grid>-->
+    <!--<ListView IsGroupingEnabled="true" ItemsSource="{Binding ChapterLevelsList}">
+        <ListView.GroupHeaderTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Label Text="{Binding ChapterLevelsList}" />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.GroupHeaderTemplate>
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Label Text="{Binding Name}" />
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+
+    <!--<ListView ItemsSource="{Binding ChapterLevelsList}" HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <Label Text="{Binding Level}" />
+
+                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
+                            <local:ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Name}" />
+                                </DataTemplate>
+                            </local:ItemsControl.ItemTemplate>
+                        </local:ItemsControl>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
 
 
 </ContentPage>

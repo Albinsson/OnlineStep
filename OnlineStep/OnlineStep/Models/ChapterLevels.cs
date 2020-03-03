@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OnlineStep.Models
 {
-    class ChapterLevels
+    public class ChapterLevels
     {
         public List<Chapter> ChapterList { get; set; }
         public string Level { get; set; }
