@@ -21,8 +21,13 @@ namespace OnlineStep.ViewModels
             _cloze = PageNavigator.GetCurrentPage;
             _navigator = navigator;
         }
+        
+        public Models.Page.RootObject Cloze
+        {
+            get => _cloze;
+        }
 
-  
+
         public ICommand GoToNextPage => new Command(() =>
         {
             PageNavigator.PushNextPage(_navigator);

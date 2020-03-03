@@ -5,15 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     mc:Ignorable="d">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Cloze!"
-                VerticalOptions="CenterAndExpand" />
-
-            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
-        </StackLayout>
+    <ContentPage.Content ItemsSource="{Binding Cloze}">
+        <Label Text="{Binding title}"/>
+        <!--<Button Command="{Binding GoToNextPage}" Text="Go to next Page" />-->                      
     </ContentPage.Content>
 </ContentPage>
