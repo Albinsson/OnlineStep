@@ -78,7 +78,7 @@ namespace OnlineStep.Assets
         /// </summary>
         public static readonly BindableProperty SpacingProperty = BindableProperty.Create(
             nameof(Spacing), typeof(double), typeof(ItemsControl),
-            defaultValue: 1.0,
+            defaultValue: 0.1,
             propertyChanged: (bindable, oldValue, newValue) => ((ItemsControl)bindable).OnSpacingPropertyChanged((double)oldValue, (double)newValue));
 
         /// <summary>

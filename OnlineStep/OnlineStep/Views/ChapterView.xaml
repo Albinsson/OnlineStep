@@ -25,9 +25,9 @@
 
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Padding="5,0">
+                                    <Grid Padding="16,0" RowSpacing="3">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="75" />
+                                            <RowDefinition Height="96" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -36,17 +36,19 @@
                                         <Frame
                                             Padding="0"
                                             CornerRadius="100"
-                                            HeightRequest="75"
+                                            HeightRequest="96"
                                             HorizontalOptions="Center"
                                             IsClippedToBounds="True"
-                                            WidthRequest="75">
+                                            WidthRequest="96">
                                             <ImageButton
                                                 Grid.Row="0"
                                                 Aspect="AspectFill"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
                                                 CommandParameter="{Binding _id}"
+                                                HeightRequest="96"
                                                 HorizontalOptions="Center"
-                                                Source="twitteravatar.jpg" />
+                                                Source="{Binding Icon}"
+                                                WidthRequest="96" />
                                         </Frame>
                                         <Label
                                             Grid.Row="1"

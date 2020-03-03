@@ -162,4 +162,28 @@
   <ItemGroup>
     <None Include="Resources\twitteravatar.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapters_Restaurang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapters_Spel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapters_Sport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Affaren.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Bio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Havet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Musik.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Resa.png" />
+  </ItemGroup>
 </Project>
