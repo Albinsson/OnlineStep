@@ -2,16 +2,17 @@
 using OnlineStep.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
+using OnlineStep.Models;
 
 namespace OnlineStep.Services
 {
     public static class PageNavigator
     {
 
-        public static List<Models.Page.RootObject> pageList;
+        public static List<IPage> pageList;
         public static int index;
 
-        public static List<Models.Page.RootObject> PageList
+        public static List<IPage> PageList
         {
             get => pageList;
             set => pageList = value;
@@ -23,7 +24,7 @@ namespace OnlineStep.Services
             set => index = value;
         }
 
-        public static Models.Page.RootObject GetCurrentPage
+        public static IPage GetCurrentPage
         {
             get 
             {
@@ -47,7 +48,7 @@ namespace OnlineStep.Services
 
             if (pageList.Count <= index)
             {
-                PageList = new List<Models.Page.RootObject>();
+                PageList = new List<IPage>();
                 navigator.PushAsync<ChapterViewModel>();
             };
 

@@ -4,12 +4,16 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     mc:Ignorable="d">
-    <ContentPage.Content ItemsSource="{Binding Cloze}">
-        <Label Text="{Binding title}"/>
-        <!--<Button Command="{Binding GoToNextPage}" Text="Go to next Page" />-->                      
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding Cloze.title}" />
+            <Label Text="{Binding Cloze.content.sentence}" />
+
+            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
