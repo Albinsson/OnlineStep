@@ -59,7 +59,7 @@ namespace OnlineStep.Assets
         /// </summary>
         public static readonly BindableProperty OrientationProperty = BindableProperty.Create(
             nameof(Orientation), typeof(StackOrientation), typeof(ItemsControl),
-            defaultValue: StackOrientation.Vertical,
+            defaultValue: StackOrientation.Horizontal,
             propertyChanged: (bindable, oldValue, newValue) => ((ItemsControl)bindable).OnOrientationPropertyChanged((StackOrientation)oldValue, (StackOrientation)newValue));
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace OnlineStep.Assets
         /// </summary>
         public static readonly BindableProperty SpacingProperty = BindableProperty.Create(
             nameof(Spacing), typeof(double), typeof(ItemsControl),
-            defaultValue: 10.0,
+            defaultValue: 1.0,
             propertyChanged: (bindable, oldValue, newValue) => ((ItemsControl)bindable).OnSpacingPropertyChanged((double)oldValue, (double)newValue));
 
         /// <summary>

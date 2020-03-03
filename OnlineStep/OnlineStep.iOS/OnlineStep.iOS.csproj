@@ -156,4 +156,10 @@
   <ItemGroup>
     <None Include="Resources\faggel.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\placeholder.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitteravatar.jpg" />
+  </ItemGroup>
 </Project>
