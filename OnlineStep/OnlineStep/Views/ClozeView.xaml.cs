@@ -15,6 +15,7 @@ namespace OnlineStep.Views
         public ClozeView()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

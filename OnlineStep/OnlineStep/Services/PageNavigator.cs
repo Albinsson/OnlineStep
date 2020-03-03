@@ -14,11 +14,13 @@ namespace OnlineStep.Services
         public static List<Models.Page.RootObject> PageList
         {
             get => pageList;
-            set
-            {
-                pageList = value;
-                index = 0;
-            }
+            set => pageList = value;
+        }
+
+        public static int Index
+        {
+            get => index;
+            set => index = value;
         }
 
         public static Models.Page.RootObject GetCurrentPage
@@ -35,9 +37,17 @@ namespace OnlineStep.Services
 
             Debug.WriteLine("Index: " + index);
             Debug.WriteLine("PageList Count: " + pageList.Count);
+            
+            if (pageList.Count == 0)
+            {
+                throw new System.ArgumentException("PageList", "PageList cannot be null");
+            };
+
+
 
             if (pageList.Count <= index)
             {
+                PageList = new List<Models.Page.RootObject>();
                 navigator.PushAsync<ChapterViewModel>();
             };
 
@@ -61,10 +71,7 @@ namespace OnlineStep.Services
                 }
             }
 
-            if (pageList.Count == 0)
-            {
-                throw new System.ArgumentException("PageList", "PageList cannot be null");
-            };
+            
 
         }
     }

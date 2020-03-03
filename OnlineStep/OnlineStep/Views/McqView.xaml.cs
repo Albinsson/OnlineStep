@@ -15,6 +15,7 @@ namespace OnlineStep.Views
         public McqView()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

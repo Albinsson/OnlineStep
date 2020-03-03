@@ -20,12 +20,15 @@
                 <ViewCell>
                     <StackLayout>
 
-                        <Button Text="{Binding Level}" />
+                        <Label Text="{Binding Level}" />
 
                         <local:ItemsControl ItemsSource="{Binding ChapterList}">
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Label Text="{Binding Name}" />
+                                    <Button 
+                                        Text="{Binding Name}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                                        CommandParameter="{Binding _id}"/>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>
                         </local:ItemsControl>
