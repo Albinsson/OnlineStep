@@ -7,6 +7,8 @@
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="White"
     mc:Ignorable="d">
 
     <ListView
@@ -18,24 +20,52 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
-
-                        <Label Text="{Binding Level}" />
+                    <Grid Margin="0,8" HorizontalOptions="Center">
 
                         <local:ItemsControl ItemsSource="{Binding ChapterList}">
+
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button 
-                                        Text="{Binding Name}"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
-                                        CommandParameter="{Binding _id}"/>
+                                    <Grid Padding="5,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="75" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Frame
+                                            Padding="0"
+                                            BackgroundColor="Transparent"
+                                            CornerRadius="100"
+                                            HeightRequest="75"
+                                            HorizontalOptions="Center"
+                                            IsClippedToBounds="True"
+                                            WidthRequest="75">
+                                            <ImageButton
+                                                Grid.Row="0"
+                                                Aspect="AspectFill"
+                                                BackgroundColor="Transparent"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                                                CommandParameter="{Binding _id}"
+                                                HorizontalOptions="Center"
+                                                Source="twitteravatar.jpg" />
+                                        </Frame>
+                                        <Label
+                                            Grid.Row="1"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Name}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            HorizontalOptions="Center"
+                                            Text="0/6" />
+                                    </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>
                         </local:ItemsControl>
 
-                    </StackLayout>
 
-
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

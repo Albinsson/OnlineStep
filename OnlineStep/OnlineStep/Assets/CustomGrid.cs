@@ -15,7 +15,7 @@ namespace OnlineStep.Assets
       
         private void CustomGridOnChildAdded(object sender, ElementEventArgs e)
         {
-            Button btn = (Button)e.Element; { HorizontalOptions = LayoutOptions.CenterAndExpand; VerticalOptions = LayoutOptions.CenterAndExpand; };
+            ImageButton btn = (ImageButton)e.Element; { HorizontalOptions = LayoutOptions.CenterAndExpand; VerticalOptions = LayoutOptions.CenterAndExpand; };
             for(int rowIdx = 0; rowIdx < 2; rowIdx++)
             {
                 for(int colIdx = 0; colIdx < 3; colIdx++)
