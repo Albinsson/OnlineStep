@@ -1,42 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             BackgroundImageSource="balloon.jpg"
-             mc:Ignorable="d"
-             x:Class="OnlineStep.Views.McqView">
+<ContentPage
+    x:Class="OnlineStep.Views.McqView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundImageSource="balloon.jpg"
+    mc:Ignorable="d">
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding QuestionLbl}"></Label>
+            <Label Text="{Binding Mcq.title}" />
+            <Label Text="{Binding Mcq.content.question}" />
+
+            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
+        </StackLayout>
+    </ContentPage.Content>
+
+    <!--<ContentPage.Content>
+        <StackLayout>
+            <Label Text="{Binding QuestionLbl}" />
             <ListView
-        BackgroundColor="Transparent"
-        HasUnevenRows="True"
-        ItemsSource="{Binding AnswerList}"
-        SelectionMode="None"
-        SeparatorVisibility="None">
+                BackgroundColor="Transparent"
+                HasUnevenRows="True"
+                ItemsSource="{Binding AnswerList}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <yummy:PancakeView
-                        Margin="75,15,75,10"
-                        BackgroundGradientAngle="45"
-                        BackgroundGradientEndColor="#f7e843"
-                        BackgroundGradientStartColor="#FF33AA"
-                        CornerRadius="15"
-                        IsClippedToBounds="True">
+                                Margin="75,15,75,10"
+                                BackgroundGradientAngle="45"
+                                BackgroundGradientEndColor="#f7e843"
+                                BackgroundGradientStartColor="#FF33AA"
+                                CornerRadius="15"
+                                IsClippedToBounds="True">
                                 <Frame Padding="0" BackgroundColor="Transparent">
                                     <Button
-                                BackgroundColor="Transparent"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PageViewModel}}, Path=AnswerAction}"
-                                Font="Bold"
-                                FontSize="18"
-                                HorizontalOptions="Fill"
-                                Text="{Binding AlternativeName}"
-                                TextColor="Black"
-                                VerticalOptions="Fill" />
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PageViewModel}}, Path=AnswerAction}"
+                                        Font="Bold"
+                                        FontSize="18"
+                                        HorizontalOptions="Fill"
+                                        Text="{Binding AlternativeName}"
+                                        TextColor="Black"
+                                        VerticalOptions="Fill" />
                                 </Frame>
                             </yummy:PancakeView>
                         </ViewCell>
@@ -44,5 +55,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

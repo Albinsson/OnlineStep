@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
+using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
 using Xamarin.Forms;
+using Page = Xamarin.Forms.Page;
 
 namespace OnlineStep.ViewModels
 {
@@ -13,23 +15,28 @@ namespace OnlineStep.ViewModels
     {
         private readonly INavigator _navigator;
 
-        private Models.Page.RootObject _cloze;
+        private Cloze _cloze;
 
         public ClozeViewModel(INavigator navigator)
         {
             Debug.WriteLine("PageViewModel Constructor: ");
-            _cloze = PageNavigator.GetCurrentPage;
+            _cloze = (Cloze) PageNavigator.GetCurrentPage;
             _navigator = navigator;
         }
         
-        public Models.Page.RootObject Cloze
+        public Cloze Cloze
         {
-            get => _cloze;
+            get
+            {
+                Debug.WriteLine("Getting Cloze: " + _cloze);
+                return _cloze;
+            }
         }
 
 
         public ICommand GoToNextPage => new Command(() =>
         {
+            
             PageNavigator.PushNextPage(_navigator);
         });
 

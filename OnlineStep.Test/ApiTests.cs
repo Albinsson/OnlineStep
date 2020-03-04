@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OnlineStep.Helpers;
 using OnlineStep.Models;
+using OnlineStep.ViewModels;
 
 namespace OnlineStep.Test
 
@@ -11,6 +12,13 @@ namespace OnlineStep.Test
     [TestClass]
     public class DbHelperTest
     {
+
+        [TestMethod]
+        public void ClozeDataTest()
+        {
+            
+        }
+
         [TestMethod]
         public void ChapterLevelTest()
         {
@@ -53,7 +61,7 @@ namespace OnlineStep.Test
             //Arrange
             DbHelper dbHelper = new DbHelper();
             String chapterID = "5e3950a2dd22b950349ee26b";
-            List<Models.Page.RootObject> pageList = new List<Page.RootObject>();
+            List<IPage> pageList = new List<IPage>();
 
 
             //Act 
@@ -76,7 +84,7 @@ namespace OnlineStep.Test
             //Arrange
             DbHelper dbHelper = new DbHelper();
             String chapterID = "5e3950a2dd22b950349ee26b";
-            List<Models.Page.RootObject> pageList = new List<Page.RootObject>();
+            List<IPage> pageList = new List<IPage>();
 
             //Act 
             pageList = dbHelper.GetPages(chapterID);
@@ -89,6 +97,30 @@ namespace OnlineStep.Test
             }
 
             Assert.AreEqual("cloze", pageList[0].type);
+            Assert.AreEqual("mcq", pageList[1].type);
+
+        }
+        [TestMethod]
+        public void PageContentTest()
+        {
+
+            /*
+            * Test the type of pages returned from the API
+            */
+
+            //Arrange
+            DbHelper dbHelper = new DbHelper();
+            String chapterID = "5e3950a2dd22b950349ee26b";
+            List<IPage> pageList = new List<IPage>();
+
+            //Act 
+            pageList = dbHelper.GetPages(chapterID);
+
+            //Assert 
+
+           
+            Cloze cloze = (Cloze) pageList[0];
+            Assert.AreEqual("Erik bor i Borlänge", cloze.content.sentence);
             Assert.AreEqual("mcq", pageList[1].type);
 
         }

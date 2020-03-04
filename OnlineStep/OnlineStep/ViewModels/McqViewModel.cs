@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
+using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
 using Xamarin.Forms;
+using Page = OnlineStep.Models.IPage;
 
 namespace OnlineStep.ViewModels
 {
@@ -13,12 +15,12 @@ namespace OnlineStep.ViewModels
     {
         private readonly INavigator _navigator;
 
-        private  Models.Page.RootObject _mcq;
+        private  Mcq _mcq;
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
-            
-            _mcq = PageNavigator.GetCurrentPage;
+
+            _mcq = (Mcq) PageNavigator.GetCurrentPage;
 
             _navigator = navigator;
         }
@@ -29,7 +31,7 @@ namespace OnlineStep.ViewModels
             PageNavigator.PushNextPage(_navigator);
         });
 
-        public Models.Page.RootObject Mcq
+        public Mcq Mcq
         {
             get => _mcq;
 

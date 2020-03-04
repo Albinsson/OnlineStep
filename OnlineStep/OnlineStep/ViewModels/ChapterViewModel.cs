@@ -8,8 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
-
-
+using IPage = OnlineStep.Models.IPage;
 
 
 namespace OnlineStep.ViewModels
@@ -43,7 +42,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToPageView => new Command((id) =>
         {
-            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
+            List<IPage> pageList = new List<IPage>();
             pageList = dbHelper.GetPages(id.ToString());
             var objList = pageList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetPageList", objList);
