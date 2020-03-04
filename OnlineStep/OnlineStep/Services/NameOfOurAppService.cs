@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace OnlineStep.Services
 {
@@ -43,7 +44,7 @@ namespace OnlineStep.Services
             return courses;
         }
 
-        //There methods are the ones we call from courseViewModel and ChapterViewModel
+        //These methods are the ones we call from courseViewModel and ChapterViewModel
         public async Task<List<Chapter>> FetchChapters(string id)
         {
             Cache = BlobCache.LocalMachine;
@@ -63,7 +64,7 @@ namespace OnlineStep.Services
         }
         //END
 
-        //There methods call on our ServiceHelper which is implemented in TestRestClientHelper
+        //These methods call on our ServiceHelper which is implemented in TestRestClientHelper
         async Task<List<IPage>> GetPagesAsync(string id)
         {
             Task<List<IPage>> getPagesTask = UserInitiated.Getpages(id);
