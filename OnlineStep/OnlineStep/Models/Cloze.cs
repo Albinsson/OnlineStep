@@ -28,6 +28,8 @@ namespace OnlineStep.Models
         {
             public List<string> missingWords { get; set; }
             public string sentence { get; set; }
+
+            public string image { get; set; }
         }
     }
 }

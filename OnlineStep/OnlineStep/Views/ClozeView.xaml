@@ -7,13 +7,21 @@
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    x:DataType="viewModels:ClozeViewModel"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Cloze.title}" />
-            <Label Text="{Binding Cloze.content.sentence}" />
-
-            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
+            <Label Text="{Binding Title}" />
+            <Image Source="wave.jpg" />
+            <Label Text="{Binding SentencesPartOne}" />
+            <Entry
+                x:Name="MissingWordEntry"
+                Placeholder="{Binding EntryPlaceholder}"
+                Text="{Binding GuessedWord}" />
+            <Label Text="{Binding SentencesPartTwo}" />
+            <Button Command="{Binding CheckCorrectAnswer}" Text="RÄTTA" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+
+<!--  CommandParameter="{Binding Source={x:Reference GuessedWord}, Path=Text}"  -->

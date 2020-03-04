@@ -186,4 +186,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Chapter_Resa.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave.jpg" />
+  </ItemGroup>
 </Project>

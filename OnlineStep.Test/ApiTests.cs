@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OnlineStep.Helpers;
 using OnlineStep.Models;
 using OnlineStep.ViewModels;
+using OnlineStep.Views;
 
 namespace OnlineStep.Test
 
@@ -14,9 +15,49 @@ namespace OnlineStep.Test
     {
 
         [TestMethod]
-        public void ClozeDataTest()
+        public void ClozeSentenceTest()
         {
+
+            /*
+             * Test if split method works in ClozeViewModel
+             */
+
+            //Arrenge
+            string sentence = "Här kommer ett test";
+            List<string> missingWords = new List<string>();
+            missingWords.Add("test");
+            missingWords.Add("en helt värdelös sträng");
+            ClozeViewModel clozeViewModel = new ClozeViewModel();
+
+            //Act
+            string[] sentences = clozeViewModel.SplitSentence(sentence, missingWords);
+
+            //Assert
+            Assert.AreEqual("Här kommer ett ", sentences[0]);
+            Assert.AreEqual("", sentences[1]);
+
+        }
+
+        [TestMethod]
+        public void ClozePlaceholderTest()
+        {
+
+            /*
+             * Test if split method works in ClozeViewModel
+             */
+
+            //Arrenge
+            string missingWord = "Missingword";
+   
+            ClozeViewModel clozeViewModel = new ClozeViewModel();
+
+            //Act
             
+            string placeholder = clozeViewModel.CreatePlaceholder(missingWord);
+
+            //Assert
+            Assert.AreEqual("___________", placeholder);
+
         }
 
         [TestMethod]
