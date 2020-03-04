@@ -29,11 +29,8 @@ namespace OnlineStep.ViewModels
             Title = _cloze.title;
             EntryPlaceholder = CreatePlaceholder(_missingWord);
         }
-
-        public ClozeViewModel()
-        {
-            //Test constructor, DELETE ME
-        }
+        //Empty constructor used for testing
+        public ClozeViewModel(){}
 
         public string[] SplitSentence(string sentence, List<string> missingWords)
         {
@@ -60,14 +57,14 @@ namespace OnlineStep.ViewModels
             Debug.WriteLine(GuessedWord);
             if (_guessedWord.Equals(_missingWord, StringComparison.InvariantCultureIgnoreCase))
             {
+                //TODO Logic for right answer
                 Debug.WriteLine("Rätt svar");
             }
             else
             {
+                //TODO logic for wrong answer
                 Debug.WriteLine("Fel svar");
             }
-
-
 
             PageNavigator.PushNextPage(_navigator);
         });
