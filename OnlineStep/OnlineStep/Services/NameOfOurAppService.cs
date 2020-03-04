@@ -54,20 +54,20 @@ namespace OnlineStep.Services
             return chapters;
         }
 
-        public async Task<List<Page.RootObject>> FetchPages(string id)
+        public async Task<List<IPage>> FetchPages(string id)
         {
             Cache = BlobCache.LocalMachine;
-            List<Page.RootObject> getPagesTask = await GetPagesAsync(id);
+            List<IPage> getPagesTask = await GetPagesAsync(id);
             await Cache.InsertObject("pages", getPagesTask, DateTimeOffset.Now.AddHours(2));
-            var pages = await Cache.GetObject<List<Page.RootObject>>("pages");
+            var pages = await Cache.GetObject<List<IPage>>("pages");
             return pages;
         }
         //END
 
         //There methods call on our ServiceHelper which is implemented in TestRestClientHelper
-        async Task<List<Page.RootObject>> GetPagesAsync(string id)
+        async Task<List<IPage>> GetPagesAsync(string id)
         {
-            Task<List<Page.RootObject>> getPagesTask = UserInitiated.Getpages(id);
+            Task<List<IPage>> getPagesTask = UserInitiated.Getpages(id);
             return await getPagesTask;
         }
 

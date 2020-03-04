@@ -18,6 +18,6 @@ namespace OnlineStep.Helpers
         Task<List<Models.Chapter>> GetChapters(string id);
 
         [Get("/chapters/pages/{id}")]
-        Task<List<Page.RootObject>> Getpages(string id);
+        Task<List<IPage>> Getpages(string id);
     }
 }

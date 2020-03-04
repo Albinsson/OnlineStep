@@ -50,14 +50,14 @@ namespace OnlineStep.Helpers
             return chapterList;
         }
 
-        public List<Models.Page.RootObject> GetPages(string id)
+        public List<IPage> GetPages(string id)
         {
             Debug.WriteLine("DbHelper Page ID", id);
             Debug.WriteLine("DbHelper Url", Url + Pages + id);
             RestCLient = new RestCLient_A {HttpMethod = RestCLient_A.HttpVerb.GET, EndPoint = Url + Pages + id};
             string pages = RestCLient.DoRequest();
-            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
-            pageList = JsonConvert.DeserializeObject<List<Models.Page.RootObject>>(pages);
+            JsonConverter[] converters = { new PageConverter() };
+            var pageList = JsonConvert.DeserializeObject<List<IPage>>(pages, new JsonSerializerSettings() { Converters = converters });
             return pageList;
         }
 
