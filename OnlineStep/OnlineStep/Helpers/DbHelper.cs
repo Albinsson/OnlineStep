@@ -5,11 +5,17 @@ using System.Text;
 using Newtonsoft.Json;
 using OnlineStep.Models;
 using OnlineStep.Services;
+using Refit;
 using Xamarin.Forms;
+using System.Threading.Tasks;
+using Akavache;
+using System.Reactive.Linq;
+using System.Net.Http;
+using ModernHttpClient;
 
 namespace OnlineStep.Helpers
 {
-    public class DbHelper
+    public class DbHelper 
     {
         private RestCLient_A RestCLient;
         private string Url = "https://online-step.herokuapp.com/";
@@ -91,5 +97,6 @@ namespace OnlineStep.Helpers
             //}
             //return listOfChapters;
         }
+     
     }
 }

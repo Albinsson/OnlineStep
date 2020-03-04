@@ -30,6 +30,11 @@
         <!--  Example of a button changing a viewmodel  -->
         <Button Text="Login" />
 
+        <Button
+            Command="{Binding GoToNext}"
+            Style="{StaticResource MainPageButton}"
+            Text="Testing" />
+
 
         <!--  Example of a random welcome text  -->
         <Label
