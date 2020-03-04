@@ -5,12 +5,17 @@ using System.Text;
 using Newtonsoft.Json;
 using OnlineStep.Models;
 using OnlineStep.Services;
+using Refit;
 using Xamarin.Forms;
-using Page = OnlineStep.Models.IPage;
+using System.Threading.Tasks;
+using Akavache;
+using System.Reactive.Linq;
+using System.Net.Http;
+using ModernHttpClient;
 
 namespace OnlineStep.Helpers
 {
-    public class DbHelper
+    public class DbHelper 
     {
         private RestCLient_A RestCLient;
         private string Url = "https://online-step.herokuapp.com/";
@@ -45,16 +50,14 @@ namespace OnlineStep.Helpers
             return chapterList;
         }
 
-        public List<IPage> GetPages(string id)
+        public List<Models.Page.RootObject> GetPages(string id)
         {
             Debug.WriteLine("DbHelper Page ID", id);
             Debug.WriteLine("DbHelper Url", Url + Pages + id);
             RestCLient = new RestCLient_A {HttpMethod = RestCLient_A.HttpVerb.GET, EndPoint = Url + Pages + id};
             string pages = RestCLient.DoRequest();
-            //Debug.WriteLine("JSON pages", pages);
-            var rootObject = JsonConvert.DeserializeObject(pages);
-            JsonConverter[] converters = { new PageConverter() };
-            List<IPage> pageList = JsonConvert.DeserializeObject<List<IPage>>(pages, new JsonSerializerSettings() { Converters = converters });
+            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
+            pageList = JsonConvert.DeserializeObject<List<Models.Page.RootObject>>(pages);
             return pageList;
         }
 
@@ -94,5 +97,6 @@ namespace OnlineStep.Helpers
             //}
             //return listOfChapters;
         }
+     
     }
 }

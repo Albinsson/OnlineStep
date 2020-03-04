@@ -23,7 +23,7 @@ namespace OnlineStep.ViewModels
         private List<Chapter> chapterList;
         public List<Chapter> ChapterList { get => chapterList; set => chapterList = value; }
         private readonly INavigator _navigator;
-        private readonly DbHelper dbHelper = new DbHelper();
+        private readonly DbHelper DbHelper = new DbHelper();
         private Data Data;
 
 
@@ -44,9 +44,7 @@ namespace OnlineStep.ViewModels
             DataCenter.CreateSingletonProcedure("SetChapterID", id);           
             _navigator.PushAsync<ChapterViewModel>();
         });
-
-       
-        
+            
     }
 };
 

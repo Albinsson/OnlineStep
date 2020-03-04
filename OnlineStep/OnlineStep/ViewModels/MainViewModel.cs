@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using OnlineStep.Helpers;
+using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
+using OnlineStep.Services;
+using Refit;
 using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
@@ -9,8 +15,9 @@ namespace OnlineStep.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private string _welcomeText;
-
         private readonly INavigator _navigator;
+        private NameOfOurAppService Service = new NameOfOurAppService();
+        private List<Course> CourseList;
 
         public MainViewModel()
         {
@@ -21,22 +28,27 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine("public MainViewModel(INavigator navigator)");
             _navigator = navigator;
+            InitApiRequestAsync();
         }
 
-
-        //public ICommand Login
-        //{
-        //    get
-        //    {
-        //        return new Command<string>((x) => LoginText = (x));
-        //    }
-        //}
+        public async Task InitApiRequestAsync()
+        {
+            CourseList = await Service.FetchCourses();
+            var objList = CourseList.ConvertAll(x => (object)x);
+            DataCenter.CreateListProcedure("SetCourseList", objList);       
+        }
 
 
         public ICommand GoToNextView => new Command(() =>
         {
             Debug.WriteLine("Hejhej");
             _navigator.PushAsync<CourseViewModel>();
+        });
+
+        public ICommand GoToNext => new Command(() =>
+        {
+            Debug.WriteLine("Testing");
+            _navigator.PushAsync<TestingViewModel>();
         });
 
         //public string LoginText
