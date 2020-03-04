@@ -39,7 +39,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToPageView => new Command(async (id) =>
         {
-            List<Models.Page.RootObject> pageList = new List<Models.Page.RootObject>();
+            List<IPage> pageList = new List<IPage>();
 
             PageNavigator.pageList = await Service.FetchPages(id.ToString());
             PageNavigator.index = 0;
