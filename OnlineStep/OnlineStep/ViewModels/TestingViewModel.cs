@@ -22,7 +22,6 @@ namespace OnlineStep.ViewModels
         }
         private Data Data;
         private readonly INavigator _navigator;
-        private readonly NameOfOurAppService OnlineStep = new NameOfOurAppService();
 
         public TestingViewModel(INavigator navigator)
         {

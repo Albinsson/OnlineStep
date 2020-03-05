@@ -6,11 +6,10 @@ using OnlineStep.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+
 
 namespace OnlineStep.Services
 {

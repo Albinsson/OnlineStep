@@ -38,7 +38,6 @@ namespace OnlineStep.ViewModels
             DataCenter.CreateListProcedure("SetCourseList", objList);       
         }
 
-
         public ICommand GoToNextView => new Command(() =>
         {
             Debug.WriteLine("Hejhej");
@@ -78,7 +77,6 @@ namespace OnlineStep.ViewModels
                 case 2: return "Good luck studding";
                 case 3: return "Time to practice some english";
             }
-
             return null;
         }
 

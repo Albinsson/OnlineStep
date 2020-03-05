@@ -3,9 +3,7 @@ using ModernHttpClient;
 using OnlineStep.Helpers;
 using Refit;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace OnlineStep.Services
 {
@@ -27,7 +25,7 @@ namespace OnlineStep.Services
             {
                 var client = new HttpClient(messageHandler)
                 {
-                    BaseAddress = new Uri(ApiBaseAddress)
+                    BaseAddress = new Uri(ApiBaseAddress ?? apiBaseAddress)
                 };
                 return RestService.For<RestInterface>(client);
             };
