@@ -18,14 +18,14 @@ namespace OnlineStep.ViewModels
 
         private List<Chapter> chapterList;
         private readonly DbHelper dbHelper = new DbHelper();
+        private readonly NameOfOurAppService Service = new NameOfOurAppService();
         private readonly INavigator _navigator;
         private Data Data;
-        private List<ChapterLevels> chapterLevelsList;
 
         private List<ChapterLevels> chapterLevels;
         public ChapterViewModel(INavigator navigator)
         {
-            Init();
+            InitAsync();
             _navigator = navigator;
         }
         public List<ChapterLevels> ChapterLevels
@@ -34,10 +34,10 @@ namespace OnlineStep.ViewModels
             set => chapterLevels = value;
         }
 
-        private void Init()
+        private async System.Threading.Tasks.Task InitAsync()
         {
             Data = DataCenter.GetSingletonProcedure("GetChapterID");
-            chapterLevels = dbHelper.GetChaptersByLevel(Data.Obj.ToString());
+            ChapterLevels = await Service.FetchChapters(Data.Obj.ToString());
         }
 
         public ICommand GoToPageView => new Command((id) =>

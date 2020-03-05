@@ -34,23 +34,15 @@
                 Margin="16,0"
                 HorizontalOptions="Center"
                 Orientation="Horizontal">
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    Text="{Binding SentencesPartOne}"
-                    TextColor="DarkGray" />
+                <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartOne}" />
                 <Entry
                     x:Name="MissingWordEntry"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    Placeholder="{Binding EntryPlaceholder}"
+                    HeightRequest="50"
+                    Style="{StaticResource TextHeadline}"
                     Text="{Binding GuessedWord}"
-                    TextColor="DarkGray" />
-                <Label
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    Text="{Binding SentencesPartTwo}"
-                    TextColor="DarkGray" />
+                    VerticalOptions="Center"
+                    WidthRequest="75" />
+                <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartTwo}" />
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand" />
             <StackLayout

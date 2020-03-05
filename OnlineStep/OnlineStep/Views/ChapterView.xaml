@@ -11,6 +11,11 @@
     BackgroundColor="White"
     mc:Ignorable="d">
 
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary Source="/Styles/Text.xaml" />
+    </ContentPage.Resources>
+
     <ListView
         HasUnevenRows="True"
         ItemsSource="{Binding ChapterLevels}"
@@ -53,10 +58,12 @@
                                         <Label
                                             Grid.Row="1"
                                             HorizontalOptions="Center"
+                                            Style="{StaticResource TextBody}"
                                             Text="{Binding Name}" />
                                         <Label
                                             Grid.Row="2"
                                             HorizontalOptions="Center"
+                                            Style="{StaticResource TextBody}"
                                             Text="0/6" />
                                     </Grid>
                                 </DataTemplate>
