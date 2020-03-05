@@ -41,8 +41,8 @@
                                 VerticalOptions="CenterAndExpand" />
                             <Label
                                 Grid.Column="0"
-                                Margin="30,65,0,0"
-                                FontSize="20"
+                                Margin="30,30,0,0"
+                                Style="{StaticResource TextSubhead}"
                                 Text="{Binding Name}" />
                         </Grid>
                     </yummy:PancakeView>

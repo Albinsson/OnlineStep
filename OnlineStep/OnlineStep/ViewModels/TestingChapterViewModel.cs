@@ -33,8 +33,8 @@ namespace OnlineStep.ViewModels
         {
             Data = DataCenter.GetSingletonProcedure("GetChapterID");
             Debug.WriteLine(Data.Obj.ToString());
-            List<Chapter> chapterList = await Service.FetchChapters(Data.Obj.ToString());
-            ChapterLevels = FetchSortedLevels(chapterList);
+            //List<Chapter> chapterList = await Service.FetchChapters(Data.Obj.ToString());
+            //ChapterLevels = FetchSortedLevels(chapterList);
         }
 
         public ICommand GoToPageView => new Command(async (id) =>

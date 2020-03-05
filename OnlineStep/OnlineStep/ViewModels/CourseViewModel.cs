@@ -35,8 +35,17 @@ namespace OnlineStep.ViewModels
         //TODO: Rename me
         public void InitAsyncApiRequest()
         {
-            DbHelper dbHelper = new DbHelper();
-            courseList = dbHelper.GetCourses();           
+            //DbHelper dbHelper = new DbHelper();
+            //courseList = dbHelper.GetCourses();  
+            Data = DataCenter.GetListProcedure("GetCourseList");
+            Debug.WriteLine("Post");
+            CourseList = new List<Course>();
+            Debug.WriteLine("Data" + Data.ObjList.Count);
+            foreach (var i in Data.ObjList)
+            {
+                Course c = (Course)i;
+                CourseList.Add(c);
+            }
         }
 
         public ICommand GoToChapterView => new Command<string>((id) =>

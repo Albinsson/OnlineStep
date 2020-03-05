@@ -6,7 +6,6 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    BackgroundImageSource="angryimg.png"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
@@ -28,7 +27,7 @@
             Text="Get started" />
 
         <!--  Example of a button changing a viewmodel  -->
-        <Button Text="Login" />
+        <Button Style="{StaticResource MainPageButton}" Text="Login" />
 
         <Button
             Command="{Binding GoToNext}"

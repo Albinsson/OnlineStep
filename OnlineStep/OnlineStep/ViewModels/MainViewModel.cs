@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using OnlineStep.Helpers;
@@ -9,6 +10,7 @@ using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
 using Refit;
 using Xamarin.Forms;
+using ModernHttpClient;
 
 namespace OnlineStep.ViewModels
 {
@@ -33,7 +35,13 @@ namespace OnlineStep.ViewModels
 
         public async Task InitApiRequestAsync()
         {
-            CourseList = await Service.FetchCourses();
+            //var client = new HttpClient(new NativeMessageHandler())
+            //{
+            //    BaseAddress = new Uri("https://online-step.herokuapp.com")
+            //};           
+            //var i = RestService.For<RestInterface>(client);
+            //CourseList = await i.GetCourses();
+            CourseList = await Service.FetchCourses();           
             var objList = CourseList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetCourseList", objList);       
         }
@@ -47,6 +55,7 @@ namespace OnlineStep.ViewModels
         public ICommand GoToNext => new Command(() =>
         {
             Debug.WriteLine("Testing");
+            Debug.WriteLine("MainViewModelCount" + CourseList.Count);
             _navigator.PushAsync<TestingViewModel>();
         });
 

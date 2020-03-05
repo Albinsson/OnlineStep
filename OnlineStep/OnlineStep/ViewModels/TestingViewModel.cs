@@ -33,12 +33,15 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine("RequestCourses");
             Data = DataCenter.GetListProcedure("GetCourseList");
+            Debug.WriteLine("Post");
             CourseList = new List<Course>();
+            Debug.WriteLine("Data"+Data.ObjList.Count);
             foreach (var i in Data.ObjList)
             {
                 Course c = (Course)i;
                 CourseList.Add(c);
             }
+           
         }
 
         public ICommand GoToChapterView => new Command<string>((id) =>

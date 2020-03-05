@@ -34,22 +34,34 @@ namespace OnlineStep.Services
             //This method is different from FetchChapters and FetchPages because we run it when the app is loading in the start
             //Making the loading of courses much faster
             Cache = BlobCache.LocalMachine;
-            var cachedCourses = Cache.GetAndFetchLatest("courses", () => GetCoursesAsync(), offset =>
-               {
-                   TimeSpan elapsed = DateTimeOffset.Now - offset;
-                   return elapsed > new TimeSpan(hours: 2, minutes: 0, seconds: 0);
-               });
-            var courses = await cachedCourses.FirstOrDefaultAsync();
-            return courses;
+            //var cachedCourses = Cache.GetAndFetchLatest("courses", () => GetCoursesAsync(), offset =>
+            //   {
+            //       TimeSpan elapsed = DateTimeOffset.Now - offset;
+            //       return elapsed > new TimeSpan(hours: 2, minutes: 0, seconds: 0);
+            //   });
+            //var courses = await cachedCourses.FirstOrDefaultAsync();
+
+            //List<Course> courses = await GetCoursesAsync();
+            //await Cache.InsertObject("courses", courses, DateTimeOffset.Now.AddHours(2));
+            //var c = await Cache.GetObject<List<Course>>("courses");
+
+            //var client = new HttpClient(new NativeMessageHandler())
+            //{
+            //    BaseAddress = new Uri("https://online-step.herokuapp.com")
+            //};           
+            var i = RestService.For<RestInterface>("https://online-step.herokuapp.com");
+            List<Course> CourseList = await i.GetCourses();
+            return CourseList;
         }
 
         //These methods are the ones we call from courseViewModel and ChapterViewModel
-        public async Task<List<Chapter>> FetchChapters(string id)
+        public async Task<List<ChapterLevels>> FetchChapters(string id)
         {
             Cache = BlobCache.LocalMachine;
             List<Chapter> getChaptersTask = await GetChaptersAsync(id);
-            await Cache.InsertObject("chapters", getChaptersTask, DateTimeOffset.Now.AddHours(2));
-            var chapters = await Cache.GetObject<List<Chapter>>("chapters");        
+            List<ChapterLevels> chapterLevels = FetchSortedLevels(getChaptersTask);
+            await Cache.InsertObject("chapters", chapterLevels, DateTimeOffset.Now.AddHours(2));
+            var chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");        
             return chapters;
         }
 
@@ -92,6 +104,22 @@ namespace OnlineStep.Services
             };
             return RestService.For<RestInterface>(client);
         };
+
+        private List<ChapterLevels> FetchSortedLevels(List<Chapter> chapterList)
+        {
+
+            List<ChapterLevels> listOfChapters = new List<ChapterLevels>();
+            foreach (var chapter in chapterList)
+            {
+                while (int.Parse(chapter.Level) > listOfChapters.Count)
+                {
+                    listOfChapters.Add(new ChapterLevels() { ChapterList = new List<Chapter>() });
+                }
+                listOfChapters[int.Parse(chapter.Level) - 1].ChapterList.Add(chapter);
+                listOfChapters[int.Parse(chapter.Level) - 1].Level = chapter.Level;
+            }
+            return listOfChapters;
+        }
 
     }
 }

@@ -3,21 +3,43 @@
     x:Class="OnlineStep.Views.McqView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:Autofac.Core;assembly=Autofac"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    BackgroundImageSource="balloon.jpg"
+    x:DataType="viewModels:McqViewModel"
     mc:Ignorable="d">
-
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Mcq.title}" />
-            <Label Text="{Binding Mcq.content.question}" />
-
-            <Button Command="{Binding GoToNextPage}" Text="Go to next Page" />
+            <Label Text="{Binding Title}" />
+            <Image Source="wave.jpg" />
+            <Label Text="{Binding Question}" />
+            <ListView
+                BackgroundColor="Transparent"
+                HasUnevenRows="True"
+                ItemsSource="{Binding AnswerList}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame>
+                                <!--  TODO: Bug need to be fixed...  -->
+                                <Button
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
+                                    CommandParameter="{Binding Path=.}"
+                                    Text="{Binding Path=.}" />
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Command="{Binding CheckCorrectAnswer}" Text="RÄTTA" />
         </StackLayout>
     </ContentPage.Content>
+    <!--  Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PageViewModel}}, Path=AnswerAction}"  -->
+
 
     <!--<ContentPage.Content>
         <StackLayout>
