@@ -9,6 +9,10 @@
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     x:DataType="viewModels:ClozeViewModel"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary Source="/Styles/Text.xaml" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
@@ -53,18 +57,12 @@
                 HorizontalOptions="Center"
                 Orientation="Horizontal"
                 VerticalOptions="End">
-                <Frame
-                    Margin="16"
-                    Padding="0"
-                    CornerRadius="8"
-                    IsClippedToBounds="True">
-                    <Button
-                        BackgroundColor="#197db7"
-                        Command="{Binding CheckCorrectAnswer}"
-                        Text="RÄTTA"
-                        TextColor="White"
-                        WidthRequest="375" />
-                </Frame>
+
+                <Button
+                    Command="{Binding CheckCorrectAnswer}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="RÄTTA" />
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

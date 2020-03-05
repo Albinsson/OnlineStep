@@ -13,12 +13,12 @@
 
 
     <Style x:Key="TextHeadline" TargetType="Label">
-        <Setter Property="TextColor" Value="AntiqueWhite" />
+        <Setter Property="TextColor" Value="Black" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
     </Style>
 
     <Style x:Key="TextSubhead" TargetType="Label">
-        <Setter Property="TextColor" Value="AntiqueWhite" />
+        <Setter Property="TextColor" Value="Black" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeSubhead}" />
     </Style>
 
