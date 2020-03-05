@@ -11,15 +11,61 @@
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Title}" />
-            <Image Source="wave.jpg" />
-            <Label Text="{Binding SentencesPartOne}" />
-            <Entry
-                x:Name="MissingWordEntry"
-                Placeholder="{Binding EntryPlaceholder}"
-                Text="{Binding GuessedWord}" />
-            <Label Text="{Binding SentencesPartTwo}" />
-            <Button Command="{Binding CheckCorrectAnswer}" Text="RÄTTA" />
+            <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                <Frame
+                    Margin="16,16,16,16"
+                    Padding="0"
+                    CornerRadius="8"
+                    HeightRequest="200"
+                    IsClippedToBounds="True"
+                    WidthRequest="400">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        Source="wave.jpg"
+                        WidthRequest="400" />
+                </Frame>
+            </StackLayout>
+            <StackLayout
+                Margin="16,0"
+                HorizontalOptions="Center"
+                Orientation="Horizontal">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="{Binding SentencesPartOne}"
+                    TextColor="DarkGray" />
+                <Entry
+                    x:Name="MissingWordEntry"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Placeholder="{Binding EntryPlaceholder}"
+                    Text="{Binding GuessedWord}"
+                    TextColor="DarkGray" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Text="{Binding SentencesPartTwo}"
+                    TextColor="DarkGray" />
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" />
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+                <Frame
+                    Margin="16"
+                    Padding="0"
+                    CornerRadius="8"
+                    IsClippedToBounds="True">
+                    <Button
+                        BackgroundColor="#197db7"
+                        Command="{Binding CheckCorrectAnswer}"
+                        Text="RÄTTA"
+                        TextColor="White"
+                        WidthRequest="375" />
+                </Frame>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
