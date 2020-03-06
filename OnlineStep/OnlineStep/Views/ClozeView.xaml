@@ -16,7 +16,10 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
-                <ProgressBar Progress="{Binding Progress}" Scale="5" />
+
+                <ProgressBar Progress="{Binding Progress}" 
+                             ScaleY="8"
+                             />
                 <Frame
                     Margin="16,16,16,16"
                     Padding="0"

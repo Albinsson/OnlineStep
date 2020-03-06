@@ -87,6 +87,10 @@ namespace OnlineStep.Services
         {
             int currentPage = index+1;
             float progress = currentPage * (1 / (float)pageList.Count);
+            Debug.WriteLine("currentPage: " +currentPage);
+            Debug.WriteLine("PageCount: " + (float)pageList.Count);
+            Debug.WriteLine("PageCountMax: " + MaxIndex);
+            Debug.WriteLine("progress " + progress);
             return progress;
             
 
