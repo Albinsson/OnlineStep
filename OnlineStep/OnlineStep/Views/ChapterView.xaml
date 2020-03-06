@@ -30,7 +30,7 @@
 
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Padding="16,0" RowSpacing="3">
+                                    <Grid Padding="16,0" RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="96" />
                                         </Grid.RowDefinitions>
