@@ -77,6 +77,8 @@ namespace OnlineStep.ViewModels
             get => _guessedWord;
             set => _guessedWord = value;
         }
+
+        public double Progress => PageNavigator.GetProgress();
     }
 }
 
