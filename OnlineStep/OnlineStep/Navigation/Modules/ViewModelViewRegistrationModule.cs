@@ -26,11 +26,8 @@ namespace OnlineStep.Navigation.Modules
             builder.RegisterType<ClozeView>();
             builder.RegisterType<ClozeViewModel>();
 
-            builder.RegisterType<Testing>();
-            builder.RegisterType<TestingViewModel>();
-
-            builder.RegisterType<TestingChapter>();
-            builder.RegisterType<TestingChapterViewModel>();
+         
+         
         }
     }
 }

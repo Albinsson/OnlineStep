@@ -30,7 +30,7 @@
 
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Padding="16,0" RowSpacing="3">
+                                    <Grid Padding="16,0" RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="96" />
                                         </Grid.RowDefinitions>
@@ -57,14 +57,17 @@
                                         </Frame>
                                         <Label
                                             Grid.Row="1"
+                                            Padding="0,3,0,0"
                                             HorizontalOptions="Center"
                                             Style="{StaticResource TextBody}"
                                             Text="{Binding Name}" />
                                         <Label
                                             Grid.Row="2"
+                                            Padding="0,-2,0,0"
                                             HorizontalOptions="Center"
-                                            Style="{StaticResource TextBody}"
+                                            Style="{StaticResource ProgressText}"
                                             Text="0/6" />
+                                        
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>

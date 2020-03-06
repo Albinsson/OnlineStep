@@ -44,6 +44,7 @@ namespace OnlineStep.ViewModels
             foreach (var i in Data.ObjList)
             {
                 Course c = (Course)i;
+                c.Name = c.Name.ToUpper();
                 CourseList.Add(c);
             }
         }

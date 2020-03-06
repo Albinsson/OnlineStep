@@ -56,7 +56,7 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine("Testing");
             Debug.WriteLine("MainViewModelCount" + CourseList.Count);
-            _navigator.PushAsync<TestingViewModel>();
+            _navigator.PushAsync<MainViewModel>();
         });
 
         //public string LoginText

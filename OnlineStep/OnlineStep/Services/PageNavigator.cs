@@ -11,6 +11,7 @@ namespace OnlineStep.Services
 
         public static List<IPage> pageList;
         public static int index;
+        public static int maxIndex;
 
         public static List<IPage> PageList
         {
@@ -22,6 +23,12 @@ namespace OnlineStep.Services
         {
             get => index;
             set => index = value;
+        }
+
+        public static int MaxIndex
+        {
+            get => pageList.Count;
+            
         }
 
         public static IPage GetCurrentPage
@@ -72,6 +79,19 @@ namespace OnlineStep.Services
                 }
             }
 
+            
+
+        }
+
+        public static float GetProgress()
+        {
+            int currentPage = index+1;
+            float progress = currentPage * (1 / (float)pageList.Count);
+            Debug.WriteLine("currentPage: " +currentPage);
+            Debug.WriteLine("PageCount: " + (float)pageList.Count);
+            Debug.WriteLine("PageCountMax: " + MaxIndex);
+            Debug.WriteLine("progress " + progress);
+            return progress;
             
 
         }

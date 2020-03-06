@@ -16,6 +16,10 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
+
+                <ProgressBar Progress="{Binding Progress}" 
+                             ScaleY="8"
+                             />
                 <Frame
                     Margin="16,16,16,16"
                     Padding="0"
@@ -33,7 +37,7 @@
             <StackLayout
                 Margin="16,0"
                 HorizontalOptions="Center"
-                Orientation="Horizontal">
+                Orientation="Vertical">
                 <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartOne}" />
                 <Entry
                     x:Name="MissingWordEntry"
