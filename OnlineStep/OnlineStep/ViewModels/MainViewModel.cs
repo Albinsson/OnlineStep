@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using OnlineStep.Helpers;
 using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
-using Refit;
 using Xamarin.Forms;
-using ModernHttpClient;
 
 namespace OnlineStep.ViewModels
 {
