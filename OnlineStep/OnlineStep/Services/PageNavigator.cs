@@ -83,19 +83,13 @@ namespace OnlineStep.Services
 
         }
 
-        public static double GetProgress()
+        public static float GetProgress()
         {
-            get:
-            {
-                if (index == 0)
-                {
-                    return 0.0;
-                }
-                else
-                {
-                    return (index * (pageList.Count / 1));
-                }
-            }
+            int currentPage = index+1;
+            float progress = currentPage * (1 / (float)pageList.Count);
+            return progress;
+            
+
         }
     }
 }
