@@ -41,7 +41,7 @@
                                 VerticalOptions="CenterAndExpand" />
                             <Label
                                 Grid.Column="0"
-                                Margin="30,30,0,0"
+                                Margin="12,8,0,0"
                                 Style="{StaticResource TextSubhead}"
                                 Text="{Binding Name}" />
                         </Grid>
