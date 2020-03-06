@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using System.Windows.Input;
-using OnlineStep.Models;
+﻿using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Windows.Input;
 using Xamarin.Forms;
-using Page = OnlineStep.Models.IPage;
 
 namespace OnlineStep.ViewModels
 {
@@ -19,15 +17,14 @@ namespace OnlineStep.ViewModels
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
-            _mcq = (Mcq) PageNavigator.GetCurrentPage;
+            _mcq = (Mcq)PageNavigator.GetCurrentPage;
             _navigator = navigator;
             Title = _mcq.title;
             Question = _mcq.content.question;
-            AnswerList = _mcq.content.answers;
             SelectedAnswer = "";
             _correctAnswer = _mcq.content.correctAnswer;
-            Debug.WriteLine(AnswerList[0]);
         }
+
         public ICommand GoToNextPage => new Command(() =>
         {
             PageNavigator.PushNextPage(_navigator);
@@ -37,7 +34,8 @@ namespace OnlineStep.ViewModels
 
         public string Question { get; set; }
 
-        public List<string> AnswerList { get; set; }
+        public List<string> AnswerList { get => _mcq.content.answers; }
+
         private string SelectedAnswer { get; set; }
         public ICommand SelectAnswer => new Command<string>((answer) =>
         {
@@ -59,6 +57,7 @@ namespace OnlineStep.ViewModels
 
             PageNavigator.PushNextPage(_navigator);
         });
+
     }
 }
 

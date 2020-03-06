@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    x:DataType="viewModels:McqViewModel"
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>
@@ -24,13 +23,13 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Frame>
-                                <!--  TODO: Bug need to be fixed...  -->
-                                <Button
+                        <!--TODO: Bug need to be fixed...-->
+                        <StackLayout>
+                                <Button 
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
-                                    CommandParameter="{Binding Path=.}"
-                                    Text="{Binding Path=.}" />
-                            </Frame>
+                                    CommandParameter="{Binding}"
+                                    Text="{Binding}" />
+                        </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
