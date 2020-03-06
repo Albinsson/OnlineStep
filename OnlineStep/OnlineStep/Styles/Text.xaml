@@ -27,9 +27,17 @@
     </Style>
     <Style x:Key="TextBody" TargetType="Label">
         <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="TextColor" Value="Black" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
+
+    <Style x:Key="ProgressText" TargetType="Label">
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="TextColor" Value="DimGray" />
+        <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
+    </Style>
+
 
 
 
