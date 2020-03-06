@@ -16,6 +16,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                <ProgressBar />
                 <Frame
                     Margin="16,16,16,16"
                     Padding="0"
