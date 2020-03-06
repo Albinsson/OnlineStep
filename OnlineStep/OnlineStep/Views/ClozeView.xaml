@@ -33,7 +33,7 @@
             <StackLayout
                 Margin="16,0"
                 HorizontalOptions="Center"
-                Orientation="Horizontal">
+                Orientation="Vertical">
                 <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartOne}" />
                 <Entry
                     x:Name="MissingWordEntry"
