@@ -9,7 +9,7 @@ using PropertyChanged;
 
 namespace OnlineStep.Services
 {
-    public static class Gamification
+    public static class UserProgress
     {
         public static int xp = 0;
         public static int userLevel = 1;
@@ -48,9 +48,17 @@ namespace OnlineStep.Services
         {
             if (rightAnswer)
             {
+                Debug.WriteLine("Right answer");
                 currentChapterScore += 1;
+                Xp += 10;
             }
-            Debug.WriteLine("CurrentChapterScore: " + currentChapterScore);
+            else
+            {
+                Debug.WriteLine("Wrong answer");
+            }
+
+            Debug.WriteLine("CurrentChapterScore: " + currentChapterScore + "\nXP:" + Xp);
+            
         }
 
         public static void AddChapterResult()

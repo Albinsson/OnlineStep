@@ -24,13 +24,13 @@ namespace OnlineStep.Test
              */
 
             //Arrange
-            Gamification.Xp = 10;
-            Gamification.Xp = 10;
-            Gamification.Xp = 10;
+            UserProgress.Xp = 10;
+            UserProgress.Xp = 10;
+            UserProgress.Xp = 10;
 
 
             //Act
-            int result = Gamification.Xp;
+            int result = UserProgress.Xp;
 
             //Assert
             Assert.AreEqual(30, result);
@@ -46,21 +46,21 @@ namespace OnlineStep.Test
              */
 
             //Arrange
-            Gamification.maxScore = 5;
-            Gamification.highestScore = 2;
-            Trace.WriteLine("maxScore" + Gamification.maxScore);
+            UserProgress.maxScore = 5;
+            UserProgress.highestScore = 2;
+            Trace.WriteLine("maxScore" + UserProgress.maxScore);
             
-            Gamification.AddPageResult(true);
-            Gamification.AddPageResult(true);
-            Gamification.AddPageResult(false);
-            Gamification.AddPageResult(false);
-            Gamification.AddPageResult(true);
+            UserProgress.AddPageResult(true);
+            UserProgress.AddPageResult(true);
+            UserProgress.AddPageResult(false);
+            UserProgress.AddPageResult(false);
+            UserProgress.AddPageResult(true);
 
 
 
             //Act
-            Gamification.AddChapterResult();
-            double results = Gamification.highestScoreProcentage;
+            UserProgress.AddChapterResult();
+            double results = UserProgress.highestScoreProcentage;
 
 
             //Assert

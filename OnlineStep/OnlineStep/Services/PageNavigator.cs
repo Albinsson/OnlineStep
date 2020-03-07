@@ -33,6 +33,7 @@ namespace OnlineStep.Services
             // All pages has been displayed
             if (PageList.Count <= Index)
             {
+
                 PageList = new List<IPage>();
                 navigator.PushAsync<ChapterViewModel>();
             };

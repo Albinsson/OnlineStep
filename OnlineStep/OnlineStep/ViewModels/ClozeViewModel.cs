@@ -58,11 +58,14 @@ namespace OnlineStep.ViewModels
             {
                 //TODO Logic for right answer
                 Debug.WriteLine("Rätt svar");
+                UserProgress.AddPageResult(true);
+
             }
             else
             {
                 //TODO logic for wrong answer
                 Debug.WriteLine("Fel svar");
+                UserProgress.AddPageResult(false);
             }
 
             PageNavigator.PushNextPage(_navigator);

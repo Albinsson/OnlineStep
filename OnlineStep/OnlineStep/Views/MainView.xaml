@@ -45,7 +45,6 @@
             HorizontalOptions="CenterAndExpand"
             Style="{StaticResource TextHeadline}"
             Text="Welcome to Online Step" />
-
     -->
     <!--  The clicked action should be handle by a viewmodel  -->
     <!--
