@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 using System.Windows.Input;
 using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
