@@ -17,9 +17,7 @@
         <StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
 
-                <ProgressBar Progress="{Binding Progress}" 
-                             ScaleY="8"
-                             />
+                <ProgressBar Progress="{Binding Progress}" ScaleY="8" />
                 <Frame
                     Margin="16,16,16,16"
                     Padding="0"
