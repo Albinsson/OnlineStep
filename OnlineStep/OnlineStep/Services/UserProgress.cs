@@ -46,6 +46,11 @@ namespace OnlineStep.Services
 
         public static void AddPageResult (bool rightAnswer)
         {
+            if (maxScore == 0)
+            {
+                maxScore = PageNavigator.PageList.Count;
+            }
+
             if (rightAnswer)
             {
                 Debug.WriteLine("Right answer");
@@ -83,5 +88,10 @@ namespace OnlineStep.Services
             }
         }
 
+        public static void ChapterCompleted()
+        {
+            maxScore = 0;
+            currentChapterScore = 0;
+        }
     }
 }

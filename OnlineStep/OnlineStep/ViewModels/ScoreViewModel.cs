@@ -17,9 +17,8 @@ namespace OnlineStep.ViewModels
             Debug.WriteLine("ScoreViewModel Constructor: ");
             _navigator = navigator;
             ChapterXp = UserProgress.Xp.ToString();
-            ChapterResult = UserProgress.Xp.ToString();
-            ResultMessage = "TODO: Logic for messaages depending on Score ";
-
+            ChapterResult = UserProgress.currentChapterScore + " / " + UserProgress.maxScore;
+            ResultMessage = "TODO: Logic for message depending on Score ";
         }
 
         public double Progress => PageNavigator.GetProgress();
@@ -29,6 +28,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToChapter => new Command(() =>
         {
+            UserProgress.ChapterCompleted();
             PageNavigator.PageList = new List<IPage>();
             _navigator.PushAsync<ChapterViewModel>();
         });
