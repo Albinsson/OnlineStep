@@ -5,7 +5,6 @@ using OnlineStep.Services;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
-using IPage = OnlineStep.Models.IPage;
 
 
 namespace OnlineStep.ViewModels
@@ -19,13 +18,13 @@ namespace OnlineStep.ViewModels
   
         public ChapterViewModel(INavigator navigator)
         {
-            InitAsync();
+            InitAsyncApiRequest();
             _navigator = navigator;
         }
         public List<ChapterLevels> ChapterLevels { get; set; }
 
 
-        private async System.Threading.Tasks.Task InitAsync()
+        private async System.Threading.Tasks.Task InitAsyncApiRequest()
         {
             Data = DataCenter.GetSingletonProcedure("GetChapterID");
             ChapterLevels = await Service.FetchChapters(Data.Obj.ToString());
@@ -33,8 +32,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToPageView => new Command((id) =>
         {
-            List<IPage> pageList = new List<IPage>();
-            pageList = dbHelper.GetPages(id.ToString());
+            var pageList = dbHelper.GetPages(id.ToString());
             var objList = pageList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetPageList", objList);
 

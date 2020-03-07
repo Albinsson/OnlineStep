@@ -7,7 +7,6 @@
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     BackgroundColor="White"
     mc:Ignorable="d">
 
@@ -67,57 +66,14 @@
                                             HorizontalOptions="Center"
                                             Style="{StaticResource ProgressText}"
                                             Text="0/6" />
-                                        
+
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>
                         </local:ItemsControl>
-
-
                     </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
-
-    <!--<ListView IsGroupingEnabled="true" ItemsSource="{Binding ChapterLevelsList}">
-        <ListView.GroupHeaderTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Label Text="{Binding ChapterLevelsList}" />
-                </ViewCell>
-            </DataTemplate>
-        </ListView.GroupHeaderTemplate>
-
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Label Text="{Binding Name}" />
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
-
-    <!--<ListView ItemsSource="{Binding ChapterLevelsList}" HasUnevenRows="True">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Level}" />
-
-                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
-                            <local:ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding Name}" />
-                                </DataTemplate>
-                            </local:ItemsControl.ItemTemplate>
-                        </local:ItemsControl>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
-
-
 </ContentPage>

@@ -24,9 +24,9 @@ namespace OnlineStep.ViewModels
             InitAsyncApiRequest();
             _navigator = navigator;                  
         }
-        //TODO: Rename me
         public void InitAsyncApiRequest()
         {
+            //TODO: Move this logic, ex: CourseList = ClassName.GetCourseList();
             Data = DataCenter.GetListProcedure("GetCourseList");
             Debug.WriteLine("Post");
             CourseList = new List<Course>();
