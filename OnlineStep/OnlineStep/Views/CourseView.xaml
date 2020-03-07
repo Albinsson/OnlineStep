@@ -34,7 +34,7 @@
                             <ImageButton
                                 Grid.Row="0"
                                 Aspect="AspectFill"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapters}"
                                 CommandParameter="{Binding _id}"
                                 HorizontalOptions="Center"
                                 Source="{Binding Img}"
