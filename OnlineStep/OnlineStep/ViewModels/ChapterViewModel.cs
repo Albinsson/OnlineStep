@@ -38,8 +38,8 @@ namespace OnlineStep.ViewModels
             var objList = pageList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetPageList", objList);
 
-            PageNavigator.pageList = dbHelper.GetPages(id.ToString());
-            PageNavigator.index = 0;
+            PageNavigator.PageList = dbHelper.GetPages(id.ToString());
+            PageNavigator.Index = 0;
             PageNavigator.PushNextPage(_navigator);
         });
 

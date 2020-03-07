@@ -23,7 +23,6 @@ namespace OnlineStep.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
-        //TODO
     }
 }
 

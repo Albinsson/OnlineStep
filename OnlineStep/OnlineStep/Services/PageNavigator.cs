@@ -1,99 +1,74 @@
-﻿using OnlineStep.Navigation.Interfaces;
+﻿using OnlineStep.Models;
+using OnlineStep.Navigation.Interfaces;
 using OnlineStep.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
-using OnlineStep.Models;
 
 namespace OnlineStep.Services
 {
     public static class PageNavigator
     {
-
-        public static List<IPage> pageList;
-        public static int index;
-        public static int maxIndex;
-
-        public static List<IPage> PageList
-        {
-            get => pageList;
-            set => pageList = value;
-        }
-
-        public static int Index
-        {
-            get => index;
-            set => index = value;
-        }
-
-        public static int MaxIndex
-        {
-            get => pageList.Count;
-            
-        }
+        public static List<IPage> PageList { get; set; }
+        public static int Index { get; set; }
 
         public static IPage GetCurrentPage
         {
-            get 
+            get
             {
-                Debug.WriteLine("Getting page where index = " + index);
-                return pageList[index];
+                Debug.WriteLine("Getting page where index = " + Index);
+                return PageList[Index];
             }
         }
 
         public static void PushNextPage(INavigator navigator)
         {
 
-            Debug.WriteLine("Index: " + index);
-            Debug.WriteLine("PageList Count: " + pageList.Count);
-            
-            if (pageList.Count == 0)
+            Debug.WriteLine("Index: " + Index + "\nPageList Count: " + PageList.Count);
+
+            if (PageList.Count == 0)
             {
-                throw new System.ArgumentException("PageList", "PageList cannot be null");
+                throw new System.ArgumentException("PageList cannot be null", "PageList");
             };
 
-
-
-            if (pageList.Count <= index)
+            // All pages has been displayed
+            if (PageList.Count <= Index)
             {
                 PageList = new List<IPage>();
                 navigator.PushAsync<ChapterViewModel>();
             };
 
-            if (pageList.Count > 0 && pageList.Count > index)
+            // Displays next pages
+            if (PageList.Count > 0 && PageList.Count > Index)
             {
-
-                switch (pageList[index].type.ToLower())
+                switch (PageList[Index].type.ToLower())
                 {
                     case "mcq":
                         navigator.PushAsync<McqViewModel>();
-                        index++;
+                        Index++;
                         break;
 
                     case "cloze":
                         navigator.PushAsync<ClozeViewModel>();
-                        index++;
+                        Index++;
                         break;
 
                     default:
-                        throw new System.ArgumentException("PageList", "Page type not found: " + pageList[index].type);
+                        throw new System.ArgumentException("PageList", "Page type not found: " + PageList[Index].type);
                 }
             }
-
-            
-
         }
 
         public static float GetProgress()
         {
-            if(index==0)
+            if (Index == 0)
             {
                 return 0.0f;
-            } else
-            {         
-            float progress = index * (1 / (float)pageList.Count);
-            return progress;
             }
-
+            else
+            {
+                float progress = Index * (1 / (float)PageList.Count);
+                return progress;
+            }
         }
     }
 }
