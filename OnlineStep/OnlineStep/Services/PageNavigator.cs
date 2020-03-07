@@ -33,9 +33,11 @@ namespace OnlineStep.Services
             // All pages has been displayed
             if (PageList.Count <= Index)
             {
+                Debug.WriteLine("All pages has been displayed -> ScoreView");
+                navigator.PushAsync<ScoreViewModel>();
 
-                PageList = new List<IPage>();
-                navigator.PushAsync<ChapterViewModel>();
+                //PageList = new List<IPage>();
+                //navigator.PushAsync<ChapterViewModel>();
             };
 
             // Displays next pages

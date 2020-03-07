@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OnlineStep.Views.ScoreView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout>
+            <ProgressBar Progress="{Binding Progress}" ScaleY="8" />
+            <Label Text="{Binding ChapterXp}" />
+            <Label Text="{Binding ChapterResult}" />
+            <Label Text="{Binding ResultMessage}" />
+            <Button Command="{Binding GoToChapter}" Text="Fortsätt" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

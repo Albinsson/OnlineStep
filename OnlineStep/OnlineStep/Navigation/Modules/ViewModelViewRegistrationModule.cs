@@ -29,8 +29,11 @@ namespace OnlineStep.Navigation.Modules
             builder.RegisterType<ClozeView>();
             builder.RegisterType<ClozeViewModel>();
 
-         
-         
+            builder.RegisterType<ScoreView>();
+            builder.RegisterType<ScoreViewModel>();
+
+
+
         }
     }
 }
