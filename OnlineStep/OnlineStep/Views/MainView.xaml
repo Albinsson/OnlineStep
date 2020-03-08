@@ -19,10 +19,17 @@
     <Grid>
         <onlineStep:VideoPlayer Source="Snow.mp4" />
         <StackLayout
-            Margin="10"
-            Padding="20"
-            Spacing="10"
+            Margin="8"
+            Padding="0"
+            Spacing="8"
             VerticalOptions="End">
+
+            <Image
+                Margin="0,80"
+                HeightRequest="250"
+                HorizontalOptions="CenterAndExpand"
+                Source="Owl_transparent.png"
+                WidthRequest="150" />
 
             <Label
                 HorizontalOptions="CenterAndExpand"
