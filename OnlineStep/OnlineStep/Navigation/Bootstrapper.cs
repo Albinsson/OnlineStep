@@ -1,6 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ Title   : Xamplate
+ Author  : Tomislav Erić
+ Summary : ViewModel First Navigation, View to ViewModel autowireing
+ Website : https://github.com/tomislaveric/Xamplate 
+*/
+
 using Autofac;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Navigation.Modules;
@@ -53,6 +57,11 @@ namespace OnlineStep.Navigation
             viewFactory.Register<MainViewModel, MainView>();
             viewFactory.Register<CourseViewModel, CourseView>();
             viewFactory.Register<ChapterViewModel, ChapterView>();
+            viewFactory.Register<McqViewModel, McqView>();
+            viewFactory.Register<ClozeViewModel, ClozeView>();
+            viewFactory.Register<ScoreViewModel, ScoreView>();
+            
+       
         }
     }
 }

@@ -1,73 +1,54 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
+using OnlineStep.Services;
 using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private string _welcomeText;
-
         private readonly INavigator _navigator;
-
-        public MainViewModel()
-        {
-            _welcomeText = RandomWelcomeText();
-        }
+        //TODO: Rename the class NameOfOurAppService
+        private NameOfOurAppService Service = new NameOfOurAppService();
+        private List<Course> CourseList;
 
         public MainViewModel(INavigator navigator)
         {
             Debug.WriteLine("public MainViewModel(INavigator navigator)");
             _navigator = navigator;
+            InitApiRequestAsync();
         }
 
+        public async Task InitApiRequestAsync()
+        {
+            CourseList = await Service.FetchCourses();           
+            var objList = CourseList.ConvertAll(x => (object)x);
+            DataCenter.CreateListProcedure("SetCourseList", objList);       
+        }
 
-        //public ICommand Login
-        //{
-        //    get
-        //    {
-        //        return new Command<string>((x) => LoginText = (x));
-        //    }
-        //}
-
-
-        public ICommand GoToNextView => new Command(() =>
+        public ICommand GoToCourses => new Command(() =>
         {
             _navigator.PushAsync<CourseViewModel>();
         });
 
-        //public string LoginText
-        //{
-        //    get => _loginText;
-        //    set
-        //    {
-        //        SetProperty(ref _loginText, (value));
-        //    }
-        //}
+        public string WelcomeText => RandomWelcomeText();
 
-
-        public string WelcomeText
-        {
-            get => _welcomeText;
-            set => _welcomeText = value;
-        }
-
-        // Example of business-logic for a random welcome text.
         public string RandomWelcomeText()
         {
-            Random r = new Random();
-            int randomText = r.Next(1, 3);
+            var r = new Random();
+            var randomText = r.Next(1, 3);
             switch (randomText)
             {
                 case 1: return "Nice to see you again";
                 case 2: return "Good luck studding";
                 case 3: return "Time to practice some english";
             }
-
             return null;
         }
-
     }
 }

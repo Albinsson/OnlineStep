@@ -4,35 +4,76 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    BackgroundColor="White"
     mc:Ignorable="d">
 
-    <StackLayout Margin="20">
-        <Label
-            FontAttributes="Bold"
-            HorizontalOptions="Center"
-            Text="ListView with a Data Template" />
-        <ListView Margin="0,20,0,0" ItemsSource="{Binding ChapterList}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.5*" />
-                                <ColumnDefinition Width="0.2*" />
-                                <ColumnDefinition Width="0.3*" />
-                            </Grid.ColumnDefinitions>
-                            <Label FontAttributes="Bold" Text="{Binding Name}" />
-                            <Label Grid.Column="1" Text="{Binding Name}" />
-                            <Label
-                                Grid.Column="2"
-                                HorizontalTextAlignment="End"
-                                Text="{Binding Name}" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary Source="/Styles/Text.xaml" />
+    </ContentPage.Resources>
 
+    <ListView
+        HasUnevenRows="True"
+        ItemsSource="{Binding ChapterLevels}"
+        SelectionMode="None"
+        SeparatorVisibility="None">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Margin="0,8" HorizontalOptions="Center">
+
+                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
+
+                            <local:ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="16,0" RowSpacing="0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="96" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Frame
+                                            Padding="0"
+                                            CornerRadius="100"
+                                            HeightRequest="96"
+                                            HorizontalOptions="Center"
+                                            IsClippedToBounds="True"
+                                            WidthRequest="96">
+                                            <ImageButton
+                                                Grid.Row="0"
+                                                Aspect="AspectFill"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
+                                                CommandParameter="{Binding _id}"
+                                                HeightRequest="96"
+                                                HorizontalOptions="Center"
+                                                Source="{Binding Icon}"
+                                                WidthRequest="96" />
+                                        </Frame>
+                                        <Label
+                                            Grid.Row="1"
+                                            Padding="0,3,0,0"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource TextBody}"
+                                            Text="{Binding Name}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Padding="0,-2,0,0"
+                                            HorizontalOptions="Center"
+                                            Style="{StaticResource ProgressText}"
+                                            Text="0/6" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </local:ItemsControl.ItemTemplate>
+                        </local:ItemsControl>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

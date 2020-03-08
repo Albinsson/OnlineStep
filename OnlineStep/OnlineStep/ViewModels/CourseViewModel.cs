@@ -14,39 +14,37 @@ namespace OnlineStep.ViewModels
 {
     internal class CourseViewModel : BaseViewModel
     {
-        private List<Course> courseList;
+        public List<Course> CourseList { get; set; }
         private readonly INavigator _navigator;
+        private Data Data;
 
-  
+
         public CourseViewModel(INavigator navigator)
         {
             InitAsyncApiRequest();
-            _navigator = navigator;
+            _navigator = navigator;                  
         }
-        //TODO: Rename me
         public void InitAsyncApiRequest()
         {
-            DbHelper dbHelper = new DbHelper();
-            courseList = dbHelper.GetCourses();
-            Debug.WriteLine(courseList.Count);
-
+            //TODO: Move this logic, ex: CourseList = ClassName.GetCourseList();
+            Data = DataCenter.GetListProcedure("GetCourseList");
+            Debug.WriteLine("Post");
+            CourseList = new List<Course>();
+            Debug.WriteLine("Data" + Data.ObjList.Count);
+            foreach (var i in Data.ObjList)
+            {
+                Course c = (Course)i;
+                c.Name = c.Name.ToUpper();
+                CourseList.Add(c);
+            }
         }
 
-        public ICommand GoToChapterView => new Command<string>((id) =>
+        public ICommand GoToChapters => new Command<string>((id) =>
         {
-
-            Preferences.Set("chapterID", id);
-            var chapterID = Preferences.Get("chapterID", "default_value");
+            DataCenter.CreateSingletonProcedure("SetChapterID", id);           
             _navigator.PushAsync<ChapterViewModel>();
-
         });
-
-        public List<Course> CourseList
-        {
-            get => courseList;
-            set => courseList = value;
-        }
-
+            
     }
 };
 

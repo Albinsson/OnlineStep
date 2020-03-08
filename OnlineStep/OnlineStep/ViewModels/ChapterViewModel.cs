@@ -1,52 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using OnlineStep.Helpers;
+﻿using OnlineStep.Helpers;
 using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
-using Xamarin.Essentials;
+using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
-
-
 
 
 namespace OnlineStep.ViewModels
 {
     class ChapterViewModel : BaseViewModel
     {
-
-        private List<Chapter> chapterList;
         private readonly DbHelper dbHelper = new DbHelper();
+        private readonly NameOfOurAppService Service = new NameOfOurAppService();
         private readonly INavigator _navigator;
-
-
+        private Data Data;
+  
         public ChapterViewModel(INavigator navigator)
         {
-            Debug.WriteLine("ChapterViewModel Constructor");
-            
             InitAsyncApiRequest();
             _navigator = navigator;
         }
+        public List<ChapterLevels> ChapterLevels { get; set; }
 
-        public void InitAsyncApiRequest()
+
+        private async System.Threading.Tasks.Task InitAsyncApiRequest()
         {
-            var chapterID = Preferences.Get("chapterID", "default_value");
-            ChapterList = dbHelper.GetChapters(chapterID);
-            Debug.WriteLine(ChapterList.Count);
+            Data = DataCenter.GetSingletonProcedure("GetChapterID");
+            ChapterLevels = await Service.FetchChapters(Data.Obj.ToString());
         }
 
-        public ICommand GoToNextView => new Command((id) =>
-        {         
-            _navigator.PushAsync<CourseViewModel>();
+        public ICommand GoToPageView => new Command((id) =>
+        {
+            var pageList = dbHelper.GetPages(id.ToString());
+            var objList = pageList.ConvertAll(x => (object)x);
+            DataCenter.CreateListProcedure("SetPageList", objList);
+
+            PageNavigator.PageList = dbHelper.GetPages(id.ToString());
+            PageNavigator.Index = 0;
+            PageNavigator.PushNextPage(_navigator);
         });
 
-        public List<Chapter> ChapterList
-        {
-            get => chapterList;
-            set => chapterList = value;
-        }
+
     }
 }

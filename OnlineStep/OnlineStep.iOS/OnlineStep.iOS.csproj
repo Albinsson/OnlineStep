@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="VideoPlayerRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -122,6 +123,18 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="akavache">
+      <Version>6.10.4</Version>
+    </PackageReference>
+    <PackageReference Include="fusillade">
+      <Version>2.0.5</Version>
+    </PackageReference>
+    <PackageReference Include="modernhttpclient">
+      <Version>2.4.2</Version>
+    </PackageReference>
+    <PackageReference Include="refit">
+      <Version>5.0.23</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
@@ -134,5 +147,62 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\angryimg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\balloon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Engelska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_History.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Matte.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Spanska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Courses_Svenska.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\faggel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\placeholder.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twitteravatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapters_Restaurang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapters_Spel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapters_Sport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Affaren.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Bio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Havet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Musik.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Chapter_Resa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wave.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
   </ItemGroup>
 </Project>

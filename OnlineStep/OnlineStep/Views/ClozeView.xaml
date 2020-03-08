@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OnlineStep.Views.ClozeView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    x:DataType="viewModels:ClozeViewModel"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary Source="/Styles/Text.xaml" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="Start">
+
+                <ProgressBar Progress="{Binding Progress}" ScaleY="8" />
+                <Frame
+                    Margin="16,16,16,16"
+                    Padding="0"
+                    CornerRadius="8"
+                    HeightRequest="200"
+                    IsClippedToBounds="True"
+                    WidthRequest="400">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        Source="wave.jpg"
+                        WidthRequest="400" />
+                </Frame>
+            </StackLayout>
+            <StackLayout
+                Margin="16,0"
+                HorizontalOptions="Center"
+                Orientation="Vertical">
+                <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartOne}" />
+                <Entry
+                    x:Name="MissingWordEntry"
+                    HeightRequest="50"
+                    Style="{StaticResource TextHeadline}"
+                    Text="{Binding GuessedWord}"
+                    VerticalOptions="Center"
+                    WidthRequest="75" />
+                <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartTwo}" />
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" />
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+
+                <Button
+                    Command="{Binding CheckCorrectAnswer}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="RÄTTA" />
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--  CommandParameter="{Binding Source={x:Reference GuessedWord}, Path=Text}"  -->
