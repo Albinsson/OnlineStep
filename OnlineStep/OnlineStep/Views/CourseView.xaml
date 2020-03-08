@@ -9,7 +9,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
-    <ListView ItemsSource="{Binding CourseList}" SelectionMode="Single">
+    <ListView ItemsSource="{Binding CourseList}" SelectionMode="Single" >
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>

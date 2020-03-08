@@ -7,7 +7,7 @@ using OnlineStep.Navigation.Interfaces;
 
 namespace OnlineStep.ViewModels
 {
-    public abstract class BaseViewModel : IViewModelBase
+    public abstract class BaseViewModel : IViewModelBase 
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -17,11 +17,8 @@ namespace OnlineStep.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
             }
 
-
         //TODO
         public List<Object> PageList { get; set; }
-
-
 
     }
 }

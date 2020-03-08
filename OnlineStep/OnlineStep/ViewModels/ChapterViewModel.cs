@@ -39,8 +39,7 @@ namespace OnlineStep.ViewModels
         }
 
         public ICommand GoToNextView => new Command((id) =>
-        {
-            
+        {         
             _navigator.PushAsync<CourseViewModel>();
         });
 
