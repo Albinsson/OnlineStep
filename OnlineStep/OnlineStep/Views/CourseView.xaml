@@ -7,7 +7,6 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     BackgroundColor="White"
     mc:Ignorable="d">
     <ContentPage.Resources>
@@ -24,12 +23,14 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <yummy:PancakeView
+
+                    <Frame
                         Margin="8,8,8,0"
+                        Padding="0"
                         BackgroundColor="Transparent"
-                        BorderIsDashed="true"
                         CornerRadius="8"
-                        HorizontalOptions="FillAndExpand">
+                        HorizontalOptions="FillAndExpand"
+                        IsClippedToBounds="True">
                         <Grid>
                             <ImageButton
                                 Grid.Row="0"
@@ -45,7 +46,7 @@
                                 Style="{StaticResource TextSubhead}"
                                 Text="{Binding Name}" />
                         </Grid>
-                    </yummy:PancakeView>
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
