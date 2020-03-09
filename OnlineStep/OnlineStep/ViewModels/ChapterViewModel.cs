@@ -12,7 +12,7 @@ namespace OnlineStep.ViewModels
     class ChapterViewModel : BaseViewModel
     {
         private readonly DbHelper dbHelper = new DbHelper();
-        private readonly NameOfOurAppService Service = new NameOfOurAppService();
+        private readonly DbService Service = new DbService();
         private readonly INavigator _navigator;
         private Data Data;
   

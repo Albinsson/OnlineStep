@@ -13,8 +13,8 @@ namespace OnlineStep.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
-        //TODO: Rename the class NameOfOurAppService
-        private NameOfOurAppService Service = new NameOfOurAppService();
+        //TODO: Rename the class DbService
+        private DbService Service = new DbService();
         private List<Course> CourseList;
 
         public MainViewModel(INavigator navigator)
