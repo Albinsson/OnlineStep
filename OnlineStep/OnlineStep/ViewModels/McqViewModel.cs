@@ -13,7 +13,7 @@ namespace OnlineStep.ViewModels
     {
         private readonly INavigator _navigator;
         private readonly Mcq _mcq;
-        private readonly string _correctAnswer;
+        private string _correctAnswer { get; set; }
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
@@ -21,14 +21,12 @@ namespace OnlineStep.ViewModels
             _navigator = navigator;
             Title = _mcq.title;
             Question = _mcq.content.question;
-            //SelectedAnswer = "";
+            SelectedAnswer = "";
             _correctAnswer = _mcq.content.correctAnswer;
-        }
 
-        public ICommand GoToNextPage => new Command(() =>
-        {
-            PageNavigator.PushNextPage(_navigator);
-        });
+            ShowCorrection = false;
+            ShowCorrectMeButton = true;
+        }
 
         public string Title { get; set; }
 
@@ -36,47 +34,62 @@ namespace OnlineStep.ViewModels
 
         public List<string> AnswerList { get => _mcq.content.answers; }
 
-        //private string SelectedAnswer { get; set; }
-        //public ICommand SelectAnswer => new Command<string>((answer) =>
-        //{
-        //    Debug.WriteLine(answer);
-        //    SelectedAnswer = answer;
-        //});
-
+        private string SelectedAnswer { get; set; }
+        public ICommand SelectAnswer => new Command<string>((answer) =>
+        {
+            Debug.WriteLine(answer);
+            SelectedAnswer = answer;
+        });
         //public ICommand CheckCorrectAnswer => new Command(() =>
         //{
         //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
         //    {
-        //        UserProgress.AddPageResult(true);
+        //        //TODO Logic for right answer
         //        Debug.WriteLine("Rätt svar");
         //    }
         //    else
         //    {
-        
-        //        UserProgress.AddPageResult(false);
+        //        //TODO logic for wrong answer
         //        Debug.WriteLine("Fel svar");
         //    }
+
         //    PageNavigator.PushNextPage(_navigator);
         //});
-
-        public ICommand SubmitAnswer => new Command<string>((answer) =>
+        public ICommand CheckCorrectAnswer => new Command(() =>
         {
-            if (answer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+
+            Debug.WriteLine(SelectedAnswer);
+            if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
             {
-                UserProgress.AddPageResult(true);
+                //TODO Logic for right answer
                 Debug.WriteLine("Rätt svar");
+                CorectOrWrongBool = true;
+                CorrectOrWrongMessage = "Du har svarat rätt!";
+                UserProgress.AddPageResult(true);
+
             }
             else
             {
-
-                UserProgress.AddPageResult(false);
+                //TODO logic for wrong answer
                 Debug.WriteLine("Fel svar");
+                CorectOrWrongBool = false;
+                CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
+                UserProgress.AddPageResult(false);
             }
+
+            ShowCorrection = true;
+            ShowCorrectMeButton = false;
+        });
+
+        public ICommand GoToNextPage => new Command(() =>
+        {
             PageNavigator.PushNextPage(_navigator);
         });
 
-        public double Progress => PageNavigator.GetProgress();
-
+        public string CorrectOrWrongMessage { set; get; }
+        public bool CorectOrWrongBool { set; get; }
+        public bool ShowCorrection { set; get; }
+        public bool ShowCorrectMeButton { set; get; }
     }
 }
 
