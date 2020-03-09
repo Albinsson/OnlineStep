@@ -74,16 +74,16 @@
             <ContentView IsVisible="{Binding ShowCorrection}">
                 <ContentView.Triggers>
                     <DataTrigger
-                        Binding="{Binding HasPropertyValueChanged}"
+                        Binding="{Binding CorectOrWrongBool}"
                         TargetType="ContentView"
                         Value="true">
-                        <Setter Property="Style" Value="{StaticResource Fail}" />
+                        <Setter Property="Style" Value="{StaticResource Success}" />
                     </DataTrigger>
                     <DataTrigger
-                        Binding="{Binding HasPropertyValueChanged}"
+                        Binding="{Binding CorectOrWrongBool}"
                         TargetType="ContentView"
                         Value="false">
-                        <Setter Property="Style" Value="{StaticResource Success}" />
+                        <Setter Property="Style" Value="{StaticResource Fail}" />
                     </DataTrigger>
                 </ContentView.Triggers>
                 <StackLayout>

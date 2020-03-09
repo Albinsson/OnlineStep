@@ -1,6 +1,8 @@
 ﻿using Akavache;
 using Fusillade;
 using ModernHttpClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using OnlineStep.Helpers;
 using OnlineStep.Models;
 using Refit;
@@ -63,7 +65,7 @@ namespace OnlineStep.Services
             List<Chapter> getChaptersTask = await GetChaptersAsync(id);
             List<ChapterLevels> chapterLevels = FetchSortedLevels(getChaptersTask);
             await Cache.InsertObject("chapters", chapterLevels, DateTimeOffset.Now.AddHours(2));
-            List<ChapterLevels> chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");        
+            List<ChapterLevels> chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");
             return chapters;
         }
 
@@ -80,7 +82,7 @@ namespace OnlineStep.Services
         //These methods call on our ServiceHelper which is implemented in RestInterface
         async Task<List<IPage>> GetPagesAsync(string id)
         {
-            Task<List<IPage>> getPagesTask = UserInitiated.Getpages(id);
+            Task<List<IPage>> getPagesTask = UserInitiated.GetPages(id);
             return await getPagesTask;
         }
 

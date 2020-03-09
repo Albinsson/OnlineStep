@@ -59,7 +59,21 @@
                     Style="{StaticResource MainPageButton}"
                     Text="RÄTTA" />
             </ContentView>
-            <ContentView IsVisible="{Binding ShowCorrection}" BackgroundColor="Cyan">
+            <ContentView IsVisible="{Binding ShowCorrection}">
+                <ContentView.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CorectOrWrongBool}"
+                        TargetType="ContentView"
+                        Value="true">
+                        <Setter Property="Style" Value="{StaticResource Success}" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding CorectOrWrongBool}"
+                        TargetType="ContentView"
+                        Value="false">
+                        <Setter Property="Style" Value="{StaticResource Fail}" />
+                    </DataTrigger>
+                </ContentView.Triggers>
                 <StackLayout>
                     <Label Text="{Binding CorrectOrWrongMessage}"/>
                     <Button

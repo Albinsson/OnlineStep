@@ -57,7 +57,7 @@ namespace OnlineStep.Helpers
             RestCLient = new RestCLient_A {HttpMethod = RestCLient_A.HttpVerb.GET, EndPoint = Url + Pages + id};
             string pages = RestCLient.DoRequest();
             JsonConverter[] converters = { new PageConverter() };
-            var pageList = JsonConvert.DeserializeObject<List<IPage>>(pages, new JsonSerializerSettings() { Converters = converters });
+            List<IPage> pageList = JsonConvert.DeserializeObject<List<IPage>>(pages, new JsonSerializerSettings() { Converters = converters });
             return pageList;
         }
 

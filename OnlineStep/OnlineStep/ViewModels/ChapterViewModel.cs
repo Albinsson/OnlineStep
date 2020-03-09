@@ -32,8 +32,8 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToPageView => new Command((id) =>
         {
-            var pageList = dbHelper.GetPages(id.ToString());
-            var objList = pageList.ConvertAll(x => (object)x);
+            List<IPage> pageList = dbHelper.GetPages(id.ToString());
+            List<object> objList = pageList.ConvertAll(x => (object)x);
             DataCenter.CreateListProcedure("SetPageList", objList);
 
             PageNavigator.PageList = dbHelper.GetPages(id.ToString());

@@ -16,6 +16,6 @@ namespace OnlineStep.Helpers
         Task<List<Chapter>> GetChapters(string id);
 
         [Get("/chapters/pages/{id}")]
-        Task<List<IPage>> Getpages(string id);
+        Task<List<IPage>> GetPages(string id);
     }
 }
