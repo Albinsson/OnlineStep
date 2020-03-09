@@ -7,7 +7,6 @@ namespace OnlineStep.Services
 {
     public class DataCenter
     {
-
         //private List<(object obj, string str)> ProcedureList { get; set; }
 
         private static List<Data> ProcedureList { get; set; }
@@ -16,7 +15,6 @@ namespace OnlineStep.Services
         {
             ProcedureList = new List<Data>();
         }
-
 
         public static void CreateSingletonProcedure(string procedureName, object dataType)
         {
@@ -82,6 +80,5 @@ namespace OnlineStep.Services
             }
             return data;
         }
-
     }
 }
