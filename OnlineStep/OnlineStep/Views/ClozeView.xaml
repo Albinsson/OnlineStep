@@ -53,17 +53,6 @@
                 <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartTwo}" />
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand" />
-            <!--<StackLayout
-                HorizontalOptions="Center"
-                Orientation="Horizontal"
-                VerticalOptions="End">
-
-                <Button
-                    Command="{Binding CheckCorrectAnswer}"
-                    Style="{StaticResource MainPageButton}"
-                    Text="RÄTTA" />
-
-            </StackLayout>-->
             <ContentView IsVisible="{Binding ShowCorrectMeButton}" >
                 <Button
                     Command="{Binding CheckCorrectAnswer}"
@@ -83,5 +72,3 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-
-<!--  CommandParameter="{Binding Source={x:Reference GuessedWord}, Path=Text}"  -->

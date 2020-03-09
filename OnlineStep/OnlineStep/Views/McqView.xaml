@@ -55,23 +55,32 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <!--  TODO: Bug need to be fixed...  -->
-
-
                                 <Button
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
                                     CommandParameter="{Binding}"
                                     Style="{StaticResource MainPageButton}"
                                     Text="{Binding}" />
-
-
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <!--<Button Command="{Binding CheckCorrectAnswer}" Text="RÄTTA" />-->
+            <ContentView IsVisible="{Binding ShowCorrectMeButton}" >
+                <Button
+                    Command="{Binding CheckCorrectAnswer}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="RÄTTA" />
+            </ContentView>
+            <ContentView IsVisible="{Binding ShowCorrection}" BackgroundColor="Cyan">
+                <StackLayout>
+                    <Label Text="{Binding CorrectOrWrongMessage}"/>
+                    <Button
+                    Command="{Binding GoToNextPage}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="GÅ TILL NÄSTA" >
+                    </Button>
+                </StackLayout>
+            </ContentView>
         </StackLayout>
     </ContentPage.Content>
-    <!--  Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PageViewModel}}, Path=AnswerAction}"  -->
 </ContentPage>
