@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Xamarin.Forms;
 using OnlineStep.Helpers;
 using System;
 
@@ -7,9 +6,6 @@ namespace OnlineStep.Services
 {
     public class DataCenter
     {
-
-        //private List<(object obj, string str)> ProcedureList { get; set; }
-
         private static List<Data> ProcedureList { get; set; }
         
         static DataCenter()

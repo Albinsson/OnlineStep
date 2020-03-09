@@ -1,13 +1,10 @@
 ﻿using OnlineStep.Models;
 using OnlineStep.Services;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using OnlineStep.Helpers;
 using OnlineStep.Navigation.Interfaces;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels

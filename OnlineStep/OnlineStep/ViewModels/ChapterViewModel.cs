@@ -12,13 +12,13 @@ namespace OnlineStep.ViewModels
     class ChapterViewModel : BaseViewModel
     {
         private readonly DbHelper dbHelper = new DbHelper();
-        private readonly NameOfOurAppService Service = new NameOfOurAppService();
+        private readonly ApiFetcher Service = new ApiFetcher();
         private readonly INavigator _navigator;
         private Data Data;
   
         public ChapterViewModel(INavigator navigator)
         {
-            InitAsyncApiRequest();
+            _ = InitAsyncApiRequest();
             _navigator = navigator;
         }
         public List<ChapterLevels> ChapterLevels { get; set; }

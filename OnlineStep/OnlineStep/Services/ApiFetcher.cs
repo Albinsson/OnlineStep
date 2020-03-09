@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace OnlineStep.Services
 {
-    public class NameOfOurAppService
+    public class ApiFetcher
     {
         //This is the class where everything comes together
         private ServiceHelper.IServiceHelper ServiceHelper;
@@ -22,18 +22,20 @@ namespace OnlineStep.Services
         private IBlobCache Cache;
         private const string ApiEndPoint = "https://online-step.herokuapp.com";
 
-        public NameOfOurAppService()
+        public ApiFetcher()
         {
             userInitiated = new Lazy<RestInterface>(() => createClient(new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.UserInitiated)));
         }
 
         public async Task<List<Course>> FetchCourses()
         {
+            //TODO: Behöver vi en så här lång kommentar?
             //Using the Akavache nuget we can store data from GetCoursesAsync() in our localMachine using a keyword "courses"
             //The offset method tells the cache how long we want the data to remain inside the cache
             //This method is different from FetchChapters and FetchPages because we run it when the app is loading in the start
             //Making the loading of courses much faster
             Cache = BlobCache.LocalMachine;
+            //TODO: Gammal kod?
             //var cachedCourses = Cache.GetAndFetchLatest("courses", () => GetCoursesAsync(), offset =>
             //   {
             //       TimeSpan elapsed = DateTimeOffset.Now - offset;
@@ -48,9 +50,9 @@ namespace OnlineStep.Services
             //var client = new HttpClient(new NativeMessageHandler())
             //{
             //    BaseAddress = new Uri("https://online-step.herokuapp.com")
-            //};           
-            var i = RestService.For<RestInterface>("https://online-step.herokuapp.com");
-            List<Course> CourseList = await i.GetCourses();
+            //};   
+            RestInterface _restInterface = RestService.For<RestInterface>("https://online-step.herokuapp.com");
+            List<Course> CourseList = await _restInterface.GetCourses();
             return CourseList;
         }
 
@@ -61,7 +63,7 @@ namespace OnlineStep.Services
             List<Chapter> getChaptersTask = await GetChaptersAsync(id);
             List<ChapterLevels> chapterLevels = FetchSortedLevels(getChaptersTask);
             await Cache.InsertObject("chapters", chapterLevels, DateTimeOffset.Now.AddHours(2));
-            var chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");        
+            List<ChapterLevels> chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");        
             return chapters;
         }
 
@@ -70,12 +72,12 @@ namespace OnlineStep.Services
             Cache = BlobCache.LocalMachine;
             List<IPage> getPagesTask = await GetPagesAsync(id);
             await Cache.InsertObject("pages", getPagesTask, DateTimeOffset.Now.AddHours(2));
-            var pages = await Cache.GetObject<List<IPage>>("pages");
+            List<IPage> pages = await Cache.GetObject<List<IPage>>("pages");
             return pages;
         }
         //END
 
-        //These methods call on our ServiceHelper which is implemented in TestRestClientHelper
+        //These methods call on our ServiceHelper which is implemented in RestInterface
         async Task<List<IPage>> GetPagesAsync(string id)
         {
             Task<List<IPage>> getPagesTask = UserInitiated.Getpages(id);

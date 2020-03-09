@@ -14,21 +14,22 @@ namespace OnlineStep.ViewModels
     {
         private readonly INavigator _navigator;
         //TODO: Rename the class NameOfOurAppService
-        private NameOfOurAppService Service = new NameOfOurAppService();
+        //QUESTION: Är detta en data fetcher bara?
+        private ApiFetcher ApiFetcher = new ApiFetcher();
         private List<Course> CourseList;
 
         public MainViewModel(INavigator navigator)
         {
             Debug.WriteLine("public MainViewModel(INavigator navigator)");
             _navigator = navigator;
-            InitApiRequestAsync();
+            _ = InitApiRequestAsync();
         }
 
         public async Task InitApiRequestAsync()
         {
-            CourseList = await Service.FetchCourses();           
-            var objList = CourseList.ConvertAll(x => (object)x);
-            DataCenter.CreateListProcedure("SetCourseList", objList);       
+            CourseList = await ApiFetcher.FetchCourses();
+            List<object> courseObjectList = CourseList.ConvertAll(x => (object)x);
+            DataCenter.CreateListProcedure("SetCourseList", courseObjectList);       
         }
 
         public ICommand GoToCourses => new Command(() =>
