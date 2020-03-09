@@ -6,7 +6,6 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    x:DataType="viewModels:McqViewModel"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
@@ -14,89 +13,65 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Frame
-                Margin="16,16,16,0"
-                Padding="0"
-                CornerRadius="8"
-                IsClippedToBounds="True">
-                <ProgressBar Progress="{Binding Progress}" Style="{StaticResource ProgressBar}" />
-            </Frame>
-            <Frame
-                Margin="16"
-                Padding="0"
-                CornerRadius="8"
-                HeightRequest="200"
-                IsClippedToBounds="True"
-                WidthRequest="400">
-                <Image
-                    Aspect="AspectFill"
+            <StackLayout Orientation="Vertical" VerticalOptions="Start">
+                <Frame
+                    Margin="16,16,16,0"
+                    Padding="0"
+                    CornerRadius="8"
+                    IsClippedToBounds="True">
+                    <ProgressBar Progress="{Binding Progress}" Style="{StaticResource ProgressBar}" />
+                </Frame>
+                <Frame
+                    Margin="16"
+                    Padding="0"
+                    CornerRadius="8"
                     HeightRequest="200"
-                    Source="wave.jpg"
-                    WidthRequest="400" />
-            </Frame>
-            <Label Text="{Binding Question}" />
-            <ListView
-                BackgroundColor="Transparent"
-                HasUnevenRows="True"
-                ItemsSource="{Binding AnswerList}"
-                SelectionMode="None"
-                SeparatorVisibility="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <!--  TODO: Bug need to be fixed...  -->
-                            <StackLayout Orientation="Vertical" VerticalOptions="End">
+                    IsClippedToBounds="True"
+                    WidthRequest="400">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="200"
+                        Source="wave.jpg"
+                        WidthRequest="400" />
+                </Frame>
+            </StackLayout>
+            <StackLayout
+                Margin="16,0"
+                HorizontalOptions="Center"
+                Orientation="Vertical">
+                <Label Text="{Binding Question}" />
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" />
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                VerticalOptions="End">
+                <ListView
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding AnswerList}"
+                    SelectionMode="None"
+                    SeparatorVisibility="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--  TODO: Bug need to be fixed...  -->
+
+
                                 <Button
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
                                     CommandParameter="{Binding}"
                                     Style="{StaticResource MainPageButton}"
                                     Text="{Binding}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
             <!--<Button Command="{Binding CheckCorrectAnswer}" Text="RÄTTA" />-->
         </StackLayout>
     </ContentPage.Content>
     <!--  Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PageViewModel}}, Path=AnswerAction}"  -->
-
-
-    <!--<ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding QuestionLbl}" />
-            <ListView
-                BackgroundColor="Transparent"
-                HasUnevenRows="True"
-                ItemsSource="{Binding AnswerList}"
-                SelectionMode="None"
-                SeparatorVisibility="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <yummy:PancakeView
-                                Margin="75,15,75,10"
-                                BackgroundGradientAngle="45"
-                                BackgroundGradientEndColor="#f7e843"
-                                BackgroundGradientStartColor="#FF33AA"
-                                CornerRadius="15"
-                                IsClippedToBounds="True">
-                                <Frame Padding="0" BackgroundColor="Transparent">
-                                    <Button
-                                        BackgroundColor="Transparent"
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PageViewModel}}, Path=AnswerAction}"
-                                        Font="Bold"
-                                        FontSize="18"
-                                        HorizontalOptions="Fill"
-                                        Text="{Binding AlternativeName}"
-                                        TextColor="Black"
-                                        VerticalOptions="Fill" />
-                                </Frame>
-                            </yummy:PancakeView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>-->
 </ContentPage>
