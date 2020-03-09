@@ -13,7 +13,7 @@ namespace OnlineStep.ViewModels
     {
         private readonly INavigator _navigator;
         private readonly Mcq _mcq;
-        private string _correctAnswer { get; set; }
+        private readonly string _correctAnswer;
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
@@ -21,7 +21,7 @@ namespace OnlineStep.ViewModels
             _navigator = navigator;
             Title = _mcq.title;
             Question = _mcq.content.question;
-            SelectedAnswer = "";
+            //SelectedAnswer = "";
             _correctAnswer = _mcq.content.correctAnswer;
         }
 
@@ -36,27 +36,42 @@ namespace OnlineStep.ViewModels
 
         public List<string> AnswerList { get => _mcq.content.answers; }
 
-        private string SelectedAnswer { get; set; }
-        public ICommand SelectAnswer => new Command<string>((answer) =>
+        //private string SelectedAnswer { get; set; }
+        //public ICommand SelectAnswer => new Command<string>((answer) =>
+        //{
+        //    Debug.WriteLine(answer);
+        //    SelectedAnswer = answer;
+        //});
+
+        //public ICommand CheckCorrectAnswer => new Command(() =>
+        //{
+        //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+        //    {
+        //        UserProgress.AddPageResult(true);
+        //        Debug.WriteLine("Rätt svar");
+        //    }
+        //    else
+        //    {
+        
+        //        UserProgress.AddPageResult(false);
+        //        Debug.WriteLine("Fel svar");
+        //    }
+        //    PageNavigator.PushNextPage(_navigator);
+        //});
+
+        public ICommand SubmitAnswer => new Command<string>((answer) =>
         {
-            Debug.WriteLine(answer);
-            SelectedAnswer = answer;
-        });
-        public ICommand CheckCorrectAnswer => new Command(() =>
-        {
-            if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+            if (answer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
             {
                 UserProgress.AddPageResult(true);
                 Debug.WriteLine("Rätt svar");
             }
             else
             {
-        
+
                 UserProgress.AddPageResult(false);
                 Debug.WriteLine("Fel svar");
             }
-
-
             PageNavigator.PushNextPage(_navigator);
         });
 
