@@ -3,7 +3,19 @@
 
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <x:String x:Key="PrimaryColor">#197db7</x:String>
+    <x:String x:Key="PrimaryColor">#1976d2</x:String>
+    <x:String x:Key="PrimaryColorLight">#63a4ff</x:String>
+    <x:String x:Key="PrimaryColorDark">#004ba0</x:String>
+    <x:String x:Key="SecondaryColor">#d27619</x:String>
+    <x:String x:Key="SecondaryColorLight">#ffa54b</x:String>
+    <x:String x:Key="SecondaryColorDark">#9b4900</x:String>
+    <x:String x:Key="Thirdcolor">#19d2d2</x:String>
+    <x:String x:Key="ThirdcolorLight">#6affff</x:String>
+    <x:String x:Key="ThirdColorDark">#00a0a1</x:String>
+
+
+
+
 
     <Style x:Key="MainPageButton" TargetType="{x:Type Button}">
         <Setter Property="WidthRequest" Value="350" />
@@ -40,7 +52,7 @@
     </Style>
 
     <Style x:Key="ProgressBar" TargetType="{x:Type ProgressBar}">
-        <Setter Property="ProgressColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="ProgressColor" Value="{StaticResource SecondaryColorLight}" />
         <Setter Property="ScaleY" Value="8" />
     </Style>
 
