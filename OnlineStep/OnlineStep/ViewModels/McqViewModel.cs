@@ -46,17 +46,21 @@ namespace OnlineStep.ViewModels
         {
             if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
             {
-                //TODO Logic for right answer
+                UserProgress.AddPageResult(true);
                 Debug.WriteLine("Rätt svar");
             }
             else
             {
-                //TODO logic for wrong answer
+        
+                UserProgress.AddPageResult(false);
                 Debug.WriteLine("Fel svar");
             }
 
+
             PageNavigator.PushNextPage(_navigator);
         });
+
+        public double Progress => PageNavigator.GetProgress();
 
     }
 }
