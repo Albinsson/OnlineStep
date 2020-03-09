@@ -14,6 +14,7 @@ namespace OnlineStep.ViewModels
         private readonly INavigator _navigator;
         private readonly Mcq _mcq;
         private string _correctAnswer { get; set; }
+        private bool HasPropertyValueChanged { get; set; }
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
@@ -65,6 +66,7 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Rätt svar");
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Du har svarat rätt!";
+                HasPropertyValueChanged = false;
                 UserProgress.AddPageResult(true);
 
             }
@@ -74,6 +76,7 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
+                HasPropertyValueChanged = true;
                 UserProgress.AddPageResult(false);
             }
 
@@ -90,6 +93,8 @@ namespace OnlineStep.ViewModels
         public bool CorectOrWrongBool { set; get; }
         public bool ShowCorrection { set; get; }
         public bool ShowCorrectMeButton { set; get; }
+        public bool HasPropertyValueChanged1 { get => HasPropertyValueChanged2; set => HasPropertyValueChanged2 = value; }
+        public bool HasPropertyValueChanged2 { get => HasPropertyValueChanged; set => HasPropertyValueChanged = value; }
     }
 }
 

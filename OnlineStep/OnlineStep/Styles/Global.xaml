@@ -14,7 +14,14 @@
     <x:String x:Key="ThirdColorDark">#00a0a1</x:String>
 
 
+    <Style x:Key="Success" TargetType="{x:Type ContentView}">
+        <Setter Property="BackgroundColor" Value="Color.Green" />
 
+    </Style>
+    <Style x:Key="Fail" TargetType="{x:Type ContentView}">
+        <Setter Property="BackgroundColor" Value="Color.Red" />
+
+    </Style>
 
 
     <Style x:Key="MainPageButton" TargetType="{x:Type Button}">

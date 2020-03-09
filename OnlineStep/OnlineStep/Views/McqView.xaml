@@ -65,21 +65,35 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <ContentView IsVisible="{Binding ShowCorrectMeButton}" >
+            <ContentView IsVisible="{Binding ShowCorrectMeButton}">
                 <Button
                     Command="{Binding CheckCorrectAnswer}"
                     Style="{StaticResource MainPageButton}"
                     Text="RÄTTA" />
             </ContentView>
-            <ContentView IsVisible="{Binding ShowCorrection}" BackgroundColor="Cyan">
+            <ContentView IsVisible="{Binding ShowCorrection}">
+                <ContentView.Triggers>
+                    <DataTrigger
+                        Binding="{Binding HasPropertyValueChanged}"
+                        TargetType="ContentView"
+                        Value="true">
+                        <Setter Property="Style" Value="{StaticResource Fail}" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding HasPropertyValueChanged}"
+                        TargetType="ContentView"
+                        Value="false">
+                        <Setter Property="Style" Value="{StaticResource Success}" />
+                    </DataTrigger>
+                </ContentView.Triggers>
                 <StackLayout>
-                    <Label Text="{Binding CorrectOrWrongMessage}"/>
+                    <Label Text="{Binding CorrectOrWrongMessage}" />
                     <Button
-                    Command="{Binding GoToNextPage}"
-                    Style="{StaticResource MainPageButton}"
-                    Text="GÅ TILL NÄSTA" >
-                    </Button>
+                        Command="{Binding GoToNextPage}"
+                        Style="{StaticResource MainPageButton}"
+                        Text="GÅ TILL NÄSTA" />
                 </StackLayout>
+
             </ContentView>
         </StackLayout>
     </ContentPage.Content>
