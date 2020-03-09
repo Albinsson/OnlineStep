@@ -53,7 +53,7 @@
                 <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartTwo}" />
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand" />
-            <StackLayout
+            <!--<StackLayout
                 HorizontalOptions="Center"
                 Orientation="Horizontal"
                 VerticalOptions="End">
@@ -63,7 +63,23 @@
                     Style="{StaticResource MainPageButton}"
                     Text="RÄTTA" />
 
-            </StackLayout>
+            </StackLayout>-->
+            <ContentView IsVisible="{Binding ShowCorrectMeButton}" >
+                <Button
+                    Command="{Binding CheckCorrectAnswer}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="RÄTTA" />
+            </ContentView>
+            <ContentView IsVisible="{Binding ShowCorrection}" BackgroundColor="Cyan">
+                <StackLayout>
+                    <Label Text="{Binding CorrectOrWrongMessage}"/>
+                    <Button
+                    Command="{Binding GoToNextPage}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="GÅ TILL NÄSTA" >
+                    </Button>
+                </StackLayout>
+            </ContentView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

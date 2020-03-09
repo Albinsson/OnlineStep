@@ -15,7 +15,6 @@ namespace OnlineStep.ViewModels
         private readonly INavigator _navigator;
         private readonly Cloze _cloze;
         private readonly string[] _sentences;
-        private string _guessedWord = "";
         private string _missingWord;
 
         public ClozeViewModel(INavigator navigator)
@@ -27,6 +26,10 @@ namespace OnlineStep.ViewModels
             _missingWord = _cloze.content.missingWords[0];
             Title = _cloze.title;
             EntryPlaceholder = CreatePlaceholder(_missingWord);
+            GuessedWord = "";
+
+            ShowCorrection = false;
+            ShowCorrectMeButton = true;
         }
         //Empty constructor used for testing
         public ClozeViewModel(){}
@@ -53,11 +56,14 @@ namespace OnlineStep.ViewModels
 
         public ICommand CheckCorrectAnswer => new Command(() =>
         {
+            
             Debug.WriteLine(GuessedWord);
-            if (_guessedWord.Equals(_missingWord, StringComparison.InvariantCultureIgnoreCase))
+            if (GuessedWord.Equals(_missingWord, StringComparison.InvariantCultureIgnoreCase))
             {
                 //TODO Logic for right answer
                 Debug.WriteLine("Rätt svar");
+                CorectOrWrongBool = true;
+                CorrectOrWrongMessage = "Du har svarat rätt!";
                 UserProgress.AddPageResult(true);
 
             }
@@ -65,20 +71,30 @@ namespace OnlineStep.ViewModels
             {
                 //TODO logic for wrong answer
                 Debug.WriteLine("Fel svar");
+                CorectOrWrongBool = false;
+                CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
                 UserProgress.AddPageResult(false);
             }
 
+            ShowCorrection = true;
+            ShowCorrectMeButton = false;
+        });
+
+        public ICommand GoToNextPage => new Command(() =>
+        {
             PageNavigator.PushNextPage(_navigator);
         });
+
+        public string CorrectOrWrongMessage { set; get; }
+        public bool CorectOrWrongBool { set; get; }
+        public bool ShowCorrection { set; get; }
+        public bool ShowCorrectMeButton { set; get; }
         public string Title { get; set; }
         public string SentencesPartOne => _sentences[0];
         public string SentencesPartTwo => _sentences[1];
         public string EntryPlaceholder { get; set; }
 
-        public string GuessedWord { 
-            get => _guessedWord;
-            set => _guessedWord = value;
-        }
+        public string GuessedWord { set; get; }
 
         public double Progress => PageNavigator.GetProgress();
     }

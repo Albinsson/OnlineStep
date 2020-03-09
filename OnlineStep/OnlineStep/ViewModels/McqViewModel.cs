@@ -23,12 +23,10 @@ namespace OnlineStep.ViewModels
             Question = _mcq.content.question;
             SelectedAnswer = "";
             _correctAnswer = _mcq.content.correctAnswer;
-        }
 
-        public ICommand GoToNextPage => new Command(() =>
-        {
-            PageNavigator.PushNextPage(_navigator);
-        });
+            ShowCorrection = false;
+            ShowCorrectMeButton = true;
+        }
 
         public string Title { get; set; }
 
@@ -42,22 +40,56 @@ namespace OnlineStep.ViewModels
             Debug.WriteLine(answer);
             SelectedAnswer = answer;
         });
+        //public ICommand CheckCorrectAnswer => new Command(() =>
+        //{
+        //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+        //    {
+        //        //TODO Logic for right answer
+        //        Debug.WriteLine("Rätt svar");
+        //    }
+        //    else
+        //    {
+        //        //TODO logic for wrong answer
+        //        Debug.WriteLine("Fel svar");
+        //    }
+
+        //    PageNavigator.PushNextPage(_navigator);
+        //});
         public ICommand CheckCorrectAnswer => new Command(() =>
         {
+
+            Debug.WriteLine(SelectedAnswer);
             if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
             {
                 //TODO Logic for right answer
                 Debug.WriteLine("Rätt svar");
+                CorectOrWrongBool = true;
+                CorrectOrWrongMessage = "Du har svarat rätt!";
+                UserProgress.AddPageResult(true);
+
             }
             else
             {
                 //TODO logic for wrong answer
                 Debug.WriteLine("Fel svar");
+                CorectOrWrongBool = false;
+                CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
+                UserProgress.AddPageResult(false);
             }
 
+            ShowCorrection = true;
+            ShowCorrectMeButton = false;
+        });
+
+        public ICommand GoToNextPage => new Command(() =>
+        {
             PageNavigator.PushNextPage(_navigator);
         });
 
+        public string CorrectOrWrongMessage { set; get; }
+        public bool CorectOrWrongBool { set; get; }
+        public bool ShowCorrection { set; get; }
+        public bool ShowCorrectMeButton { set; get; }
     }
 }
 
