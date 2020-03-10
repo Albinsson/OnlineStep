@@ -60,36 +60,36 @@ namespace OnlineStep.Test
 
         }
 
-        [TestMethod]
-        public void ChapterLevelTest()
-        {
-            /*
-             * Test if the number of pages are correct from the API
-             */
+        //[TestMethod]
+        //public void ChapterLevelTest()
+        //{
+        //    /*
+        //     * Test if the number of pages are correct from the API
+        //     */
 
-            //Arrange
-            DbHelper dbHelper = new DbHelper();
-            String courserID = "5e3bd92155de5958085644e3";
-            List<ChapterLevels> listOfChapters = new List<ChapterLevels>();
+        //    //Arrange
+        //    DbHelper dbHelper = new DbHelper();
+        //    String courserID = "5e3bd92155de5958085644e3";
+        //    List<ChapterLevels> listOfChapters = new List<ChapterLevels>();
 
-            //Act 
-            listOfChapters = dbHelper.GetChaptersByLevel(courserID);
+        //    //Act 
+        //    listOfChapters = dbHelper.GetChaptersByLevel(courserID);
 
 
-            Debug.WriteLine(listOfChapters[0].ChapterList.Count);
-            Debug.WriteLine(listOfChapters[1].ChapterList.Count);
-            Debug.WriteLine(listOfChapters[2].ChapterList.Count);
-            Debug.WriteLine(listOfChapters[3].ChapterList.Count);
+        //    Debug.WriteLine(listOfChapters[0].ChapterList.Count);
+        //    Debug.WriteLine(listOfChapters[1].ChapterList.Count);
+        //    Debug.WriteLine(listOfChapters[2].ChapterList.Count);
+        //    Debug.WriteLine(listOfChapters[3].ChapterList.Count);
 
-            Debug.WriteLine(listOfChapters[3].ChapterList[0].Name);
-            Debug.WriteLine(listOfChapters[3].ChapterList[1].Name);
+        //    Debug.WriteLine(listOfChapters[3].ChapterList[0].Name);
+        //    Debug.WriteLine(listOfChapters[3].ChapterList[1].Name);
 
-            Debug.WriteLine("Size");
-            Debug.WriteLine(listOfChapters.Count);
+        //    Debug.WriteLine("Size");
+        //    Debug.WriteLine(listOfChapters.Count);
 
-            //Assert
-            Assert.AreEqual( 1, listOfChapters[0].Level);
-        }
+        //    //Assert
+        //    Assert.AreEqual(1, listOfChapters[0].Level);
+        //}
 
 
         [TestMethod]
