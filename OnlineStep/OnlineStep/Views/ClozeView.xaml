@@ -16,6 +16,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Vertical" VerticalOptions="Start">
+
                 <Frame
                     Margin="16,16,16,0"
                     Padding="0"
@@ -24,19 +25,12 @@
                     <ProgressBar Progress="{Binding Progress}" Style="{StaticResource Key=ProgressBar}" />
                 </Frame>
 
-                <Frame
+                <Image
                     Margin="16"
-                    Padding="0"
-                    CornerRadius="8"
-                    HeightRequest="200"
-                    IsClippedToBounds="True"
-                    WidthRequest="400">
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="200"
-                        Source="{Binding Image}"
-                        WidthRequest="400" />
-                </Frame>
+                    Aspect="AspectFit"
+                    HeightRequest="176"
+                    Source="{Binding Image}" />
+
             </StackLayout>
             <StackLayout
                 Margin="16,0"
@@ -53,7 +47,7 @@
                 <Label Style="{StaticResource TextHeadline}" Text="{Binding SentencesPartTwo}" />
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand" />
-            <ContentView IsVisible="{Binding ShowCorrectMeButton}" >
+            <ContentView IsVisible="{Binding ShowCorrectMeButton}">
                 <Button
                     Command="{Binding CheckCorrectAnswer}"
                     Style="{StaticResource MainPageButton}"
@@ -75,12 +69,11 @@
                     </DataTrigger>
                 </ContentView.Triggers>
                 <StackLayout>
-                    <Label Text="{Binding CorrectOrWrongMessage}"/>
+                    <Label Text="{Binding CorrectOrWrongMessage}" />
                     <Button
-                    Command="{Binding GoToNextPage}"
-                    Style="{StaticResource MainPageButton}"
-                    Text="GÅ TILL NÄSTA" >
-                    </Button>
+                        Command="{Binding GoToNextPage}"
+                        Style="{StaticResource MainPageButton}"
+                        Text="GÅ TILL NÄSTA" />
                 </StackLayout>
             </ContentView>
         </StackLayout>

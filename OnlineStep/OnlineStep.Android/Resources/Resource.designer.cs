@@ -5723,7 +5723,7 @@ namespace OnlineStep.Droid
 			public const int bags = 2131165276;
 			
 			// aapt resource value: 0x7F07005D
-			public const int bicyckle = 2131165277;
+			public const int bicycles = 2131165277;
 			
 			// aapt resource value: 0x7F070063
 			public const int Chapters_Restaurang = 2131165283;
@@ -5765,25 +5765,25 @@ namespace OnlineStep.Droid
 			public const int Courses_Svenska = 2131165290;
 			
 			// aapt resource value: 0x7F07006B
-			public const int design_bottom_navigation_item_background = 2131165291;
+			public const int currency = 2131165291;
 			
 			// aapt resource value: 0x7F07006C
-			public const int design_fab_background = 2131165292;
+			public const int design_bottom_navigation_item_background = 2131165292;
 			
 			// aapt resource value: 0x7F07006D
-			public const int design_ic_visibility = 2131165293;
+			public const int design_fab_background = 2131165293;
 			
 			// aapt resource value: 0x7F07006E
-			public const int design_ic_visibility_off = 2131165294;
+			public const int design_ic_visibility = 2131165294;
 			
 			// aapt resource value: 0x7F07006F
-			public const int design_password_eye = 2131165295;
+			public const int design_ic_visibility_off = 2131165295;
 			
 			// aapt resource value: 0x7F070070
-			public const int design_snackbar_background = 2131165296;
+			public const int design_password_eye = 2131165296;
 			
 			// aapt resource value: 0x7F070071
-			public const int exchange = 2131165297;
+			public const int design_snackbar_background = 2131165297;
 			
 			// aapt resource value: 0x7F070072
 			public const int ic_mtrl_chip_checked_black = 2131165298;

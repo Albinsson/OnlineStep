@@ -180,10 +180,10 @@
     <AndroidResource Include="Resources\drawable\bags.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\bicyckle.png" />
+    <AndroidResource Include="Resources\drawable\bicycles.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\exchange.png" />
+    <AndroidResource Include="Resources\drawable\currency.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\passport.png" />

@@ -31,8 +31,11 @@ namespace OnlineStep.ViewModels
 
             ShowCorrection = false;
             ShowCorrectMeButton = true;
+
+            Debug.WriteLine(_cloze.image);
         }
         //Empty constructor used for testing
+
         public ClozeViewModel(){}
 
         public string[] SplitSentence(string sentence, List<string> missingWords)
