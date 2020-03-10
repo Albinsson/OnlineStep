@@ -19,12 +19,13 @@ namespace OnlineStep.ViewModels
 
         public ClozeViewModel(INavigator navigator)
         {
-            Debug.WriteLine("ClozeViewModel Constructor: ");
+            Debug.WriteLine("ClozeViewModel Constructor:");
             _cloze = (Cloze) PageNavigator.GetCurrentPage;
             _navigator = navigator;
             _sentences = SplitSentence(_cloze.content.sentence, _cloze.content.missingWords);
             _missingWord = _cloze.content.missingWords[0];
             Title = _cloze.title;
+            Image = _cloze.image;
             EntryPlaceholder = CreatePlaceholder(_missingWord);
             GuessedWord = "";
 
@@ -89,6 +90,7 @@ namespace OnlineStep.ViewModels
         public bool CorectOrWrongBool { set; get; }
         public bool ShowCorrection { set; get; }
         public bool ShowCorrectMeButton { set; get; }
+        public string Image { get; set; }
         public string Title { get; set; }
         public string SentencesPartOne => _sentences[0];
         public string SentencesPartTwo => _sentences[1];

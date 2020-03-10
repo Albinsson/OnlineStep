@@ -34,7 +34,7 @@
                     <Image
                         Aspect="AspectFill"
                         HeightRequest="200"
-                        Source="wave.jpg"
+                        Source="{Binding Image}"
                         WidthRequest="400" />
                 </Frame>
             </StackLayout>
