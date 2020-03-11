@@ -17,5 +17,7 @@ namespace OnlineStep.Helpers
 
         [Get("/chapters/pages/{id}")]
         Task<List<IPage>> GetPages(string id);
+    
+
     }
 }

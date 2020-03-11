@@ -19,8 +19,8 @@ namespace OnlineStep.Services
     {
         //This is the class where everything comes together
         private ServiceHelper.IServiceHelper ServiceHelper;
-        private readonly Lazy<RestInterface> userInitiated;
-        public RestInterface UserInitiated { get { return userInitiated.Value; } }
+        private Lazy<RestInterface> userInitiated;
+        private RestInterface restInterface { get { return userInitiated.Value; } }
         private IBlobCache Cache;
         private const string ApiEndPoint = "https://online-step.herokuapp.com";
 
@@ -82,13 +82,13 @@ namespace OnlineStep.Services
         //These methods call on our ServiceHelper which is implemented in RestInterface
         async Task<List<IPage>> GetPagesAsync(string id)
         {
-            Task<List<IPage>> getPagesTask = UserInitiated.GetPages(id);
+            Task<List<IPage>> getPagesTask = restInterface.GetPages(id);
             return await getPagesTask;
         }
 
         async Task<List<Chapter>> GetChaptersAsync(string id)
         {
-            Task<List<Chapter>> getChaptersTask = UserInitiated.GetChapters(id);
+            Task<List<Chapter>> getChaptersTask = restInterface.GetChapters(id);
             return await getChaptersTask;
         }
 

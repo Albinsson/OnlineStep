@@ -1,8 +1,11 @@
-﻿using OnlineStep.Helpers;
+﻿using Newtonsoft.Json;
+using OnlineStep.Helpers;
 using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
+using Refit;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -21,7 +24,13 @@ namespace OnlineStep.ViewModels
             _ = InitAsyncApiRequest();
             _navigator = navigator;
         }
+        //TEST CONSTRUCTOR
+        public ChapterViewModel()
+        {
+        }
+
         public List<ChapterLevels> ChapterLevels { get; set; }
+        public List<IPage> Pages { get; set; }
 
 
         private async System.Threading.Tasks.Task InitAsyncApiRequest()
@@ -29,16 +38,30 @@ namespace OnlineStep.ViewModels
             Data = DataCenter.GetSingletonProcedure("GetChapterID");
             ChapterLevels = await Service.FetchChapters(Data.Obj.ToString());
         }
-
-        public ICommand GoToPageView => new Command((id) =>
+        private async System.Threading.Tasks.Task<List<IPage>> LoadPages(string id)
         {
-            List<IPage> pageList = dbHelper.GetPages(id.ToString());
-            List<object> objList = pageList.ConvertAll(x => (object)x);
-            DataCenter.CreateListProcedure("SetPageList", objList);
+            JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+            jsonSerializerSettings.Converters.Add(new PageConverter());
+            var myApi = RestService.For<RestInterface>("https://online-step.herokuapp.com",
+                new RefitSettings
+                {
+                    ContentSerializer = new JsonContentSerializer(jsonSerializerSettings)
+                });
+            return await myApi.GetPages(id);
+        }
 
-            PageNavigator.PageList = dbHelper.GetPages(id.ToString());
+        public ICommand GoToPageView => new Command(async (id) =>
+        {
+            Debug.WriteLine("GoToPageView: Chapter " + id + " pressed");
+            ApiFetcher apiFetcher = new ApiFetcher();
+            List<IPage> pages = new List<IPage>();
+            Debug.WriteLine("GoToPageView: Calling LoadPages()");
+            PageNavigator.PageList = await LoadPages(id.ToString());
+            Debug.WriteLine("GoToPageView: 1");
             PageNavigator.Index = 0;
+            Debug.WriteLine("GoToPageView: 2");
             PageNavigator.PushNextPage(_navigator);
+            Debug.WriteLine("GoToPageView: 3");
         });
 
 
