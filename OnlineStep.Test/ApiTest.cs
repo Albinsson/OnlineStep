@@ -15,7 +15,7 @@ namespace OnlineStep.Test
 
 {
     [TestClass]
-    public class DataCenterTest
+    public class ApiTest
     {
 
         [TestMethod]
@@ -26,16 +26,18 @@ namespace OnlineStep.Test
              * Fetching pages
              */
 
-            ////Arrenge
-            //string chapterId = "5e3950a2dd22b950349ee26b";
-            //ApiFetcher apiFetcher = new ApiFetcher();
-            //List<IPage> pages = new List<IPage>();
-            //ChapterViewModel chapterViewModel = new ViewModels.ChapterViewModel();
+            //Arrenge
+            string chapterId = "5e3950a2dd22b950349ee26b";
+            OnlineStepApiService apiFetcher = new OnlineStepApiService();
+            List<IPage> pages = new List<IPage>();
 
-            ////Act
-            //pages = await chapterViewModel.LoadPages(chapterId);
-            ////Assert
-            //Assert.AreEqual(pages[0]._id, "5e3945833596e0389ccc1c2b");
+
+            //Act
+            pages = await apiFetcher.FetchPages(chapterId);
+
+
+            //Assert
+            Assert.AreEqual(pages[0]._id, "5e3945833596e0389ccc1c2b");
 
         }
         [TestMethod]

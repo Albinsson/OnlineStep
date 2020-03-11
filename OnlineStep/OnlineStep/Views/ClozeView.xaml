@@ -69,20 +69,6 @@
                     </DataTrigger>
                 </ContentView.Triggers>
                 <StackLayout VerticalOptions="End">
-                    <StackLayout.Triggers>
-                        <DataTrigger
-                            Binding="{Binding CorectOrWrongBool}"
-                            TargetType="Button"
-                            Value="true">
-                            <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
-                        </DataTrigger>
-                        <DataTrigger
-                            Binding="{Binding CorectOrWrongBool}"
-                            TargetType="Button"
-                            Value="false">
-                            <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
-                        </DataTrigger>
-                    </StackLayout.Triggers>
                     <Label
                         Margin="16"
                         FontAttributes="Bold"
@@ -90,8 +76,25 @@
                         HorizontalOptions="Center"
                         Opacity="1.0"
                         Text="{Binding CorrectOrWrongMessage}"
+                        TextColor="Black"
                         VerticalOptions="Start" />
-                    <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA" />
+
+                    <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA">
+                        <Button.Triggers>
+                            <DataTrigger
+                                Binding="{Binding CorectOrWrongBool}"
+                                TargetType="Button"
+                                Value="true">
+                                <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
+                            </DataTrigger>
+                            <DataTrigger
+                                Binding="{Binding CorectOrWrongBool}"
+                                TargetType="Button"
+                                Value="false">
+                                <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
                 </StackLayout>
             </ContentView>
         </StackLayout>

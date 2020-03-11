@@ -7,7 +7,7 @@ namespace OnlineStep.Helpers
 {
     //This class uses the Refit package, which is a type-safe REST lib for xamarin and .Net
     [Headers("Accept: application/json")]
-    public interface RestInterface
+    public interface IOnlineStepApi
     {
         [Get("/courses")]
         Task<List<Course>> GetCourses();
@@ -17,7 +17,5 @@ namespace OnlineStep.Helpers
 
         [Get("/chapters/pages/{id}")]
         Task<List<IPage>> GetPages(string id);
-    
-
     }
 }

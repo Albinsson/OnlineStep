@@ -8,6 +8,7 @@ using OnlineStep.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -15,18 +16,18 @@ using System.Threading.Tasks;
 
 namespace OnlineStep.Services
 {
-    public class ApiFetcher
+    public class OnlineStepApiService
     {
         //This is the class where everything comes together
-        private ServiceHelper.IServiceHelper ServiceHelper;
-        private Lazy<RestInterface> userInitiated;
-        private RestInterface restInterface { get { return userInitiated.Value; } }
+        private readonly IServiceHelper ServiceHelper;
+        private readonly Lazy<IOnlineStepApi> onlineStepApi;
+        private IOnlineStepApi OnlineStepApi { get { return onlineStepApi.Value; } }
         private IBlobCache Cache;
-        private const string ApiEndPoint = "https://online-step.herokuapp.com";
+        private const string url = "https://online-step.herokuapp.com";
 
-        public ApiFetcher()
+        public OnlineStepApiService()
         {
-            userInitiated = new Lazy<RestInterface>(() => createClient(new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.UserInitiated)));
+            onlineStepApi = new Lazy<IOnlineStepApi>(() => createClient(new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.UserInitiated)));
         }
 
         public async Task<List<Course>> FetchCourses()
@@ -53,7 +54,7 @@ namespace OnlineStep.Services
             //{
             //    BaseAddress = new Uri("https://online-step.herokuapp.com")
             //};   
-            RestInterface _restInterface = RestService.For<RestInterface>("https://online-step.herokuapp.com");
+            IOnlineStepApi _restInterface = RestService.For<IOnlineStepApi>("https://online-step.herokuapp.com");
             List<Course> CourseList = await _restInterface.GetCourses();
             return CourseList;
         }
@@ -77,18 +78,28 @@ namespace OnlineStep.Services
             List<IPage> pages = await Cache.GetObject<List<IPage>>("pages");
             return pages;
         }
-        //END
 
         //These methods call on our ServiceHelper which is implemented in RestInterface
         async Task<List<IPage>> GetPagesAsync(string id)
         {
-            Task<List<IPage>> getPagesTask = restInterface.GetPages(id);
+
+            //JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
+            //jsonSerializerSettings.Converters.Add(new PageConverter());
+            //var myApi = RestService.For<IOnlineStepApi>("https://online-step.herokuapp.com");
+            //return await myApi.GetPages(id);
+
+            Task<List<IPage>> getPagesTask = ServiceHelper.UserInitiated.GetPages(id);
+
+            Debug.WriteLine(getPagesTask.Result);
+
+           
+
             return await getPagesTask;
         }
 
         async Task<List<Chapter>> GetChaptersAsync(string id)
         {
-            Task<List<Chapter>> getChaptersTask = restInterface.GetChapters(id);
+            Task<List<Chapter>> getChaptersTask = OnlineStepApi.GetChapters(id);
             return await getChaptersTask;
         }
 
@@ -97,16 +108,15 @@ namespace OnlineStep.Services
             Task<List<Course>> getCourseTask = ServiceHelper.UserInitiated.GetCourses();
             return await getCourseTask;
         }
-        //END
 
         //Had to create a local instance of this because the Request was not going through for chapters and pages
-        Func<HttpMessageHandler, RestInterface> createClient = messageHandler =>
+        Func<HttpMessageHandler, IOnlineStepApi> createClient = messageHandler =>
         {
             var client = new HttpClient(messageHandler)
             {
-                BaseAddress = new Uri(ApiEndPoint)
+                BaseAddress = new Uri(url)
             };
-            return RestService.For<RestInterface>(client);
+            return RestService.For<IOnlineStepApi>(client);
         };
 
         private List<ChapterLevels> FetchSortedLevels(List<Chapter> chapterList)
