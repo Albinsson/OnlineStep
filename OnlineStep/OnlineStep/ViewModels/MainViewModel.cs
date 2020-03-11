@@ -45,9 +45,9 @@ namespace OnlineStep.ViewModels
             var randomText = r.Next(1, 3);
             switch (randomText)
             {
-                case 1: return "Nice to see you again";
-                case 2: return "Good luck studding";
-                case 3: return "Time to practice some english";
+                case 1: return "Välkommen tillbaka";
+                case 2: return "Lycka till med studierna";
+                case 3: return "Övning ger färdighet";
             }
             return null;
         }

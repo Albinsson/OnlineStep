@@ -37,6 +37,7 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
+
                                         <Frame
                                             Padding="0"
                                             CornerRadius="100"
@@ -44,6 +45,8 @@
                                             HorizontalOptions="Center"
                                             IsClippedToBounds="True"
                                             WidthRequest="96">
+
+
                                             <ImageButton
                                                 Grid.Row="0"
                                                 Aspect="AspectFill"
@@ -54,6 +57,13 @@
                                                 Source="{Binding Icon}"
                                                 WidthRequest="96" />
                                         </Frame>
+                                        <BoxView
+                                            Grid.Row="0"
+                                            CornerRadius="100"
+                                            Opacity="0.87"
+                                            Color="DimGray">
+                                        </BoxView>
+
                                         <Label
                                             Grid.Row="1"
                                             Padding="0,3,0,0"
