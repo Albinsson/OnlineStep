@@ -33,9 +33,6 @@ namespace OnlineStep.ViewModels
             _navigator.PushAsync<ChapterViewModel>();
         });
 
-
-
-
     }
 }
 

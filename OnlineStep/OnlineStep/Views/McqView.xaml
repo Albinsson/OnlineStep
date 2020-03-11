@@ -3,6 +3,7 @@
     x:Class="OnlineStep.Views.McqView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
@@ -55,11 +56,17 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Button
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
-                                    CommandParameter="{Binding}"
-                                    Style="{StaticResource MainPageButton}"
-                                    Text="{Binding}" />
+                                <Frame
+                                    Margin="16"
+                                    Padding="0"
+                                    CornerRadius="8"
+                                    IsClippedToBounds="True">
+                                    <Button
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
+                                        CommandParameter="{Binding}"
+                                        Style="{StaticResource MainPageButton}"
+                                        Text="{Binding}" />
+                                </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -86,12 +93,37 @@
                         <Setter Property="Style" Value="{StaticResource Fail}" />
                     </DataTrigger>
                 </ContentView.Triggers>
-                <StackLayout>
-                    <Label Text="{Binding CorrectOrWrongMessage}" />
-                    <Button
-                        Command="{Binding GoToNextPage}"
-                        Style="{StaticResource MainPageButton}"
-                        Text="GÅ TILL NÄSTA" />
+                <StackLayout VerticalOptions="End">
+                    <Label
+                        Margin="16"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="Center"
+                        Opacity="1.0"
+                        Text="{Binding CorrectOrWrongMessage}"
+                        VerticalOptions="Start" />
+                    <Frame
+                        Margin="16"
+                        Padding="0"
+                        CornerRadius="8"
+                        IsClippedToBounds="True">
+                        <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA">
+                            <Button.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding CorectOrWrongBool}"
+                                    TargetType="Button"
+                                    Value="true">
+                                    <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
+                                </DataTrigger>
+                                <DataTrigger
+                                    Binding="{Binding CorectOrWrongBool}"
+                                    TargetType="Button"
+                                    Value="false">
+                                    <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Frame>
                 </StackLayout>
 
             </ContentView>
