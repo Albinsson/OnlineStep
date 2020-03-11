@@ -68,12 +68,30 @@
                         <Setter Property="Style" Value="{StaticResource Fail}" />
                     </DataTrigger>
                 </ContentView.Triggers>
-                <StackLayout>
-                    <Label Text="{Binding CorrectOrWrongMessage}" />
-                    <Button
-                        Command="{Binding GoToNextPage}"
-                        Style="{StaticResource MainPageButton}"
-                        Text="GÅ TILL NÄSTA" />
+                <StackLayout VerticalOptions="End">
+                    <StackLayout.Triggers>
+                        <DataTrigger
+                            Binding="{Binding CorectOrWrongBool}"
+                            TargetType="Button"
+                            Value="true">
+                            <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
+                        </DataTrigger>
+                        <DataTrigger
+                            Binding="{Binding CorectOrWrongBool}"
+                            TargetType="Button"
+                            Value="false">
+                            <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <Label
+                        Margin="16"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="Center"
+                        Opacity="1.0"
+                        Text="{Binding CorrectOrWrongMessage}"
+                        VerticalOptions="Start" />
+                    <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA" />
                 </StackLayout>
             </ContentView>
         </StackLayout>
