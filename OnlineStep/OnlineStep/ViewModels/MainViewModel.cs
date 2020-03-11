@@ -15,7 +15,7 @@ namespace OnlineStep.ViewModels
         private readonly INavigator _navigator;
         //TODO: Rename the class NameOfOurAppService
         //QUESTION: Är detta en data fetcher bara?
-        private ApiFetcher ApiFetcher = new ApiFetcher();
+        private OnlineStepApiService ApiFetcher = new OnlineStepApiService();
         private List<Course> CourseList;
 
         public MainViewModel(INavigator navigator)

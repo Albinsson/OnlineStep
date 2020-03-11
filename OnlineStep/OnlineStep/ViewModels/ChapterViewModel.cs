@@ -14,8 +14,7 @@ namespace OnlineStep.ViewModels
 {
     class ChapterViewModel : BaseViewModel
     {
-        private readonly DbHelper dbHelper = new DbHelper();
-        private readonly ApiFetcher Service = new ApiFetcher();
+        private readonly OnlineStepApiService Service = new OnlineStepApiService();
         private readonly INavigator _navigator;
         private Data Data;
   
@@ -42,7 +41,7 @@ namespace OnlineStep.ViewModels
         {
             JsonSerializerSettings jsonSerializerSettings = new JsonSerializerSettings();
             jsonSerializerSettings.Converters.Add(new PageConverter());
-            var myApi = RestService.For<RestInterface>("https://online-step.herokuapp.com",
+            var myApi = RestService.For<IOnlineStepApi>("https://online-step.herokuapp.com",
                 new RefitSettings
                 {
                     ContentSerializer = new JsonContentSerializer(jsonSerializerSettings)
@@ -53,7 +52,7 @@ namespace OnlineStep.ViewModels
         public ICommand GoToPageView => new Command(async (id) =>
         {
             Debug.WriteLine("GoToPageView: Chapter " + id + " pressed");
-            ApiFetcher apiFetcher = new ApiFetcher();
+            OnlineStepApiService apiFetcher = new OnlineStepApiService();
             List<IPage> pages = new List<IPage>();
             Debug.WriteLine("GoToPageView: Calling LoadPages()");
             PageNavigator.PageList = await LoadPages(id.ToString());
