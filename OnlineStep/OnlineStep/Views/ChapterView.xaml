@@ -7,14 +7,14 @@
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    BackgroundColor="White"
+    BackgroundColor="DimGray"
+    BackgroundImageSource="Background_Blue.png"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
-
     <ListView
         x:Name="chapterLevels"
         HasUnevenRows="True"
@@ -64,22 +64,23 @@
                                             IsVisible="{Binding Locked}"
                                             Grid.Row="0"
                                             CornerRadius="100"
-                                            Opacity="0.87"
-                                            Color="DimGray">
-                                        </BoxView>
+                                            Opacity="0.0"
+                                            Color="DimGray" />
 
                                         <Label
                                             Grid.Row="1"
                                             Padding="0,3,0,0"
                                             HorizontalOptions="Center"
                                             Style="{StaticResource TextBody}"
-                                            Text="{Binding Name}" />
+                                            Text="{Binding Name}"
+                                            TextColor="White" />
                                         <Label
                                             Grid.Row="2"
                                             Padding="0,-2,0,0"
                                             HorizontalOptions="Center"
                                             Style="{StaticResource ProgressText}"
-                                            Text="0/6" />
+                                            Text="0/6"
+                                            TextColor="Beige" />
 
                                     </Grid>
                                 </DataTemplate>

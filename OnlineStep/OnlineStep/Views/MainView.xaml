@@ -13,26 +13,27 @@
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
 
-
-
-
     <Grid>
-        <onlineStep:VideoPlayer Source="Snow.mp4" />
+        <onlineStep:VideoPlayer Source="Background_Planet.mp4" />
+        <StackLayout HorizontalOptions="End" VerticalOptions="Start">
+            <!--<Image
+                Margin="16,16"
+                HeightRequest="104"
+                HorizontalOptions="FillAndExpand"
+                Opacity="0.9"
+                Source="Owl_transparent.png" />-->
+        </StackLayout>
         <StackLayout
-            Margin="8"
+            Margin="12"
             Padding="0"
-            Spacing="8"
+            Spacing="0"
             VerticalOptions="End">
 
-            <Image
-                Margin="0,80"
-                HeightRequest="250"
-                HorizontalOptions="CenterAndExpand"
-                Source="Owl_transparent.png"
-                WidthRequest="150" />
-
             <Label
+                FontAttributes="None"
+                FontSize="20"
                 HorizontalOptions="CenterAndExpand"
+                Opacity="0.5"
                 Style="{DynamicResource TextSubhead}"
                 Text="{Binding WelcomeText}"
                 VerticalOptions="End" />
@@ -42,10 +43,19 @@
                 Style="{StaticResource MainPageButton}"
                 Text="Get started" />
 
-            <Button
+            <Label
+                FontAttributes="None"
+                FontSize="18"
+                HorizontalOptions="CenterAndExpand"
+                Style="{DynamicResource TextSubhead}"
+                Text="LOGIN"
+                TextDecorations="Underline"
+                VerticalOptions="End" />
+
+            <!--<Button
                 Margin="8,0,8,12"
                 Style="{StaticResource MainPageButton}"
-                Text="Login" />
+                Text="Login" />-->
 
         </StackLayout>
     </Grid>
