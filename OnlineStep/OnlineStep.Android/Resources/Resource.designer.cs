@@ -6851,7 +6851,7 @@ namespace OnlineStep.Droid
 		{
 			
 			// aapt resource value: 0x7F0D0000
-			public const int Snow = 2131558400;
+			public const int Background_Planet = 2131558400;
 			
 			static Raw()
 			{
