@@ -13,10 +13,7 @@ namespace OnlineStep.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
-        //TODO: Rename the class NameOfOurAppService
-        //QUESTION: Är detta en data fetcher bara?
-        private OnlineStepApiService ApiFetcher = new OnlineStepApiService();
-        private List<Course> CourseList;
+        private OnlineStepApiService OnlineStepApiService = new OnlineStepApiService();
 
         public MainViewModel(INavigator navigator)
         {
@@ -27,9 +24,7 @@ namespace OnlineStep.ViewModels
 
         public async Task InitApiRequestAsync()
         {
-            CourseList = await ApiFetcher.FetchCourses();
-            List<object> courseObjectList = CourseList.ConvertAll(x => (object)x);
-            DataCenter.CreateListProcedure("SetCourseList", courseObjectList);       
+            Global.Instance.Courses = await OnlineStepApiService.FetchCourses();
         }
 
         public ICommand GoToCourses => new Command(() =>

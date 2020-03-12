@@ -17,7 +17,7 @@
     <ListView
         BackgroundColor="Transparent"
         HasUnevenRows="True"
-        ItemsSource="{Binding CourseList}"
+        ItemsSource="{Binding Courses}"
         SelectionMode="None"
         SeparatorVisibility="None">
         <ListView.ItemTemplate>

@@ -11,7 +11,7 @@ namespace OnlineStep.ViewModels
 {
     internal class CourseViewModel : BaseViewModel
     {
-        public List<Course> CourseList { get; set; }
+        public List<Course> Courses { get; set; }
         private readonly INavigator _navigator;
         private Data Data;
 
@@ -23,22 +23,14 @@ namespace OnlineStep.ViewModels
         }
         public void InitAsyncApiRequest()
         {
-            //TODO: Move this logic, ex: CourseList = ClassName.GetCourseList();
-            Data = DataCenter.GetListProcedure("GetCourseList");
-            Debug.WriteLine("Post");
-            CourseList = new List<Course>();
-            Debug.WriteLine("Data" + Data.ObjList.Count);
-            foreach (var i in Data.ObjList)
-            {
-                Course c = (Course)i;
-                c.Name = c.Name.ToUpper();
-                CourseList.Add(c);
-            }
+            Courses = Global.Instance.Courses;
+            Debug.WriteLine("Courses fetched from Global Instance: " + Courses.Count);
+            foreach(Course course in Courses){course.Name = course.Name.ToUpper();}
         }
 
         public ICommand GoToChapters => new Command<string>((id) =>
         {
-            DataCenter.CreateSingletonProcedure("SetChapterID", id);           
+            Global.Instance.ChapterId = id;
             _navigator.PushAsync<ChapterViewModel>();
         });
             

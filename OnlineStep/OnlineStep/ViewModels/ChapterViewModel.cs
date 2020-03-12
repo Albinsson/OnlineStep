@@ -23,7 +23,7 @@ namespace OnlineStep.ViewModels
             _ = InitAsyncApiRequest();
             _navigator = navigator;
         }
-        //TEST CONSTRUCTOR
+        //Constructor used by Unit Test
         public ChapterViewModel()
         {
         }
@@ -34,8 +34,7 @@ namespace OnlineStep.ViewModels
 
         private async System.Threading.Tasks.Task InitAsyncApiRequest()
         {
-            Data = DataCenter.GetSingletonProcedure("GetChapterID");
-            ChapterLevels = await Service.FetchChapters(Data.Obj.ToString());
+            ChapterLevels = await Service.FetchChapters(Global.Instance.ChapterId);
         }
         private async System.Threading.Tasks.Task<List<IPage>> LoadPages(string id)
         {

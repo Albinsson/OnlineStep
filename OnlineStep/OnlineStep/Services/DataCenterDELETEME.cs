@@ -4,11 +4,11 @@ using System;
 
 namespace OnlineStep.Services
 {
-    public class DataCenter
+    public class DataCenterDELETEME
     {
         private static List<Data> ProcedureList { get; set; }
         
-        static DataCenter()
+        static DataCenterDELETEME()
         {
             ProcedureList = new List<Data>();
         }
