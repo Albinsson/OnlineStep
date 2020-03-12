@@ -25,9 +25,7 @@
             <DataTemplate>
                 <ViewCell>
                     <Grid Margin="0,8" HorizontalOptions="Center">
-                        <Label
-                            IsVisible="{Binding Locked}"
-                            Text="Nivån EJ upplåst!"/>
+                        
                         <local:ItemsControl ItemsSource="{Binding Chapters}">
 
                             <local:ItemsControl.ItemTemplate>
@@ -64,8 +62,8 @@
                                             IsVisible="{Binding Locked}"
                                             Grid.Row="0"
                                             CornerRadius="100"
-                                            Opacity="0.0"
-                                            Color="DimGray" />
+                                            Opacity="0.9"
+                                            Color="#333" />
 
                                         <Label
                                             Grid.Row="1"
