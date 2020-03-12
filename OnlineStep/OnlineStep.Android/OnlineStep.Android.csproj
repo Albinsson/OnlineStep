@@ -111,19 +111,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Courses_Engelska.jpg" />
+    <AndroidResource Include="Resources\drawable\Courses_Engelska_del.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Courses_History.jpg" />
+    <AndroidResource Include="Resources\drawable\Courses_History_del.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Courses_Matte.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Courses_Spanska.jpg" />
+    <AndroidResource Include="Resources\drawable\Courses_Spanska_del.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Courses_Svenska.jpg" />
+    <AndroidResource Include="Resources\drawable\Courses_Svenska_del.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_screen.xml" />
@@ -189,9 +189,44 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\lock.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <AndroidResource Include="Resources\raw\Background_Planet.mp4" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Background_Chapter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Background_Blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Courses_History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Courses_History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Courses_Engelska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Courses_Spanska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Courses_Svenska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Courses_Svenska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Courses_Engelska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Courses_Spanska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Courses_Matte.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

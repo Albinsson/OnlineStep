@@ -6,9 +6,12 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:onlineStep="clr-namespace:OnlineStep;assembly=OnlineStep"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    BackgroundColor="White"
+    BackgroundImageSource="Background.png"
     mc:Ignorable="d">
+
+
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
@@ -25,7 +28,7 @@
                 <ViewCell>
 
                     <Frame
-                        Margin="8,8,8,0"
+                        Margin="12,12,12,0"
                         Padding="0"
                         BackgroundColor="Transparent"
                         CornerRadius="8"
