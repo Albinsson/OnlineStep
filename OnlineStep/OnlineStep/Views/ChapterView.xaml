@@ -16,16 +16,19 @@
     </ContentPage.Resources>
 
     <ListView
+        x:Name="chapterLevels"
         HasUnevenRows="True"
         ItemsSource="{Binding ChapterLevels}"
         SelectionMode="None"
         SeparatorVisibility="None">
-        <ListView.ItemTemplate>
+        <ListView.ItemTemplate >
             <DataTemplate>
                 <ViewCell>
                     <Grid Margin="0,8" HorizontalOptions="Center">
-
-                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
+                        <Label
+                            IsVisible="{Binding Locked}"
+                            Text="Nivån EJ upplåst!"/>
+                        <local:ItemsControl ItemsSource="{Binding Chapters}">
 
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -58,6 +61,7 @@
                                                 WidthRequest="96" />
                                         </Frame>
                                         <BoxView
+                                            IsVisible="{Binding Locked}"
                                             Grid.Row="0"
                                             CornerRadius="100"
                                             Opacity="0.87"

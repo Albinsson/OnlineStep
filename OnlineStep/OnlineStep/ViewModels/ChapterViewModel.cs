@@ -4,8 +4,10 @@ using OnlineStep.Models;
 using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
 using Refit;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -22,19 +24,54 @@ namespace OnlineStep.ViewModels
         {
             _ = InitAsyncApiRequest();
             _navigator = navigator;
+            
         }
+
+        private void UnlockLevels()
+        {
+            Debug.WriteLine("UnlockLevels start: ");
+            List<User.ChapterProgress> chapterProgressList = User.Instance.ChapterProgressList;
+            double progressTreshold = 0.5;
+            for (int i = 0; i < ChapterLevels.Count; i++)
+            {
+                
+                if (ChapterLevels[i].Level.Equals("1"))
+                {
+                    ChapterLevels[i].Locked = false;
+                }
+                else
+                {
+                    ChapterLevels[i].Locked = !ChapterLevels[i - 1].Chapters.All(chapter => chapterProgressList.Any(chapterProgress => chapterProgress.ChapterId.Equals(chapter._id) && chapterProgress.Progress >= progressTreshold));
+                }
+                ChapterLevels[i].Chapters.All(chapter => chapter.Locked = ChapterLevels[i].Locked);
+                Debug.WriteLine("Level " + ChapterLevels[i].Level + " locked: " + ChapterLevels[i].Locked);
+            }
+            Debug.WriteLine("UnlockLevels end: ");
+        }
+
         //Constructor used by Unit Test
         public ChapterViewModel()
         {
         }
-
-        public List<ChapterLevels> ChapterLevels { get; set; }
+        public List<ChapterLevel> ChapterLevels { get; set; }
         public List<IPage> Pages { get; set; }
 
+        public bool IsLocked(string _id)
+        {
+            foreach (var item in User.Instance.ChapterProgressList)
+            {
+                if (item.ChapterId.Equals(_id) && item.Progress >= 0.8)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private async System.Threading.Tasks.Task InitAsyncApiRequest()
         {
-            ChapterLevels = await Service.FetchChapters(Global.Instance.ChapterId);
+            ChapterLevels = await Service.FetchChapterLevels(Global.Instance.CourseId);
+            UnlockLevels();
         }
         private async System.Threading.Tasks.Task<List<IPage>> LoadPages(string id)
         {
@@ -48,18 +85,12 @@ namespace OnlineStep.ViewModels
             return await myApi.GetPages(id);
         }
 
-        public ICommand GoToPageView => new Command(async (id) =>
+        public ICommand GoToPageView => new Command<string>(async (chapterId) =>
         {
-            Debug.WriteLine("GoToPageView: Chapter " + id + " pressed");
-            OnlineStepApiService apiFetcher = new OnlineStepApiService();
-            List<IPage> pages = new List<IPage>();
-            Debug.WriteLine("GoToPageView: Calling LoadPages()");
-            PageNavigator.PageList = await LoadPages(id.ToString());
-            Debug.WriteLine("GoToPageView: 1");
+            Global.Instance.ChapterId = chapterId;
+            PageNavigator.PageList = await LoadPages(chapterId.ToString());
             PageNavigator.Index = 0;
-            Debug.WriteLine("GoToPageView: 2");
             PageNavigator.PushNextPage(_navigator);
-            Debug.WriteLine("GoToPageView: 3");
         });
 
 

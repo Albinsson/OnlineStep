@@ -4,10 +4,10 @@ using System.Text;
 
 namespace OnlineStep.Models
 {
-    public class ChapterLevels
+    public class ChapterLevel
     {
-        public List<Chapter> ChapterList { get; set; }
+        public List<Chapter> Chapters { get; set; }
         public string Level { get; set; }
-
+        public bool Locked { get; set; }
     }
 }

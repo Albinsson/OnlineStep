@@ -54,19 +54,19 @@ namespace OnlineStep.Services
             //{
             //    BaseAddress = new Uri("https://online-step.herokuapp.com")
             //};   
-            IOnlineStepApi _restInterface = RestService.For<IOnlineStepApi>("https://online-step.herokuapp.com");
-            List<Course> CourseList = await _restInterface.GetCourses();
-            return CourseList;
+            IOnlineStepApi __onlineStepApi = RestService.For<IOnlineStepApi>("https://online-step.herokuapp.com");
+            List<Course> Courses = await __onlineStepApi.GetCourses();
+            return Courses;
         }
 
         //These methods are the ones we call from courseViewModel and ChapterViewModel
-        public async Task<List<ChapterLevels>> FetchChapters(string id)
+        public async Task<List<ChapterLevel>> FetchChapterLevels(string id)
         {
             Cache = BlobCache.LocalMachine;
             List<Chapter> getChaptersTask = await GetChaptersAsync(id);
-            List<ChapterLevels> chapterLevels = FetchSortedLevels(getChaptersTask);
+            List<ChapterLevel> chapterLevels = FetchSortedLevels(getChaptersTask);
             await Cache.InsertObject("chapters", chapterLevels, DateTimeOffset.Now.AddHours(2));
-            List<ChapterLevels> chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");
+            List<ChapterLevel> chapters = await Cache.GetObject<List<ChapterLevel>>("chapters");
             return chapters;
         }
 
@@ -119,17 +119,17 @@ namespace OnlineStep.Services
             return RestService.For<IOnlineStepApi>(client);
         };
 
-        private List<ChapterLevels> FetchSortedLevels(List<Chapter> chapterList)
+        private List<ChapterLevel> FetchSortedLevels(List<Chapter> chapterList)
         {
 
-            List<ChapterLevels> listOfChapters = new List<ChapterLevels>();
+            List<ChapterLevel> listOfChapters = new List<ChapterLevel>();
             foreach (var chapter in chapterList)
             {
                 while (int.Parse(chapter.Level) > listOfChapters.Count)
                 {
-                    listOfChapters.Add(new ChapterLevels() { ChapterList = new List<Chapter>() });
+                    listOfChapters.Add(new ChapterLevel() { Chapters = new List<Chapter>() });
                 }
-                listOfChapters[int.Parse(chapter.Level) - 1].ChapterList.Add(chapter);
+                listOfChapters[int.Parse(chapter.Level) - 1].Chapters.Add(chapter);
                 listOfChapters[int.Parse(chapter.Level) - 1].Level = chapter.Level;
             }
             return listOfChapters;

@@ -8,16 +8,16 @@ using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
 {
-    public class ScoreViewModel : BaseViewModel 
+    public class ScoreViewModel : BaseViewModel
     {
         private readonly INavigator _navigator;
-        
+
         public ScoreViewModel(INavigator navigator)
         {
             Debug.WriteLine("ScoreViewModel Constructor: ");
             _navigator = navigator;
-            ChapterXp = UserProgress.Xp.ToString();
-            ChapterResult = UserProgress.currentChapterScore + " / " + UserProgress.maxScore;
+            ChapterXp = PageNavigator.Xp.ToString();
+            ChapterResult = PageNavigator.GetChapterResult();
             ResultMessage = "TODO: Logic for message depending on Score ";
         }
 
@@ -28,8 +28,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToChapter => new Command(() =>
         {
-            UserProgress.ChapterCompleted();
-            PageNavigator.PageList = new List<IPage>();
+            PageNavigator.ChapterCompleted();
             _navigator.PushAsync<ChapterViewModel>();
         });
 

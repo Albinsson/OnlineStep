@@ -30,7 +30,7 @@ namespace OnlineStep.ViewModels
 
         public ICommand GoToChapters => new Command<string>((id) =>
         {
-            Global.Instance.ChapterId = id;
+            Global.Instance.CourseId = id;
             _navigator.PushAsync<ChapterViewModel>();
         });
             
