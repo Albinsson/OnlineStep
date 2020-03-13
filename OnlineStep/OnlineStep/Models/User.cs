@@ -25,13 +25,15 @@ namespace OnlineStep.Models
         }
         public class ChapterProgress
         {
-            public ChapterProgress(string chapterId, double progress)
+            public ChapterProgress(string chapterId, double progress, List<bool> pageResults)
             {
-                ChapterId = chapterId;
+                _id = chapterId;
                 Progress = progress;
+                PageResults = pageResults;
             }
-            public string ChapterId { get; set; }
+            public string _id { get; set; }
             public double Progress { get; set; }
+            public List<bool> PageResults { get; set; }
         }
     }
 }

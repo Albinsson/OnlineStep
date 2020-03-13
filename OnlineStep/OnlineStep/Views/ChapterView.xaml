@@ -49,6 +49,7 @@
 
 
                                             <ImageButton
+                                                IsEnabled="False"
                                                 Grid.Row="0"
                                                 Aspect="AspectFill"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
@@ -59,6 +60,7 @@
                                                 WidthRequest="96" />
                                         </Frame>
                                         <BoxView
+                                            
                                             IsVisible="{Binding Locked}"
                                             Grid.Row="0"
                                             CornerRadius="100"
@@ -77,9 +79,8 @@
                                             Padding="0,-2,0,0"
                                             HorizontalOptions="Center"
                                             Style="{StaticResource ProgressText}"
-                                            Text="0/6"
+                                            Text="{Binding PagesResult}"
                                             TextColor="Beige" />
-
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>

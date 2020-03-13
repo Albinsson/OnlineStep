@@ -95,7 +95,7 @@ namespace OnlineStep.Services
             bool _isSet = false;
             foreach (var cp in User.Instance.ChapterProgressList)
             {
-                if (cp.ChapterId.Equals(Global.Instance.ChapterId))
+                if (cp._id.Equals(Global.Instance.ChapterId))
                 {
                     if (chapterProgress > cp.Progress)
                     {
@@ -107,7 +107,7 @@ namespace OnlineStep.Services
             }
             if (!_isSet)
             {
-                User.Instance.ChapterProgressList.Add(new User.ChapterProgress(Global.Instance.ChapterId, chapterProgress));
+                User.Instance.ChapterProgressList.Add(new User.ChapterProgress(Global.Instance.ChapterId, chapterProgress, PageResults));
             }
 
 
@@ -119,7 +119,7 @@ namespace OnlineStep.Services
 
             foreach (var cp in User.Instance.ChapterProgressList)
             {
-                Debug.WriteLine(cp.ChapterId + ": " + cp.Progress.ToString());
+                Debug.WriteLine(cp._id + ": " + cp.Progress.ToString());
             }
         }
 
