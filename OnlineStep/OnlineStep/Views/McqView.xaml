@@ -65,7 +65,8 @@
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
                                         CommandParameter="{Binding}"
                                         Style="{StaticResource MainPageButton}"
-                                        Text="{Binding}" />
+                                        Text="{Binding}"
+                                        />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>

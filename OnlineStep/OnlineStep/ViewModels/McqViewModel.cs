@@ -40,7 +40,13 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine(answer);
             SelectedAnswer = answer;
+            //Perhaps change the color of the button onclick?
+            //Button btn = (Button) this.SelectAnswer;
+            //btn.BackgroundColor = Color.Red;
         });
+
+        
+
         //public ICommand CheckCorrectAnswer => new Command(() =>
         //{
         //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
@@ -80,6 +86,7 @@ namespace OnlineStep.ViewModels
             PageNavigator.PageResults.Add(CorectOrWrongBool);
             ShowCorrection = true;
             ShowCorrectMeButton = false;
+            
         });
 
         public ICommand GoToNextPage => new Command(() =>
