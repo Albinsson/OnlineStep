@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="OnlineStep.Views.ScoreView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary Source="/Styles/Text.xaml" />
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+
+
+            <Frame
+                Margin="16,16,16,0"
+                Padding="0"
+                CornerRadius="8"
+                IsClippedToBounds="True">
+                <ProgressBar Progress="{Binding Progress}" Style="{StaticResource Key=ProgressBar}" />
+            </Frame>
+
+
+
+            <StackLayout
+                Margin="16,16,16,16"
+                HorizontalOptions="CenterAndExpand"
+                Orientation="Horizontal">
+
+                <StackLayout Margin="16" Orientation="Vertical">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource TextHeadline}"
+                        Text="XP" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource TextHeadline}"
+                        Text="{Binding ChapterXp}" />
+                </StackLayout>
+                <StackLayout Margin="8" />
+                <StackLayout Margin="16" Orientation="Vertical">
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource TextHeadline}"
+                        Text="Frågor" />
+                    <Label
+                        HorizontalOptions="Center"
+                        Style="{StaticResource TextHeadline}"
+                        Text="{Binding ChapterResult}" />
+                </StackLayout>
+            </StackLayout>
+
+
+
+            <Image
+                Margin="16"
+                Aspect="AspectFit"
+                HeightRequest="240"
+                Source="Owl_transparent.png" />
+            <Label HorizontalOptions="CenterAndExpand" Text="{Binding ResultMessage}" />
+
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Button
+                    Command="{Binding GoToChapter}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="Fortsätt" />
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

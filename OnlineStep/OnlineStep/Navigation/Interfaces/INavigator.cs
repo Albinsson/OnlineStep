@@ -1,6 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ Title   : Xamplate
+ Author  : Tomislav Erić
+ Summary : ViewModel First Navigation, View to ViewModel autowireing
+ Website : https://github.com/tomislaveric/Xamplate 
+*/
+
 using System.Threading.Tasks;
 
 namespace OnlineStep.Navigation.Interfaces

@@ -6,10 +6,12 @@
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:onlineStep="clr-namespace:OnlineStep;assembly=OnlineStep"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    BackgroundColor="White"
+    BackgroundImageSource="Background.png"
     mc:Ignorable="d">
+
+
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
@@ -18,34 +20,36 @@
     <ListView
         BackgroundColor="Transparent"
         HasUnevenRows="True"
-        ItemsSource="{Binding CourseList}"
+        ItemsSource="{Binding Courses}"
         SelectionMode="None"
         SeparatorVisibility="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <yummy:PancakeView
-                        Margin="8,8,8,0"
+
+                    <Frame
+                        Margin="12,12,12,0"
+                        Padding="0"
                         BackgroundColor="Transparent"
-                        BorderIsDashed="true"
                         CornerRadius="8"
-                        HorizontalOptions="FillAndExpand">
+                        HorizontalOptions="FillAndExpand"
+                        IsClippedToBounds="True">
                         <Grid>
                             <ImageButton
                                 Grid.Row="0"
                                 Aspect="AspectFill"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapterView}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CourseViewModel}}, Path=GoToChapters}"
                                 CommandParameter="{Binding _id}"
                                 HorizontalOptions="Center"
                                 Source="{Binding Img}"
                                 VerticalOptions="CenterAndExpand" />
                             <Label
                                 Grid.Column="0"
-                                Margin="30,30,0,0"
+                                Margin="12,8,0,0"
                                 Style="{StaticResource TextSubhead}"
                                 Text="{Binding Name}" />
                         </Grid>
-                    </yummy:PancakeView>
+                    </Frame>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

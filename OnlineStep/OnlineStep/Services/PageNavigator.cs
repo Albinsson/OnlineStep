@@ -1,184 +1,139 @@
-﻿using OnlineStep.Navigation.Interfaces;
+﻿using OnlineStep.Models;
+using OnlineStep.Navigation.Interfaces;
 using OnlineStep.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using OnlineStep.Models;
 
 namespace OnlineStep.Services
 {
     public static class PageNavigator
     {
+        public static List<IPage> PageList { get; set; }
+        public static int Index { get; set; }
+        public static int Xp { get; set; }
+        private static List<bool> _pageResults = new List<bool>();
+        public static List<bool> PageResults { get => _pageResults; set => _pageResults = value; }
+        //public static List<bool> PageResults { get; set; }
 
-        public static List<IPage> pageList;
-        public static int index;
-
-        public static List<IPage> PageList
+        public static string GetChapterResult()
         {
-            get => pageList;
-            set => pageList = value;
-        }
-
-        public static int Index
-        {
-            get => index;
-            set => index = value;
+            string chapterResult = "";
+            int correctAnswers = 0;
+            foreach (bool pageResult in PageResults)
+            {
+                if (pageResult)
+                {
+                    correctAnswers++;
+                }
+            }
+            chapterResult = correctAnswers.ToString() + "/" + PageList.Count.ToString();
+            return chapterResult;
         }
 
         public static IPage GetCurrentPage
         {
-            get 
+            get
             {
-                Debug.WriteLine("Getting page where index = " + index);
-                return pageList[index];
+                Debug.WriteLine("Getting page where index = " + Index);
+                return PageList[Index];
             }
         }
 
         public static void PushNextPage(INavigator navigator)
         {
 
-            Debug.WriteLine("Index: " + index);
-            Debug.WriteLine("PageList Count: " + pageList.Count);
-            
-            if (pageList.Count == 0)
+            Debug.WriteLine("Index: " + Index + "\nPageList Count: " + PageList.Count);
+
+            if (PageList.Count == 0)
             {
-                throw new System.ArgumentException("PageList", "PageList cannot be null");
+                throw new System.ArgumentException("PageList cannot be null", "PageList");
             };
 
-
-
-            if (pageList.Count <= index)
+            // All pages has been displayed
+            if (PageList.Count <= Index)
             {
-                PageList = new List<IPage>();
-                navigator.PushAsync<ChapterViewModel>();
+                Debug.WriteLine("All pages has been displayed -> ScoreView");
+                navigator.PushAsync<ScoreViewModel>();
             };
 
-            if (pageList.Count > 0 && pageList.Count > index)
+            // Displays next pages
+            if (PageList.Count > 0 && PageList.Count > Index)
             {
-
-                switch (pageList[index].type.ToLower())
+                switch (PageList[Index].type.ToLower())
                 {
                     case "mcq":
                         navigator.PushAsync<McqViewModel>();
-                        index++;
+                        Index++;
                         break;
 
                     case "cloze":
                         navigator.PushAsync<ClozeViewModel>();
-                        index++;
+                        Index++;
                         break;
 
                     default:
-                        throw new System.ArgumentException("PageList", "Page type not found: " + pageList[index].type);
+                        throw new System.ArgumentException("PageList", "Page type not found: " + PageList[Index].type);
                 }
             }
+        }
+        public static void ChapterCompleted()
+        {
+            //TODO: Update global user
+            User.Instance.Xp += Xp;
+            double correctAnswers = 0;
+            foreach (bool pageResult in PageResults)
+            {
+                if (pageResult)
+                {
+                    correctAnswers++;
+                }
+            }
+            double chapterProgress = correctAnswers / PageList.Count;
+            Debug.WriteLine(chapterProgress);
+            Debug.WriteLine(Global.Instance.ChapterId);
+            bool _isSet = false;
+            foreach (var cp in User.Instance.ChapterProgressList)
+            {
+                if (cp._id.Equals(Global.Instance.ChapterId))
+                {
+                    if (chapterProgress > cp.Progress)
+                    {
+                        cp.Progress = chapterProgress;
+                    }
+                    _isSet = true;
+                    break;
+                }
+            }
+            if (!_isSet)
+            {
+                User.Instance.ChapterProgressList.Add(new User.ChapterProgress(Global.Instance.ChapterId, chapterProgress, PageResults));
+            }
 
-            
 
+            PageResults = new List<bool>();
+            PageList = new List<IPage>();
+            Index = 0;
+            Xp = 0;
+            Debug.WriteLine("Current User XP: " + User.Instance.Xp.ToString());
+
+            foreach (var cp in User.Instance.ChapterProgressList)
+            {
+                Debug.WriteLine(cp._id + ": " + cp.Progress.ToString());
+            }
+        }
+
+        public static float GetProgress()
+        {
+            if (Index == 0)
+            {
+                return 0.0f;
+            }
+            else
+            {
+                float progress = Index * (1 / (float)PageList.Count);
+                return progress;
+            }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-//using System;
-//using System.Collections.Generic;
-//using System.Diagnostics;
-//using System.Text;
-//using System.Threading;
-//using OnlineStep.Helpers;
-//using OnlineStep.Navigation.Interfaces;
-//using OnlineStep.ViewModels;
-
-//namespace OnlineStep.Services
-//{
-
-//    public class PageNavigator
-//    {
-//        private List<Models.Page.RootObject> _pageList;
-//        private bool _hasPageList = false;
-//        private int _index = 0;
-//        private int _size;
-
-//        public PageNavigator()
-//        {
-//            DbHelper dbHelper = new DbHelper();
-//            String chapterID = "5e3950a2dd22b950349ee26b";
-//            PageList = dbHelper.GetPages(chapterID);
-//            Thread.Sleep(3000);
-//        }
-
-//        public PageNavigator(List <Models.Page.RootObject> pageList)
-//        {
-//            _pageList = pageList;
-//            _hasPageList = true;
-//            _size = pageList.Count;
-//        }
-
-//        public List<Models.Page.RootObject> PageList
-//        {
-//            get => _pageList;
-//            set
-//            {
-//                _pageList = value;
-//                _index = 0;
-//                _hasPageList = true;
-//                _size = PageList.Count;
-//            }
-//        }
-
-//        public int GetIndex
-//        {
-//            get => _index;
-//        }
-
-//        public int GetSize
-//        {
-//            get => _size;
-//        }
-
-//        public Models.Page.RootObject LoadNextPage()
-//        {
-//            if (_hasPageList == false)
-//            {
-//                throw new System.ArgumentException("PageList cannot be null", "PageList");
-//            }
-
-//            _index++;
-//            if (_index >= _pageList.Count)
-//            {
-//                //TODO 
-//                Debug.WriteLine("No more pages i PageList");
-//            }
-
-//            return _pageList[_index];
-//        }
-
-//        public void PushNextPage(INavigator navigator)
-//        {
-//            Debug.WriteLine("PushNextPage, pageNumber:  " + _pageList[_index] + " of " + _pageList.Count);
-//            Debug.WriteLine("PageType:" + _pageList[_index].type);
-
-
-//            switch (_pageList[_index].type)
-//            {
-//                case "Mcq":
-//                    navigator.PushAsync<McqViewModel>();
-//                    break;
-//                case "cloze":
-//                    navigator.PushAsync<ClozeViewModel>();
-//                    break;
-//                default:
-//                    Debug.WriteLine("Page type not found: " + _pageList[_index].type);
-//                    break;
-//            }
-//        }
-//    }
-//}

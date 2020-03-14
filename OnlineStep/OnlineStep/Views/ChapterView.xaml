@@ -7,36 +7,37 @@
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    BackgroundColor="White"
+    BackgroundColor="DimGray"
+    BackgroundImageSource="Background_Blue.png"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
-
     <ListView
+        x:Name="chapterLevels"
         HasUnevenRows="True"
         ItemsSource="{Binding ChapterLevels}"
         SelectionMode="None"
         SeparatorVisibility="None">
-        <ListView.ItemTemplate>
+        <ListView.ItemTemplate >
             <DataTemplate>
                 <ViewCell>
                     <Grid Margin="0,8" HorizontalOptions="Center">
-
-                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
+                        
+                        <local:ItemsControl ItemsSource="{Binding Chapters}">
 
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Padding="16,0" RowSpacing="3">
+                                    <Grid Padding="16,0" RowSpacing="0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="96" />
                                         </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
+
 
                                         <Frame
                                             Padding="0"
@@ -45,7 +46,10 @@
                                             HorizontalOptions="Center"
                                             IsClippedToBounds="True"
                                             WidthRequest="96">
+
+
                                             <ImageButton
+                                                IsEnabled="False"
                                                 Grid.Row="0"
                                                 Aspect="AspectFill"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
@@ -55,66 +59,35 @@
                                                 Source="{Binding Icon}"
                                                 WidthRequest="96" />
                                         </Frame>
+                                        <BoxView
+                                            
+                                            IsVisible="{Binding Locked}"
+                                            Grid.Row="0"
+                                            CornerRadius="100"
+                                            Opacity="0.9"
+                                            Color="#333" />
+
                                         <Label
                                             Grid.Row="1"
+                                            Padding="0,3,0,0"
                                             HorizontalOptions="Center"
                                             Style="{StaticResource TextBody}"
-                                            Text="{Binding Name}" />
+                                            Text="{Binding Name}"
+                                            TextColor="White" />
                                         <Label
                                             Grid.Row="2"
+                                            Padding="0,-2,0,0"
                                             HorizontalOptions="Center"
-                                            Style="{StaticResource TextBody}"
-                                            Text="0/6" />
+                                            Style="{StaticResource ProgressText}"
+                                            Text="{Binding PagesResult}"
+                                            TextColor="Beige" />
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>
                         </local:ItemsControl>
-
-
                     </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
-
-    <!--<ListView IsGroupingEnabled="true" ItemsSource="{Binding ChapterLevelsList}">
-        <ListView.GroupHeaderTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Label Text="{Binding ChapterLevelsList}" />
-                </ViewCell>
-            </DataTemplate>
-        </ListView.GroupHeaderTemplate>
-
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Label Text="{Binding Name}" />
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
-
-    <!--<ListView ItemsSource="{Binding ChapterLevelsList}" HasUnevenRows="True">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <StackLayout>
-                        <Label Text="{Binding Level}" />
-
-                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
-                            <local:ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding Name}" />
-                                </DataTemplate>
-                            </local:ItemsControl.ItemTemplate>
-                        </local:ItemsControl>
-                    </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
-
-
 </ContentPage>

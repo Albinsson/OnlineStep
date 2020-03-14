@@ -1,29 +1,18 @@
 ﻿using OnlineStep.Models;
 using OnlineStep.Services;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using OnlineStep.Helpers;
 using OnlineStep.Navigation.Interfaces;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace OnlineStep.ViewModels
 {
     internal class CourseViewModel : BaseViewModel
     {
-        private List<Course> courseList;
-        public List<Course> CourseList
-        {
-            get => courseList;
-            set => courseList = value;
-        }
-        private List<Chapter> chapterList;
-        public List<Chapter> ChapterList { get => chapterList; set => chapterList = value; }
+        public List<Course> Courses { get; set; }
         private readonly INavigator _navigator;
-        private readonly DbHelper DbHelper = new DbHelper();
         private Data Data;
 
 
@@ -32,25 +21,16 @@ namespace OnlineStep.ViewModels
             InitAsyncApiRequest();
             _navigator = navigator;                  
         }
-        //TODO: Rename me
         public void InitAsyncApiRequest()
         {
-            //DbHelper dbHelper = new DbHelper();
-            //courseList = dbHelper.GetCourses();  
-            Data = DataCenter.GetListProcedure("GetCourseList");
-            Debug.WriteLine("Post");
-            CourseList = new List<Course>();
-            Debug.WriteLine("Data" + Data.ObjList.Count);
-            foreach (var i in Data.ObjList)
-            {
-                Course c = (Course)i;
-                CourseList.Add(c);
-            }
+            Courses = Global.Instance.Courses;
+            Debug.WriteLine("Courses fetched from Global Instance: " + Courses.Count);
+            foreach(Course course in Courses){course.Name = course.Name.ToUpper();}
         }
 
-        public ICommand GoToChapterView => new Command<string>((id) =>
+        public ICommand GoToChapters => new Command<string>((id) =>
         {
-            DataCenter.CreateSingletonProcedure("SetChapterID", id);           
+            Global.Instance.CourseId = id;
             _navigator.PushAsync<ChapterViewModel>();
         });
             

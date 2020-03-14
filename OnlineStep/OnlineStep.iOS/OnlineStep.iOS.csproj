@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="VideoPlayerRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,5 +204,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Owl_transparent.png" />
   </ItemGroup>
 </Project>
