@@ -21,6 +21,7 @@ namespace OnlineStep.ViewModels
         private readonly NameOfOurAppService Service = new NameOfOurAppService();
         private readonly INavigator _navigator;
         private Data Data;
+        private List<IPage> PageList;
 
         private List<ChapterLevels> chapterLevels;
         public ChapterViewModel(INavigator navigator)
@@ -40,14 +41,16 @@ namespace OnlineStep.ViewModels
             ChapterLevels = await Service.FetchChapters(Data.Obj.ToString());
         }
 
-        public ICommand GoToPageView => new Command((id) =>
+        public ICommand GoToPageView => new Command(async (id) =>
         {
-            List<IPage> pageList = new List<IPage>();
-            pageList = dbHelper.GetPages(id.ToString());
-            var objList = pageList.ConvertAll(x => (object)x);
-            DataCenter.CreateListProcedure("SetPageList", objList);
+            //List<IPage> pageList = new List<IPage>();
+            //pageList = dbHelper.GetPages(id.ToString());
+            //var objList = pageList.ConvertAll(x => (object)x);
+            //DataCenter.CreateListProcedure("SetPageList", objList);
 
-            PageNavigator.pageList = dbHelper.GetPages(id.ToString());
+            PageList = await Service.FetchPages(id.ToString());
+            //PageNavigator.pageList = dbHelper.GetPages(id.ToString());
+            PageNavigator.pageList = PageList;
             PageNavigator.index = 0;
             PageNavigator.PushNextPage(_navigator);
         });

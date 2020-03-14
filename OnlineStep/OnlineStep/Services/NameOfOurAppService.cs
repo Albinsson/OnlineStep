@@ -1,11 +1,13 @@
 ﻿using Akavache;
 using Fusillade;
 using ModernHttpClient;
+using Newtonsoft.Json;
 using OnlineStep.Helpers;
 using OnlineStep.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -25,6 +27,7 @@ namespace OnlineStep.Services
         public NameOfOurAppService()
         {
             userInitiated = new Lazy<RestInterface>(() => createClient(new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.UserInitiated)));
+            Cache = BlobCache.LocalMachine;
         }
 
         public async Task<List<Course>> FetchCourses()
@@ -33,7 +36,7 @@ namespace OnlineStep.Services
             //The offset method tells the cache how long we want the data to remain inside the cache
             //This method is different from FetchChapters and FetchPages because we run it when the app is loading in the start
             //Making the loading of courses much faster
-            Cache = BlobCache.LocalMachine;
+
             //var cachedCourses = Cache.GetAndFetchLatest("courses", () => GetCoursesAsync(), offset =>
             //   {
             //       TimeSpan elapsed = DateTimeOffset.Now - offset;
@@ -41,14 +44,9 @@ namespace OnlineStep.Services
             //   });
             //var courses = await cachedCourses.FirstOrDefaultAsync();
 
-            //List<Course> courses = await GetCoursesAsync();
-            //await Cache.InsertObject("courses", courses, DateTimeOffset.Now.AddHours(2));
-            //var c = await Cache.GetObject<List<Course>>("courses");
+            //var cList = await Cache.GetOrFetchObject("courses", async () => await GetCoursesAsync(), DateTimeOffset.Now.AddHours(2));
 
-            //var client = new HttpClient(new NativeMessageHandler())
-            //{
-            //    BaseAddress = new Uri("https://online-step.herokuapp.com")
-            //};           
+                      
             var i = RestService.For<RestInterface>("https://online-step.herokuapp.com");
             List<Course> CourseList = await i.GetCourses();
             return CourseList;
@@ -57,11 +55,15 @@ namespace OnlineStep.Services
         //These methods are the ones we call from courseViewModel and ChapterViewModel
         public async Task<List<ChapterLevels>> FetchChapters(string id)
         {
-            Cache = BlobCache.LocalMachine;
             List<Chapter> getChaptersTask = await GetChaptersAsync(id);
             List<ChapterLevels> chapterLevels = FetchSortedLevels(getChaptersTask);
             await Cache.InsertObject("chapters", chapterLevels, DateTimeOffset.Now.AddHours(2));
-            var chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");        
+            var chapters = await Cache.GetObject<List<ChapterLevels>>("chapters");    
+
+            //List<Chapter> cList = await Cache.GetOrFetchObject("chapters", async () => await GetChaptersAsync(id), DateTimeOffset.Now.AddHours(2));
+            //List<ChapterLevels> chapters = FetchSortedLevels(cList);
+            //cList.ForEach(x => Console.WriteLine("Levels" + x.Level));
+
             return chapters;
         }
 
@@ -70,8 +72,10 @@ namespace OnlineStep.Services
             Cache = BlobCache.LocalMachine;
             List<IPage> getPagesTask = await GetPagesAsync(id);
             await Cache.InsertObject("pages", getPagesTask, DateTimeOffset.Now.AddHours(2));
-            var pages = await Cache.GetObject<List<IPage>>("pages");
-            return pages;
+            var pages = await GetPagesAsync(id);       
+            JsonConverter[] converters = { new PageConverter() };
+            var pList = JsonConvert.DeserializeObject<List<IPage>>(pages.ToString(), new JsonSerializerSettings(){ Converters = converters});           
+            return pList;
         }
         //END
 
