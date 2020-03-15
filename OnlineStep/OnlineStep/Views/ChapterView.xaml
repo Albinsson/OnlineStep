@@ -16,16 +16,17 @@
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
     <ListView
+        x:Name="chapterLevels"
         HasUnevenRows="True"
         ItemsSource="{Binding ChapterLevels}"
         SelectionMode="None"
         SeparatorVisibility="None">
-        <ListView.ItemTemplate>
+        <ListView.ItemTemplate >
             <DataTemplate>
                 <ViewCell>
                     <Grid Margin="0,8" HorizontalOptions="Center">
-
-                        <local:ItemsControl ItemsSource="{Binding ChapterList}">
+                        
+                        <local:ItemsControl ItemsSource="{Binding Chapters}">
 
                             <local:ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -48,6 +49,7 @@
 
 
                                             <ImageButton
+                                                IsEnabled="False"
                                                 Grid.Row="0"
                                                 Aspect="AspectFill"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
@@ -58,10 +60,12 @@
                                                 WidthRequest="96" />
                                         </Frame>
                                         <BoxView
+                                            
+                                            IsVisible="{Binding Locked}"
                                             Grid.Row="0"
                                             CornerRadius="100"
-                                            Opacity="0.0"
-                                            Color="DimGray" />
+                                            Opacity="0.9"
+                                            Color="#333" />
 
                                         <Label
                                             Grid.Row="1"
@@ -75,9 +79,8 @@
                                             Padding="0,-2,0,0"
                                             HorizontalOptions="Center"
                                             Style="{StaticResource ProgressText}"
-                                            Text="0/6"
+                                            Text="{Binding PagesResult}"
                                             TextColor="Beige" />
-
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>

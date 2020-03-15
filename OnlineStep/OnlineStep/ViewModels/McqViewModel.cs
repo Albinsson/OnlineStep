@@ -40,7 +40,13 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine(answer);
             SelectedAnswer = answer;
+            //Perhaps change the color of the button onclick?
+            //Button btn = (Button) this.SelectAnswer;
+            //btn.BackgroundColor = Color.Red;
         });
+
+        
+
         //public ICommand CheckCorrectAnswer => new Command(() =>
         //{
         //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
@@ -67,8 +73,7 @@ namespace OnlineStep.ViewModels
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Du har svarat rätt!";
                 HasPropertyValueChanged = false;
-                UserProgress.AddPageResult(true);
-
+                PageNavigator.Xp += 10;
             }
             else
             {
@@ -77,11 +82,11 @@ namespace OnlineStep.ViewModels
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
                 HasPropertyValueChanged = true;
-                UserProgress.AddPageResult(false);
             }
-
+            PageNavigator.PageResults.Add(CorectOrWrongBool);
             ShowCorrection = true;
             ShowCorrectMeButton = false;
+            
         });
 
         public ICommand GoToNextPage => new Command(() =>

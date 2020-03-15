@@ -68,8 +68,7 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Rätt svar");
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Du har svarat rätt!";
-                UserProgress.AddPageResult(true);
-
+                PageNavigator.Xp += 10;
             }
             else
             {
@@ -77,9 +76,9 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
-                UserProgress.AddPageResult(false);
-            }
 
+            }
+            PageNavigator.PageResults.Add(CorectOrWrongBool);
             ShowCorrection = true;
             ShowCorrectMeButton = false;
         });

@@ -13,5 +13,7 @@ namespace OnlineStep.Models
         public string Level { get; set; }
         public int __v { get; set; }
         public string Subject { get; set; }
+        public bool Locked { get; set; }
+        public string PagesResult { get; set; }
     }
 }

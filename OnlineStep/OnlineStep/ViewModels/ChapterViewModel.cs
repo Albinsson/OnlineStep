@@ -6,6 +6,7 @@ using OnlineStep.Services;
 using Refit;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -17,24 +18,79 @@ namespace OnlineStep.ViewModels
         private readonly OnlineStepApiService Service = new OnlineStepApiService();
         private readonly INavigator _navigator;
         private Data Data;
-  
+
         public ChapterViewModel(INavigator navigator)
         {
             _ = InitAsyncApiRequest();
             _navigator = navigator;
         }
-        //Constructor used by Unit Test
-        public ChapterViewModel()
+
+        private void SetCurrentUserProgress()
         {
+            Debug.WriteLine("SetCurrentUserProgress start: ");
+            List<User.ChapterProgress> chapterProgressList = User.Instance.ChapterProgressList;
+            double progressTreshold = 0.5;
+            for (int i = 0; i < ChapterLevels.Count; i++)
+            {
+                if (ChapterLevels[i].Level.Equals("1"))
+                {
+                    ChapterLevels[i].Locked = false;
+                }
+                else
+                {
+                    ChapterLevels[i].Locked = !ChapterLevels[i - 1].Chapters.All(chapter => chapterProgressList.Any(chapterProgress => chapterProgress._id.Equals(chapter._id) && chapterProgress.Progress >= progressTreshold));
+                }
+
+                ChapterLevels[i].Chapters.All(chapter => chapter.Locked = ChapterLevels[i].Locked);
+                Debug.WriteLine("Level " + ChapterLevels[i].Level + " Locked: " + ChapterLevels[i].Locked);
+
+                for (int j = 0; j < ChapterLevels[i].Chapters.Count; j++)
+                {
+
+                    ChapterLevels[i].Chapters[j].PagesResult = "0/" + ChapterLevels[i].Chapters[j].Pages.Count.ToString();
+                    foreach (var chapterProgress in chapterProgressList)
+                    {
+                        if (chapterProgress._id.Equals(ChapterLevels[i].Chapters[j]._id))
+                        {
+                            int correctAnswers = 0;
+                            foreach (bool pageResult in chapterProgress.PageResults)
+                            {
+                                if (pageResult)
+                                {
+                                    correctAnswers++;
+                                }
+                            }
+                            ChapterLevels[i].Chapters[j].PagesResult = correctAnswers.ToString() + "/" + ChapterLevels[i].Chapters[j].Pages.Count.ToString();
+                        }
+                    }
+                }
+            }
+            Debug.WriteLine("SetCurrentUserProgress end: ");
         }
 
-        public List<ChapterLevels> ChapterLevels { get; set; }
+
+        //Empty constructor used by Unit Test
+        public ChapterViewModel() { }
+
+        public List<ChapterLevel> ChapterLevels { get; set; }
         public List<IPage> Pages { get; set; }
 
+        public bool IsLocked(string _id)
+        {
+            foreach (var item in User.Instance.ChapterProgressList)
+            {
+                if (item._id.Equals(_id) && item.Progress >= 0.8)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private async System.Threading.Tasks.Task InitAsyncApiRequest()
         {
-            ChapterLevels = await Service.FetchChapters(Global.Instance.ChapterId);
+            ChapterLevels = await Service.FetchChapterLevels(Global.Instance.CourseId);
+            SetCurrentUserProgress();
         }
         private async System.Threading.Tasks.Task<List<IPage>> LoadPages(string id)
         {
@@ -48,18 +104,16 @@ namespace OnlineStep.ViewModels
             return await myApi.GetPages(id);
         }
 
-        public ICommand GoToPageView => new Command(async (id) =>
+        public ICommand GoToPageView => new Command<string>(async (chapterId) =>
         {
-            Debug.WriteLine("GoToPageView: Chapter " + id + " pressed");
-            OnlineStepApiService apiFetcher = new OnlineStepApiService();
-            List<IPage> pages = new List<IPage>();
-            Debug.WriteLine("GoToPageView: Calling LoadPages()");
-            PageNavigator.PageList = await LoadPages(id.ToString());
-            Debug.WriteLine("GoToPageView: 1");
-            PageNavigator.Index = 0;
-            Debug.WriteLine("GoToPageView: 2");
-            PageNavigator.PushNextPage(_navigator);
-            Debug.WriteLine("GoToPageView: 3");
+
+            if (ChapterLevels.Any(chapterLevel => chapterLevel.Chapters.Any(chapter => chapter._id.Equals(chapterId) && !chapterLevel.Locked)))
+            {
+                Global.Instance.ChapterId = chapterId;
+                PageNavigator.PageList = await LoadPages(chapterId.ToString());
+                PageNavigator.Index = 0;
+                PageNavigator.PushNextPage(_navigator);
+            }
         });
 
 

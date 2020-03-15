@@ -49,14 +49,14 @@ namespace OnlineStep.Test
             //Arrenge
             string courseId = "5e3bd92155de5958085644e3";
             OnlineStepApiService apiFetcher = new OnlineStepApiService();
-            List<ChapterLevels> chapterLevels = new List<ChapterLevels>();
+            List<ChapterLevel> chapterLevels = new List<ChapterLevel>();
 
             //Act
-            chapterLevels = await apiFetcher.FetchChapters(courseId);
+            chapterLevels = await apiFetcher.FetchChapterLevels(courseId);
 
 
             //Assert
-            Assert.AreEqual(chapterLevels[0].ChapterList[0]._id, "5e3976792e6b5d4ee4a2956f");
+            Assert.AreEqual(chapterLevels[0].Chapters[0]._id, "5e3976792e6b5d4ee4a2956f");
 
         }
     }
