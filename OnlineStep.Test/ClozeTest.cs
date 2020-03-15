@@ -23,27 +23,37 @@ namespace OnlineStep.Test
              * Test adding XP to Gamification 
              */
 
+            Trace.WriteLine("Hej");
+            Debug.WriteLine("Hej");
+
+
             //Arrange
             string missingWord = "project";
             string sentence = "Severity Code description project file line suppression state";
             ClozeViewModel clozeViewModel = new ClozeViewModel();
 
-
+            List<ClozeRow> displayCloze = new List<ClozeRow>();
 
 
 
             //Act
-            List<ClozeRow> displayCloze = clozeViewModel.InitCloze(missingWord, sentence);
+            displayCloze = clozeViewModel.InitClozeLabelAndEntry(missingWord, sentence);
+
+
+
+          
+
+            Trace.WriteLine(displayCloze[0].SentenceFirstPart);
 
             foreach (var row in displayCloze)
             {
                 Trace.WriteLine(row.SentenceFirstPart);
-                Trace.WriteLine(row.EntryLenght);
-                Trace.WriteLine(row.SentenceSecondPart);
+                //Trace.WriteLine(row.EntryLenght);
+                //Trace.WriteLine(row.SentenceSecondPart);
             }
 
             //Assert
-            Assert.AreEqual(2, displayCloze.Count);
+            Assert.AreEqual(5, displayCloze.Count);
 
         }
 

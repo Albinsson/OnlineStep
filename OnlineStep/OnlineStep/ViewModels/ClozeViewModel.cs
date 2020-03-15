@@ -32,8 +32,7 @@ namespace OnlineStep.ViewModels
             ShowCorrection = false;
             ShowCorrectMeButton = true;
 
-
-            Debug.WriteLine(_cloze.image);
+            ClozeGuiHelper = InitClozeLabelAndEntry(_cloze.content.missingWords[0], _cloze.content.sentence);
         }
         //Empty constructor used for testing
 
@@ -91,32 +90,74 @@ namespace OnlineStep.ViewModels
         });
 
 
-        public List<ClozeRow> InitCloze(string missingWord, string sentence) 
+        public List<ClozeRow> InitClozeLabelAndEntry(string missingWord, string sentence) 
         {
             List<ClozeRow> displayCloze = new List<ClozeRow>();
 
          
-            int rowSize = 4;
-            int sentenceLenght = sentence.Length;
-
+            int rowSize = 25;
+            string rowText = "";
+            int EmptyEntrySize = -6;
+            int EntryMultiplyer = 12;
             string[] words = sentence.Split(' ');
 
-            foreach (var word in words)
+            for (int i = 0; i < words.Length; i++)
             {
-                System.Console.WriteLine($"<{word}>");
+                rowText = rowText + words[i] + " ";
+                Debug.WriteLine("rowText: " + rowText);
+                Debug.WriteLine(i);
+                Debug.WriteLine(words.Length);
+                if (rowText.Length >= rowSize || i+1 == words.Length)
+                {
+                    if (rowText.Contains(missingWord) == true)
+                    {
+                        Debug.WriteLine("Has missing word");
+                        string[] parts = rowText.Split(new string[] { missingWord }, StringSplitOptions.None);
+
+                        if (1 == parts.Length)
+                        {
+                            parts[1] = "";
+                        }
+
+                        if (0 == parts.Length)
+                        {
+                            parts[0] = "";
+                        }
+
+                        int entry = missingWord.Length * EntryMultiplyer;
+                        Debug.WriteLine("entryLenght " + entry);
+
+                        ClozeRow rowWithEntry = new ClozeRow()
+                        {
+                            SentenceFirstPart = parts[0],
+                            SentenceSecondPart = parts[1],
+                            EntryLenght = entry
+                        };
+                        displayCloze.Add(rowWithEntry);
+                        rowText = "";
+
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Without missing word");
+                        ClozeRow rowWithoutEntry = new ClozeRow()
+                        {
+                            SentenceFirstPart = rowText,
+                            EntryLenght = EmptyEntrySize,
+                            SentenceSecondPart = ""
+                        };
+                        displayCloze.Add(rowWithoutEntry);
+                        rowText = "";
+
+                    }
+
+                }
+              
             }
-
-            for (int i = 0; i < sentenceLenght; i += rowSize)
-            {
-                if (i + rowSize > sentenceLenght) rowSize = sentenceLenght - i;
-
-                Console.WriteLine(missingWord.Substring(i, rowSize));
-
-            }
-
 
             return displayCloze;
         }
+        public List<ClozeRow> ClozeGuiHelper { get; set; }
 
         public string CorrectOrWrongMessage { set; get; }
         public bool CorectOrWrongBool { set; get; }
