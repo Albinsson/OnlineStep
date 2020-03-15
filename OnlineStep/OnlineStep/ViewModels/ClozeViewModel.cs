@@ -32,6 +32,7 @@ namespace OnlineStep.ViewModels
             ShowCorrection = false;
             ShowCorrectMeButton = true;
 
+
             Debug.WriteLine(_cloze.image);
         }
         //Empty constructor used for testing
@@ -89,6 +90,34 @@ namespace OnlineStep.ViewModels
             PageNavigator.PushNextPage(_navigator);
         });
 
+
+        public List<ClozeRow> InitCloze(string missingWord, string sentence) 
+        {
+            List<ClozeRow> displayCloze = new List<ClozeRow>();
+
+         
+            int rowSize = 4;
+            int sentenceLenght = sentence.Length;
+
+            string[] words = sentence.Split(' ');
+
+            foreach (var word in words)
+            {
+                System.Console.WriteLine($"<{word}>");
+            }
+
+            for (int i = 0; i < sentenceLenght; i += rowSize)
+            {
+                if (i + rowSize > sentenceLenght) rowSize = sentenceLenght - i;
+
+                Console.WriteLine(missingWord.Substring(i, rowSize));
+
+            }
+
+
+            return displayCloze;
+        }
+
         public string CorrectOrWrongMessage { set; get; }
         public bool CorectOrWrongBool { set; get; }
         public bool ShowCorrection { set; get; }
@@ -103,5 +132,13 @@ namespace OnlineStep.ViewModels
 
         public double Progress => PageNavigator.GetProgress();
     }
+
+    public class ClozeRow
+    {
+        public string SentenceFirstPart { get; set; }
+        public string SentenceSecondPart { get; set; }
+        public int EntryLenght { get; set; }
+    }
+
 }
 
