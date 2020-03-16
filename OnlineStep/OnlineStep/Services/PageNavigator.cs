@@ -14,7 +14,6 @@ namespace OnlineStep.Services
         public static int Xp { get; set; }
         private static List<bool> _pageResults = new List<bool>();
         public static List<bool> PageResults { get => _pageResults; set => _pageResults = value; }
-        //public static List<bool> PageResults { get; set; }
 
         public static string GetChapterResult()
         {
