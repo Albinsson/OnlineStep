@@ -11,67 +11,82 @@
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <Grid>
 
 
-            <Frame
-                Margin="16,16,16,0"
-                Padding="0"
-                CornerRadius="8"
-                IsClippedToBounds="True">
-                <ProgressBar Progress="{Binding Progress}" Style="{StaticResource Key=ProgressBar}" />
-            </Frame>
+            <StackLayout Orientation="Vertical">
+
+
+                <Frame
+                    Margin="16,16,16,0"
+                    Padding="0"
+                    CornerRadius="8"
+                    IsClippedToBounds="True">
+                    <ProgressBar Progress="{Binding Progress}" Style="{StaticResource Key=ProgressBar}" />
+                </Frame>
 
 
 
-            <StackLayout
-                Margin="16,16,16,16"
-                HorizontalOptions="CenterAndExpand"
-                Orientation="Horizontal">
 
-                <StackLayout Margin="16" Orientation="Vertical">
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource TextHeadline}"
-                        Text="XP" />
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource TextHeadline}"
-                        Text="{Binding ChapterXp}" />
+                <Image
+                    Margin="0,16,0,0"
+                    Aspect="AspectFit"
+                    HeightRequest="280"
+                    IsAnimationPlaying="true"
+                    Source="Animated_Party.gif" />
+
+
+                <StackLayout
+                    Margin="16,8,16,16"
+                    HorizontalOptions="CenterAndExpand"
+                    Orientation="Horizontal">
+
+                    <StackLayout Margin="16" Orientation="Vertical">
+                        <Label
+                            FontAttributes="None"
+                            HorizontalOptions="Center"
+                            Opacity="0.85"
+                            Style="{StaticResource TextHeadline}"
+                            Text="XP" />
+                        <Label
+                            FontSize="34"
+                            HorizontalOptions="Center"
+                            Opacity="0.85"
+                            Style="{StaticResource TextHeadline}"
+                            Text="{Binding ChapterXp}" />
+                    </StackLayout>
+                    <StackLayout Margin="8" />
+                    <StackLayout Margin="16" Orientation="Vertical">
+                        <Label
+                            HorizontalOptions="Center"
+                            Opacity="0.85"
+                            Style="{StaticResource TextHeadline}"
+                            Text="FRÅGOR" />
+                        <Label
+                            FontSize="34"
+                            HorizontalOptions="Center"
+                            Opacity="0.85"
+                            Style="{StaticResource TextHeadline}"
+                            Text="{Binding ChapterResult}" />
+
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Margin="8" />
-                <StackLayout Margin="16" Orientation="Vertical">
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource TextHeadline}"
-                        Text="Frågor" />
-                    <Label
-                        HorizontalOptions="Center"
-                        Style="{StaticResource TextHeadline}"
-                        Text="{Binding ChapterResult}" />
+
+
+
+
+                <StackLayout Orientation="Horizontal" />
+                <Label HorizontalOptions="CenterAndExpand" Text="{Binding ResultMessage}" />
+
+
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Button
+                        Command="{Binding GoToChapter}"
+                        Style="{StaticResource MainPageButton}"
+                        Text="Fortsätt" />
                 </StackLayout>
+
             </StackLayout>
-
-
-            <Image
-                Margin="16"
-                Aspect="AspectFit"
-                HeightRequest="180"
-                IsAnimationPlaying="true"
-                Source="Animated_Party.gif" />
-
-
-            <StackLayout Orientation="Horizontal" />
-            <Label HorizontalOptions="CenterAndExpand" Text="{Binding ResultMessage}" />
-
-
-            <StackLayout VerticalOptions="EndAndExpand">
-                <Button
-                    Command="{Binding GoToChapter}"
-                    Style="{StaticResource MainPageButton}"
-                    Text="Fortsätt" />
-            </StackLayout>
-
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
