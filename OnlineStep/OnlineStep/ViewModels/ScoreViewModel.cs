@@ -18,7 +18,7 @@ namespace OnlineStep.ViewModels
             _navigator = navigator;
             ChapterXp = PageNavigator.Xp.ToString();
             ChapterResult = PageNavigator.GetChapterResult();
-            ResultMessage = "TODO: Logic for message depending on Score ";
+            ResultMessage = "TODO: Logic for message depending on Score";
         }
 
         public double Progress => PageNavigator.GetProgress();

@@ -38,22 +38,6 @@ namespace OnlineStep.Services
             //This method is different from FetchChapters and FetchPages because we run it when the app is loading in the start
             //Making the loading of courses much faster
             Cache = BlobCache.LocalMachine;
-            //TODO: Gammal kod?
-            //var cachedCourses = Cache.GetAndFetchLatest("courses", () => GetCoursesAsync(), offset =>
-            //   {
-            //       TimeSpan elapsed = DateTimeOffset.Now - offset;
-            //       return elapsed > new TimeSpan(hours: 2, minutes: 0, seconds: 0);
-            //   });
-            //var courses = await cachedCourses.FirstOrDefaultAsync();
-
-            //List<Course> courses = await GetCoursesAsync();
-            //await Cache.InsertObject("courses", courses, DateTimeOffset.Now.AddHours(2));
-            //var c = await Cache.GetObject<List<Course>>("courses");
-
-            //var client = new HttpClient(new NativeMessageHandler())
-            //{
-            //    BaseAddress = new Uri("https://online-step.herokuapp.com")
-            //};   
             IOnlineStepApi __onlineStepApi = RestService.For<IOnlineStepApi>("https://online-step.herokuapp.com");
             List<Course> Courses = await __onlineStepApi.GetCourses();
             return Courses;

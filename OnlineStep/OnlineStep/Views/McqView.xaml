@@ -50,22 +50,31 @@
                 <ListView
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
-                    ItemsSource="{Binding AnswerList}"
-                    SelectionMode="None"
-                    SeparatorVisibility="None">
+                    ItemsSource="{Binding Answers}"
+                    SeparatorVisibility="None"
+                    SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <Frame
                                     Margin="16"
                                     Padding="0"
-                                    CornerRadius="8"
+                                    CornerRadius="8" 
                                     IsClippedToBounds="True">
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
-                                        CommandParameter="{Binding}"
+                                        CommandParameter="{Binding Value}"
                                         Style="{StaticResource McqButton}"
-                                        Text="{Binding}" />
+                                        Text="{Binding Value}">
+                                        <Button.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding Selected}" 
+                                                TargetType="Button"
+                                                Value="true">
+                                                <Setter Property="Style" Value="{StaticResource McqButtonSelected}" />
+                                            </DataTrigger>
+                                        </Button.Triggers>
+                                    </Button>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
@@ -125,7 +134,6 @@
                         </Button>
                     </Frame>
                 </StackLayout>
-
             </ContentView>
         </StackLayout>
     </ContentPage.Content>
