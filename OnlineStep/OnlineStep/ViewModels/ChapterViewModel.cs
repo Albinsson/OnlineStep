@@ -38,7 +38,7 @@ namespace OnlineStep.ViewModels
                 }
                 else
                 {
-                    ChapterLevels[i].Locked = !ChapterLevels[i - 1].Chapters.All(chapter => chapterProgressList.Any(chapterProgress => chapterProgress._id.Equals(chapter._id) && chapterProgress.Progress >= progressTreshold));
+                    ChapterLevels[i].Locked = ChapterLevels[i - 1].Chapters.All(chapter => chapterProgressList.Any(chapterProgress => chapterProgress._id.Equals(chapter._id) && chapterProgress.Progress >= progressTreshold));
                 }
 
                 ChapterLevels[i].Chapters.All(chapter => chapter.Locked = ChapterLevels[i].Locked);

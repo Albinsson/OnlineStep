@@ -150,7 +150,7 @@
     <AndroidResource Include="Resources\drawable\Chapter_Musik.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Chapter_Resa.png" />
+    <AndroidResource Include="Resources\drawable\Chapter_Resa_delete_me.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\wave.jpg" />
@@ -223,10 +223,16 @@
     <AndroidResource Include="Resources\drawable\Courses_Engelska.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Courses_Spanska.png" />
+    <AndroidResource Include="Resources\drawable\Courses_Spanska_delete_me.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Courses_Matte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Courses_Spanska.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Chapter_Resa.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
