@@ -29,7 +29,8 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine("SetCurrentUserProgress start: ");
             List<User.ChapterProgress> chapterProgressList = User.Instance.ChapterProgressList;
-            double progressTreshold = 0.5;
+            //Remember to change this back
+            double progressTreshold = 0.0;
             for (int i = 0; i < ChapterLevels.Count; i++)
             {
                 if (ChapterLevels[i].Level.Equals("1"))

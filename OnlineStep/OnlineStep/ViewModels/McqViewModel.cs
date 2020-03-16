@@ -27,6 +27,7 @@ namespace OnlineStep.ViewModels
 
             ShowCorrection = false;
             ShowCorrectMeButton = true;
+            ChangeBtnBackGroundColor = Color.Blue;
         }
 
         public string Title { get; set; }
@@ -38,14 +39,17 @@ namespace OnlineStep.ViewModels
         private string SelectedAnswer { get; set; }
         public ICommand SelectAnswer => new Command<string>((answer) =>
         {
+            ChangeBtnBackGroundColor = Color.Red;
             Debug.WriteLine(answer);
-            SelectedAnswer = answer;
-            //Perhaps change the color of the button onclick?
-            //Button btn = (Button) this.SelectAnswer;
-            //btn.BackgroundColor = Color.Red;
+            SelectedAnswer = answer;          
         });
 
-        
+        public Color ChangeBtnBackGroundColor
+        {
+            get;set;
+        }
+
+
 
         //public ICommand CheckCorrectAnswer => new Command(() =>
         //{

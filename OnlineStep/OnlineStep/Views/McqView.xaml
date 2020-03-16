@@ -60,13 +60,15 @@
                                     Margin="16"
                                     Padding="0"
                                     CornerRadius="8"
-                                    IsClippedToBounds="True">
+                                    IsClippedToBounds="True"
+                                    >
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
                                         CommandParameter="{Binding}"
                                         Style="{StaticResource MainPageButton}"
                                         Text="{Binding}"
-                                        />
+                                        BackgroundColor="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=ChangeBtnBackGroundColor}"
+                                       />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
