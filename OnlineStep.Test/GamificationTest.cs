@@ -24,13 +24,13 @@ namespace OnlineStep.Test
              */
 
             //Arrange
-            UserProgress.Xp = 10;
-            UserProgress.Xp = 10;
-            UserProgress.Xp = 10;
+            UserProgressDELETEME.Xp = 10;
+            UserProgressDELETEME.Xp = 10;
+            UserProgressDELETEME.Xp = 10;
 
 
             //Act
-            int result = UserProgress.Xp;
+            int result = UserProgressDELETEME.Xp;
 
             //Assert
             Assert.AreEqual(30, result);
@@ -46,21 +46,21 @@ namespace OnlineStep.Test
              */
 
             //Arrange
-            UserProgress.maxScore = 5;
-            UserProgress.highestScore = 2;
-            Trace.WriteLine("maxScore" + UserProgress.maxScore);
+            UserProgressDELETEME.maxScore = 5;
+            UserProgressDELETEME.highestScore = 2;
+            Trace.WriteLine("maxScore" + UserProgressDELETEME.maxScore);
             
-            UserProgress.AddPageResult(true);
-            UserProgress.AddPageResult(true);
-            UserProgress.AddPageResult(false);
-            UserProgress.AddPageResult(false);
-            UserProgress.AddPageResult(true);
+            UserProgressDELETEME.AddPageResult(true);
+            UserProgressDELETEME.AddPageResult(true);
+            UserProgressDELETEME.AddPageResult(false);
+            UserProgressDELETEME.AddPageResult(false);
+            UserProgressDELETEME.AddPageResult(true);
 
 
 
             //Act
-            UserProgress.AddChapterResult();
-            double results = UserProgress.highestScoreProcentage;
+            UserProgressDELETEME.AddChapterResult();
+            double results = UserProgressDELETEME.highestScoreProcentage;
 
 
             //Assert

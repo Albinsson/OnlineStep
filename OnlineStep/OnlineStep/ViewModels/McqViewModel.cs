@@ -3,9 +3,13 @@ using OnlineStep.Navigation.Interfaces;
 using OnlineStep.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace OnlineStep.ViewModels
 {
@@ -14,7 +18,9 @@ namespace OnlineStep.ViewModels
         private readonly INavigator _navigator;
         private readonly Mcq _mcq;
         private string _correctAnswer { get; set; }
-        private bool HasPropertyValueChanged { get; set; }
+
+        
+        
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
@@ -22,86 +28,95 @@ namespace OnlineStep.ViewModels
             _navigator = navigator;
             Title = _mcq.title;
             Question = _mcq.content.question;
-            SelectedAnswer = "";
             _correctAnswer = _mcq.content.correctAnswer;
+            Debug.WriteLine("Before _answerHelper loop: answers.count = " + _mcq.content.answers.Count);
+
+            CreateAnswerList();
 
             ShowCorrection = false;
             ShowCorrectMeButton = true;
-            ChangeBtnBackGroundColor = Color.Blue;
+        }
+        private void CreateAnswerList()
+        {
+            for (int i = 0; i < _mcq.content.answers.Count; i++)
+            {
+                Debug.WriteLine("Inside _answerHelper loop: index = " + i);
+                Answer answerHelper = new Answer
+                {
+                    Value = _mcq.content.answers[i],
+                    Selected = false
+                };
+                _answers.Add(answerHelper);
+            }
         }
 
         public string Title { get; set; }
 
         public string Question { get; set; }
 
-        public List<string> AnswerList { get => _mcq.content.answers; }
-
-        private string SelectedAnswer { get; set; }
-        public ICommand SelectAnswer => new Command<string>((answer) =>
+        public ICommand SelectAnswer => new Command<string>((commandAnswer) =>
         {
-            ChangeBtnBackGroundColor = Color.Red;
-            Debug.WriteLine(answer);
-            SelectedAnswer = answer;          
+            if (!_answers.Any(answer => answer.Selected))
+            {
+                foreach (var answer in _answers.Where(answer => answer.Value.Equals(commandAnswer)).Select(answer => answer)){ answer.Selected = true; }
+                CheckCorrectAnswer();
+            }
         });
 
-        public Color ChangeBtnBackGroundColor
+        public void CheckCorrectAnswer()
         {
-            get;set;
-        }
-
-
-
-        //public ICommand CheckCorrectAnswer => new Command(() =>
-        //{
-        //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
-        //    {
-        //        //TODO Logic for right answer
-        //        Debug.WriteLine("Rätt svar");
-        //    }
-        //    else
-        //    {
-        //        //TODO logic for wrong answer
-        //        Debug.WriteLine("Fel svar");
-        //    }
-
-        //    PageNavigator.PushNextPage(_navigator);
-        //});
-        public ICommand CheckCorrectAnswer => new Command(() =>
-        {
-
-            Debug.WriteLine(SelectedAnswer);
-            if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+            foreach (var answer in _answers.Where(answer => answer.Selected).Select(answer => answer))
             {
-                //TODO Logic for right answer
-                Debug.WriteLine("Rätt svar");
-                CorectOrWrongBool = true;
-                CorrectOrWrongMessage = "Du har svarat rätt!";
-                HasPropertyValueChanged = false;
-                PageNavigator.Xp += 10;
+                if (answer.Value.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    CorectOrWrongBool = true;
+                    CorrectOrWrongMessage = "Du har svarat rätt!";
+                    //TODO: Är dessa nödvändiga? HasPropertyValueChanged
+                    HasPropertyValueChanged = false;
+                    PageNavigator.Xp += 10;
+                }
+                else
+                {
+                    CorectOrWrongBool = false;
+                    CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
+                    //TODO: Är dessa nödvändiga? HasPropertyValueChanged
+                    HasPropertyValueChanged = true;
+                }
             }
-            else
-            {
-                //TODO logic for wrong answer
-                Debug.WriteLine("Fel svar");
-                CorectOrWrongBool = false;
-                CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
-                HasPropertyValueChanged = true;
-            }
+
             PageNavigator.PageResults.Add(CorectOrWrongBool);
             ShowCorrection = true;
             ShowCorrectMeButton = false;
-            
-        });
-
+        }
+        public string CorrectOrWrongMessage { get; set; }
+        public bool CorectOrWrongBool { get; set; }
+        public bool ShowCorrection { get; set; }
+        public bool ShowCorrectMeButton { get; set; }
+        
+        //AnswerModel keeps track on the selected answer
+        //TODO: Rename AnswerModel
+        private List<Answer> _answers = new List<Answer>();
+        public List<Answer> Answers { get => _answers;}
+        public class Answer : INotifyPropertyChanged
+        {
+            public string Value { get; set; }
+            public bool Selected { get; set; }
+            public event PropertyChangedEventHandler PropertyChanged;
+            private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+            {
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                }
+            }
+        }
         public ICommand GoToNextPage => new Command(() =>
         {
             PageNavigator.PushNextPage(_navigator);
         });
 
-        public string CorrectOrWrongMessage { set; get; }
-        public bool CorectOrWrongBool { set; get; }
-        public bool ShowCorrection { set; get; }
-        public bool ShowCorrectMeButton { set; get; }
+        //TODO: Är dessa nödvändiga?
+        private bool HasPropertyValueChanged { get; set; }
         public bool HasPropertyValueChanged1 { get => HasPropertyValueChanged2; set => HasPropertyValueChanged2 = value; }
         public bool HasPropertyValueChanged2 { get => HasPropertyValueChanged; set => HasPropertyValueChanged = value; }
     }
