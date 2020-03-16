@@ -38,32 +38,20 @@ namespace OnlineStep.ViewModels
         private string SelectedAnswer { get; set; }
         public ICommand SelectAnswer => new Command<string>((answer) =>
         {
-            Debug.WriteLine(answer);
-            SelectedAnswer = answer;
+            if (SelectedAnswer.Equals(""))
+            {
+                Debug.WriteLine(answer);
+                SelectedAnswer = answer;
+                CheckCorrectAnswer();
+            }
         });
-        //public ICommand CheckCorrectAnswer => new Command(() =>
-        //{
-        //    if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
-        //    {
-        //        //TODO Logic for right answer
-        //        Debug.WriteLine("Rätt svar");
-        //    }
-        //    else
-        //    {
-        //        //TODO logic for wrong answer
-        //        Debug.WriteLine("Fel svar");
-        //    }
-
-        //    PageNavigator.PushNextPage(_navigator);
-        //});
-        public ICommand CheckCorrectAnswer => new Command(() =>
+        
+        public void CheckCorrectAnswer()
         {
 
             Debug.WriteLine(SelectedAnswer);
             if (SelectedAnswer.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
             {
-                //TODO Logic for right answer
-                Debug.WriteLine("Rätt svar");
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Du har svarat rätt!";
                 HasPropertyValueChanged = false;
@@ -71,8 +59,6 @@ namespace OnlineStep.ViewModels
             }
             else
             {
-                //TODO logic for wrong answer
-                Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
                 HasPropertyValueChanged = true;
@@ -80,7 +66,7 @@ namespace OnlineStep.ViewModels
             PageNavigator.PageResults.Add(CorectOrWrongBool);
             ShowCorrection = true;
             ShowCorrectMeButton = false;
-        });
+        }
 
         public ICommand GoToNextPage => new Command(() =>
         {

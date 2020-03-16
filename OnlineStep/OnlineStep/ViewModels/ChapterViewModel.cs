@@ -29,7 +29,7 @@ namespace OnlineStep.ViewModels
         {
             Debug.WriteLine("SetCurrentUserProgress start: ");
             List<User.ChapterProgress> chapterProgressList = User.Instance.ChapterProgressList;
-            double progressTreshold = 0.5;
+            double minScoreTreshold = 0.5;
             for (int i = 0; i < ChapterLevels.Count; i++)
             {
                 if (ChapterLevels[i].Level.Equals("1"))
@@ -38,7 +38,7 @@ namespace OnlineStep.ViewModels
                 }
                 else
                 {
-                    ChapterLevels[i].Locked = !ChapterLevels[i - 1].Chapters.All(chapter => chapterProgressList.Any(chapterProgress => chapterProgress._id.Equals(chapter._id) && chapterProgress.Progress >= progressTreshold));
+                    ChapterLevels[i].Locked = ChapterLevels[i - 1].Chapters.All(chapter => chapterProgressList.Any(chapterProgress => chapterProgress._id.Equals(chapter._id) && chapterProgress.Progress >= minScoreTreshold));
                 }
 
                 ChapterLevels[i].Chapters.All(chapter => chapter.Locked = ChapterLevels[i].Locked);
@@ -46,7 +46,6 @@ namespace OnlineStep.ViewModels
 
                 for (int j = 0; j < ChapterLevels[i].Chapters.Count; j++)
                 {
-
                     ChapterLevels[i].Chapters[j].PagesResult = "0/" + ChapterLevels[i].Chapters[j].Pages.Count.ToString();
                     foreach (var chapterProgress in chapterProgressList)
                     {
