@@ -32,7 +32,6 @@ namespace OnlineStep.Services
 
         public async Task<List<Course>> FetchCourses()
         {
-            //TODO: Behöver vi en så här lång kommentar?
             //Using the Akavache nuget we can store data from GetCoursesAsync() in our localMachine using a keyword "courses"
             //The offset method tells the cache how long we want the data to remain inside the cache
             //This method is different from FetchChapters and FetchPages because we run it when the app is loading in the start

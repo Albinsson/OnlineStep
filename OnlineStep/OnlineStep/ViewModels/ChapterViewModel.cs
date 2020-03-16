@@ -48,7 +48,7 @@ namespace OnlineStep.ViewModels
 
                 for (int j = 0; j < ChapterLevels[i].Chapters.Count; j++)
                 {
-                    ChapterLevels[i].Chapters[j].PagesResult = "0/" + ChapterLevels[i].Chapters[j].Pages.Count.ToString();
+                    double pagesResult = 0;
                     foreach (var chapterProgress in chapterProgressList)
                     {
                         if (chapterProgress._id.Equals(ChapterLevels[i].Chapters[j]._id))
@@ -61,9 +61,10 @@ namespace OnlineStep.ViewModels
                                     correctAnswers++;
                                 }
                             }
-                            ChapterLevels[i].Chapters[j].PagesResult = correctAnswers.ToString() + "/" + ChapterLevels[i].Chapters[j].Pages.Count.ToString();
+                            pagesResult = (double)correctAnswers / ChapterLevels[i].Chapters[j].Pages.Count;
                         }
                     }
+                    ChapterLevels[i].Chapters[j].PagesResult = pagesResult;
                 }
             }
             Debug.WriteLine("SetCurrentUserProgress end: ");

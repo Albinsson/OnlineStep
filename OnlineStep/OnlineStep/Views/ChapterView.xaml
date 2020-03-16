@@ -76,14 +76,11 @@
                                             Style="{StaticResource TextBody}"
                                             Text="{Binding Name}"
                                             TextColor="White" />
-                                        <Label
+                                        <ProgressBar 
+                                            Progress="{Binding PagesResult}"
                                             Grid.Row="2"
-                                            Padding="0,-2,0,0"
-                                            HorizontalOptions="Center"
-                                            Opacity="0.8"
-                                            Style="{StaticResource ProgressText}"
-                                            Text="{Binding PagesResult}"
-                                            TextColor="Beige" />
+                                            HorizontalOptions="Center"                                            
+                                            Style="{StaticResource ChapterViewProgressBar}"/>
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>
