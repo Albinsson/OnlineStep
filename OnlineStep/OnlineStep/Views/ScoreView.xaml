@@ -53,12 +53,15 @@
             </StackLayout>
 
 
-
             <Image
                 Margin="16"
                 Aspect="AspectFit"
-                HeightRequest="240"
-                Source="Owl_transparent.png" />
+                HeightRequest="180"
+                IsAnimationPlaying="true"
+                Source="Animated_Party.gif" />
+
+
+            <StackLayout Orientation="Horizontal" />
             <Label HorizontalOptions="CenterAndExpand" Text="{Binding ResultMessage}" />
 
 
