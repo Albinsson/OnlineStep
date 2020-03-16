@@ -21,11 +21,11 @@
         ItemsSource="{Binding ChapterLevels}"
         SelectionMode="None"
         SeparatorVisibility="None">
-        <ListView.ItemTemplate >
+        <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Grid Margin="0,8" HorizontalOptions="Center">
-                        
+
                         <local:ItemsControl ItemsSource="{Binding Chapters}">
 
                             <local:ItemsControl.ItemTemplate>
@@ -49,28 +49,30 @@
 
 
                                             <ImageButton
-                                                IsEnabled="False"
                                                 Grid.Row="0"
                                                 Aspect="AspectFill"
                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ChapterViewModel}}, Path=GoToPageView}"
                                                 CommandParameter="{Binding _id}"
                                                 HeightRequest="96"
                                                 HorizontalOptions="Center"
+                                                IsEnabled="False"
                                                 Source="{Binding Icon}"
                                                 WidthRequest="96" />
                                         </Frame>
                                         <BoxView
-                                            
-                                            IsVisible="{Binding Locked}"
                                             Grid.Row="0"
                                             CornerRadius="100"
+                                            IsVisible="{Binding Locked}"
                                             Opacity="0.9"
                                             Color="#333" />
 
                                         <Label
                                             Grid.Row="1"
                                             Padding="0,3,0,0"
+                                            CharacterSpacing="0.6"
+                                            FontAttributes="None"
                                             HorizontalOptions="Center"
+                                            Opacity="0.9"
                                             Style="{StaticResource TextBody}"
                                             Text="{Binding Name}"
                                             TextColor="White" />
@@ -78,6 +80,7 @@
                                             Grid.Row="2"
                                             Padding="0,-2,0,0"
                                             HorizontalOptions="Center"
+                                            Opacity="0.8"
                                             Style="{StaticResource ProgressText}"
                                             Text="{Binding PagesResult}"
                                             TextColor="Beige" />
