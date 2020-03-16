@@ -64,21 +64,20 @@
                                     <Button
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
                                         CommandParameter="{Binding}"
-                                        Style="{StaticResource MainPageButton}"
-                                        Text="{Binding}"
-                                        />
+                                        Style="{StaticResource McqButton}"
+                                        Text="{Binding}" />
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <ContentView IsVisible="{Binding ShowCorrectMeButton}">
+            <!--<ContentView IsVisible="{Binding ShowCorrectMeButton}">
                 <Button
                     Command="{Binding CheckCorrectAnswer}"
                     Style="{StaticResource MainPageButton}"
                     Text="RÄTTA" />
-            </ContentView>
+            </ContentView>-->
             <ContentView IsVisible="{Binding ShowCorrection}">
                 <ContentView.Triggers>
                     <DataTrigger
