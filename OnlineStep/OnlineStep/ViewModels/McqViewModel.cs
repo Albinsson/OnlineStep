@@ -96,13 +96,7 @@ namespace OnlineStep.ViewModels
             public string Value { get; set; }
             public bool Selected { get; set; }
             public event PropertyChangedEventHandler PropertyChanged;
-            private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-            {
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-                }
-            }
+            
         }
         public ICommand GoToNextPage => new Command(() =>
         {
