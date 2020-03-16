@@ -9,7 +9,7 @@ using PropertyChanged;
 
 namespace OnlineStep.Services
 {
-    public static class UserProgress
+    public static class UserProgressDELETEME
     {
         public static int xp = 0;
         public static int userLevel = 1;

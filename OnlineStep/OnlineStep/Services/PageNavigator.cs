@@ -78,7 +78,6 @@ namespace OnlineStep.Services
         }
         public static void ChapterCompleted()
         {
-            //TODO: Update global user
             User.Instance.Xp += Xp;
             double correctAnswers = 0;
             foreach (bool pageResult in PageResults)
