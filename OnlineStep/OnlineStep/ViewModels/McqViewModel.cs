@@ -73,13 +73,13 @@ namespace OnlineStep.ViewModels
                 if (answer.Value.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
                 {
                     CorectOrWrongBool = true;
-                    CorrectOrWrongMessage = "Du har svarat rätt!";
+                    CorrectOrWrongMessage = "Rätt svar!";
                     PageNavigator.Xp += 10;
                 }
                 else
                 {
                     CorectOrWrongBool = false;
-                    CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
+                    CorrectOrWrongMessage = "Fel svar!";
                 }
             }
             PageNavigator.PageResults.Add(CorectOrWrongBool);

@@ -68,6 +68,7 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Rätt svar");
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Du har svarat rätt!";
+                CorrectOrWrongColor = "#00a0a1";
                 PageNavigator.Xp += 10;
             }
             else
@@ -76,6 +77,7 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
+                CorrectOrWrongColor = "#9b4900";
 
             }
             PageNavigator.PageResults.Add(CorectOrWrongBool);
@@ -159,6 +161,9 @@ namespace OnlineStep.ViewModels
         public List<ClozeRow> ClozeGuiHelper { get; set; }
 
         public string CorrectOrWrongMessage { set; get; }
+
+        public string CorrectOrWrongColor { set; get; }
+
         public bool CorectOrWrongBool { set; get; }
         public bool ShowCorrection { set; get; }
         public bool ShowCorrectMeButton { set; get; }

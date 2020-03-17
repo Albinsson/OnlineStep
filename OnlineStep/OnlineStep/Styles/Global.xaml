@@ -47,7 +47,7 @@
         <Setter Property="Margin" Value="8" />
         <Setter Property="BorderRadius" Value="8" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
     </Style>
     <Style x:Key="McqButtonSelected" TargetType="{x:Type Button}">
         <Setter Property="WidthRequest" Value="350" />
@@ -58,7 +58,7 @@
         <Setter Property="Margin" Value="8" />
         <Setter Property="BorderRadius" Value="8" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
     </Style>
     <Style x:Key="CorrectAnswer" TargetType="{x:Type Button}">
         <Setter Property="WidthRequest" Value="350" />
@@ -69,7 +69,7 @@
         <Setter Property="Margin" Value="8" />
         <Setter Property="BorderRadius" Value="8" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
     </Style>
     <Style x:Key="WrongAnswer" TargetType="{x:Type Button}">
         <Setter Property="WidthRequest" Value="350" />
@@ -80,7 +80,7 @@
         <Setter Property="Margin" Value="8" />
         <Setter Property="BorderRadius" Value="8" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
         <Setter Property="Opacity" Value="1.0" />
     </Style>
 

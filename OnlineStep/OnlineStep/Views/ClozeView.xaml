@@ -96,7 +96,7 @@
                     HorizontalOptions="Center"
                     Opacity="1.0"
                     Text="{Binding CorrectOrWrongMessage}"
-                    TextColor="Black"
+                    TextColor="{Binding CorrectOrWrongColor}"
                     VerticalOptions="Start" />
 
                 <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA">
