@@ -3,6 +3,7 @@
     x:Class="OnlineStep.Views.ChapterView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:behaviours="clr-namespace:OnlineStep.Assets"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:local="clr-namespace:OnlineStep.Assets;assembly=OnlineStep"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -13,6 +14,10 @@
 
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
+        <ResourceDictionary>
+            <behaviours:ZeroToFalseConverter x:Key="ZeroToFalse" />
+            <behaviours:ZeroToTrueConverter x:Key="ZeroToTrue" />
+        </ResourceDictionary>
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
     <ListView
@@ -76,11 +81,30 @@
                                             Style="{StaticResource TextBody}"
                                             Text="{Binding Name}"
                                             TextColor="White" />
-                                        <ProgressBar 
-                                            Progress="{Binding PagesResult}"
+
+                                        <ProgressBar
                                             Grid.Row="2"
-                                            HorizontalOptions="Center"                                            
-                                            Style="{StaticResource ChapterViewProgressBar}"/>
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding PagesResult, Converter={StaticResource ZeroToTrue}}"
+                                            Opacity="0.9"
+                                            Progress="{Binding PagesResult}"
+                                            ScaleY="2"
+                                            Style="{StaticResource ChapterViewProgressBar}" />
+
+
+                                        <Label
+                                            Grid.Row="2"
+                                            Padding="0,3,0,0"
+                                            CharacterSpacing="0.6"
+                                            FontAttributes="None"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding PagesResult, Converter={StaticResource ZeroToFalse}}"
+                                            Opacity="0.9"
+                                            Style="{StaticResource TextBody}"
+                                            Text="0/6"
+                                            TextColor="White" />
+
+
                                     </Grid>
                                 </DataTemplate>
                             </local:ItemsControl.ItemTemplate>

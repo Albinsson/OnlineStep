@@ -9,5 +9,11 @@ namespace OnlineStep.Models
         public List<Chapter> Chapters { get; set; }
         public string Level { get; set; }
         public bool Locked { get; set; }
+
+        public bool UnLocked {
+            get {
+                return !Locked;
+            } 
+        }
     }
 }

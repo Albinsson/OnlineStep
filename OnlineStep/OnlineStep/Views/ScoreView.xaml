@@ -17,6 +17,7 @@
             <StackLayout Orientation="Vertical">
 
 
+
                 <Frame
                     Margin="16,16,16,0"
                     Padding="0"
@@ -25,6 +26,25 @@
                     <ProgressBar Progress="{Binding Progress}" Style="{StaticResource Key=ProgressBar}" />
                 </Frame>
 
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Vertical">
+                    <Label
+                        Margin="24,4,24,0"
+                        FontAttributes="Bold"
+                        FontSize="42"
+                        HorizontalOptions="CenterAndExpand"
+                        Opacity="0.85"
+                        Text="Grattis!"
+                        TextColor="#333333" />
+
+                    <Label
+                        Margin="24,0,24,0"
+                        FontAttributes="Bold"
+                        FontSize="22"
+                        HorizontalOptions="CenterAndExpand"
+                        Opacity="0.85"
+                        Text="Ny nivå upplåst"
+                        TextColor="#333333" />
+                </StackLayout>
 
 
 
@@ -76,7 +96,7 @@
 
 
                 <StackLayout Orientation="Horizontal" />
-                <Label HorizontalOptions="CenterAndExpand" Text="{Binding ResultMessage}" />
+
 
 
                 <StackLayout VerticalOptions="EndAndExpand">
