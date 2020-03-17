@@ -41,14 +41,14 @@
             <Button
                 Command="{Binding GoToCourses}"
                 Style="{StaticResource MainPageButton}"
-                Text="Get started" />
+                Text="Kom igång" />
 
             <Label
                 FontAttributes="None"
                 FontSize="18"
                 HorizontalOptions="CenterAndExpand"
                 Style="{DynamicResource TextSubhead}"
-                Text="LOGIN"
+                Text="Logga in"
                 TextDecorations="Underline"
                 VerticalOptions="End" />
 

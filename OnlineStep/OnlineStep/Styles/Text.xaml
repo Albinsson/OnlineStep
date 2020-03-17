@@ -21,13 +21,13 @@
     <Style x:Key="TextSubhead" TargetType="Label">
         <Setter Property="TextColor" Value="White" />
         <Setter Property="CharacterSpacing" Value="1.2" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
         <Setter Property="FontFamily" Value="Segoe UI" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeSubhead}" />
     </Style>
     <Style x:Key="TextBody" TargetType="Label">
         <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
         <Setter Property="TextColor" Value="Black" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
