@@ -36,7 +36,7 @@
         <Setter Property="Margin" Value="8" />
         <Setter Property="BorderRadius" Value="8" />
         <Setter Property="TextColor" Value="White" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="" />
     </Style>
     <Style x:Key="McqButton" TargetType="{x:Type Button}">
         <Setter Property="WidthRequest" Value="350" />
