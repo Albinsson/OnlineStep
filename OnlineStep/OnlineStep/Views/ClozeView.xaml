@@ -13,22 +13,35 @@
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
 
-    <StackLayout>
+    <StackLayout Opacity="1.0">
         <StackLayout Orientation="Vertical" VerticalOptions="Start">
             <Frame
                 Margin="16,16,16,0"
                 Padding="0"
                 CornerRadius="8"
                 IsClippedToBounds="True">
-                <ProgressBar Progress="{Binding Progress}" Style="{StaticResource Key=ProgressBar}" />
+                <ProgressBar
+                    Progress="{Binding Progress}"
+                    ProgressColor="#FFB74D"
+                    Style="{StaticResource Key=ProgressBar}" />
             </Frame>
+            <Label
+                Margin="20,4,16,0"
+                FontAttributes="Bold"
+                FontSize="22"
+                HorizontalOptions="Center"
+                Opacity="0.85"
+                Text="Vilket ord saknas?"
+                TextColor="#333333"
+                VerticalOptions="Start" />
             <Image
-                Margin="16"
+                Margin="12"
                 Aspect="AspectFit"
                 HeightRequest="176"
                 Source="{Binding Image}" />
 
         </StackLayout>
+
 
         <ListView
             HasUnevenRows="True"
@@ -68,12 +81,18 @@
 
         <ContentView IsVisible="{Binding ShowCorrectMeButton}">
             <Button
+                Margin="16,16,16,8"
                 Command="{Binding CheckCorrectAnswer}"
                 Style="{StaticResource MainPageButton}"
                 Text="RÄTTA" />
         </ContentView>
 
-        <ContentView IsVisible="{Binding ShowCorrection}">
+
+        <ContentView
+            Margin="0"
+            BackgroundColor="{Binding CorrectOrWrongLight}"
+            IsVisible="{Binding ShowCorrection}"
+            Opacity="1.0">
             <ContentView.Triggers>
                 <DataTrigger
                     Binding="{Binding CorectOrWrongBool}"
@@ -89,17 +108,25 @@
                 </DataTrigger>
             </ContentView.Triggers>
             <StackLayout VerticalOptions="End">
+
+
                 <Label
-                    Margin="16"
+                    Margin="16,0,16,0"
                     FontAttributes="Bold"
                     FontSize="24"
-                    HorizontalOptions="Center"
-                    Opacity="1.0"
+                    HorizontalOptions="Start"
                     Text="{Binding CorrectOrWrongMessage}"
                     TextColor="{Binding CorrectOrWrongColor}"
                     VerticalOptions="Start" />
 
-                <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA">
+
+                <Button
+                    Margin="16,16,16,8"
+                    BackgroundColor="{Binding CorrectOrWrongColor}"
+                    Command="{Binding GoToNextPage}"
+                    CornerRadius="8"
+                    FontAttributes="None"
+                    Text="Fortsätt">
                     <Button.Triggers>
                         <DataTrigger
                             Binding="{Binding CorectOrWrongBool}"

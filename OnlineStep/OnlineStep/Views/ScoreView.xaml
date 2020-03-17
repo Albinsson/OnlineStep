@@ -81,6 +81,7 @@
 
                 <StackLayout VerticalOptions="EndAndExpand">
                     <Button
+                        Margin="16,16,16,8"
                         Command="{Binding GoToChapter}"
                         Style="{StaticResource MainPageButton}"
                         Text="Fortsätt" />

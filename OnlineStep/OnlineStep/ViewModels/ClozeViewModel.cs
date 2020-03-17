@@ -64,20 +64,22 @@ namespace OnlineStep.ViewModels
             Debug.WriteLine(GuessedWord);
             if (GuessedWord.Equals(_missingWord, StringComparison.InvariantCultureIgnoreCase))
             {
-                //TODO Logic for right answer
+                //Logic for right answer
                 Debug.WriteLine("Rätt svar");
                 CorectOrWrongBool = true;
-                CorrectOrWrongMessage = "Du har svarat rätt!";
-                CorrectOrWrongColor = "#00a0a1";
+                CorrectOrWrongMessage = "Rätt svar!";
+                CorrectOrWrongColor = "#33691E";
+                CorrectOrWrongLight = "#9CCC65";
                 PageNavigator.Xp += 10;
             }
             else
             {
-                //TODO logic for wrong answer
+                //Logic for wrong answer
                 Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
-                CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
-                CorrectOrWrongColor = "#9b4900";
+                CorrectOrWrongMessage = "Fel svar";
+                CorrectOrWrongColor = "#EF6C00";
+                CorrectOrWrongLight = "#FFB74D";
 
             }
             PageNavigator.PageResults.Add(CorectOrWrongBool);
@@ -163,6 +165,8 @@ namespace OnlineStep.ViewModels
         public string CorrectOrWrongMessage { set; get; }
 
         public string CorrectOrWrongColor { set; get; }
+
+        public string CorrectOrWrongLight { set; get; }
 
         public bool CorectOrWrongBool { set; get; }
         public bool ShowCorrection { set; get; }
