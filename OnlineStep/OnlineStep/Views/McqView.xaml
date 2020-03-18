@@ -7,10 +7,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
+    xmlns:behaviours="clr-namespace:OnlineStep.Assets"
     mc:Ignorable="d">
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
+        <ResourceDictionary>
+            <behaviours:BoolConverter x:Key="BoolConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
@@ -81,13 +85,83 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <!--<ContentView IsVisible="{Binding ShowCorrectMeButton}">
+
+
+            <ContentView IsVisible="{Binding ShowCorrectMeButton}">
                 <Button
-                    Command="{Binding CheckCorrectAnswer}"
-                    Style="{StaticResource MainPageButton}"
-                    Text="RÄTTA" />
-            </ContentView>-->
-            <ContentView IsVisible="{Binding ShowCorrection}">
+                Margin="16,16,16,8"
+                Command="{Binding CheckCorrectAnswer}"
+                Text="RÄTTA">
+                    <Button.Triggers>
+                        <DataTrigger
+                            Binding="{Binding AnythingSelected, Converter={StaticResource BoolConverter}}"
+                            TargetType="Button"
+                            Value="true">
+                            <Setter Property="Style" Value="{StaticResource DisabledButton}" />
+                        </DataTrigger>
+                        <DataTrigger
+                            Binding="{Binding AnythingSelected, Converter={StaticResource BoolConverter}}"
+                            TargetType="Button"
+                            Value="false">
+                            <Setter Property="Style" Value="{StaticResource MainPageButton}" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </ContentView>
+            
+            
+            <ContentView
+            Margin="0"
+            IsVisible="{Binding ShowCorrection}"
+            Opacity="1.0">
+                <ContentView.Triggers>
+                    <DataTrigger
+                    Binding="{Binding CorectOrWrongBool}"
+                    TargetType="ContentView"
+                    Value="true">
+                        <Setter Property="Style" Value="{StaticResource Success}" />
+                    </DataTrigger>
+                    <DataTrigger
+                    Binding="{Binding CorectOrWrongBool}"
+                    TargetType="ContentView"
+                    Value="false">
+                        <Setter Property="Style" Value="{StaticResource Fail}" />
+                    </DataTrigger>
+                </ContentView.Triggers>
+                <StackLayout VerticalOptions="End">
+
+                    <Label
+                    Margin="16,0,16,0"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="Start"
+                    Text="{Binding CorrectOrWrongMessage}"
+                    VerticalOptions="Start" />
+
+                    <Button
+                    Margin="16,16,16,8"
+                    Command="{Binding GoToNextPage}"
+                    FontAttributes="None"
+                    Text="Fortsätt">
+                        <Button.Triggers>
+                            <DataTrigger
+                            Binding="{Binding CorectOrWrongBool}"
+                            TargetType="Button"
+                            Value="true">
+                                <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
+                            </DataTrigger>
+                            <DataTrigger
+                            Binding="{Binding CorectOrWrongBool}"
+                            TargetType="Button"
+                            Value="false">
+                                <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+            </ContentView>
+
+            <!--<ContentView IsVisible="{Binding ShowCorrection}">
                 <ContentView.Triggers>
                     <DataTrigger
                         Binding="{Binding CorectOrWrongBool}"
@@ -134,7 +208,7 @@
                         </Button>
                     </Frame>
                 </StackLayout>
-            </ContentView>
+            </ContentView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

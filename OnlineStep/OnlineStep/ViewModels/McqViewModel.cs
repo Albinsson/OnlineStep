@@ -35,6 +35,7 @@ namespace OnlineStep.ViewModels
 
             ShowCorrection = false;
             ShowCorrectMeButton = true;
+            AnythingSelected = false;
         }
         private void CreateAnswerList()
         {
@@ -54,38 +55,51 @@ namespace OnlineStep.ViewModels
         public string Question { get; set; }
         public string CorrectOrWrongMessage { get; set; }
         public bool CorectOrWrongBool { get; set; }
+        public bool AnythingSelected { get; set; }
         public bool ShowCorrection { get; set; }
         public bool ShowCorrectMeButton { get; set; }
-
         public ICommand SelectAnswer => new Command<string>((commandAnswer) =>
         {
-            if (!_answers.Any(answer => answer.Selected))
+            if (ShowCorrectMeButton)
             {
-                foreach (var answer in _answers.Where(answer => answer.Value.Equals(commandAnswer)).Select(answer => answer)){ answer.Selected = true; }
-                CheckCorrectAnswer();
+                for (int i = 0; i < _answers.Count; i++)
+                {
+                    _answers[i].Selected = false;
+                }
+                foreach (var answer in _answers.Where(answer => answer.Value.Equals(commandAnswer)).Select(answer => answer)) { answer.Selected = true; }
+                AnythingSelected = true;
             }
         });
 
-        public void CheckCorrectAnswer()
+        public ICommand CheckCorrectAnswer => new Command(() =>
         {
-            foreach (var answer in _answers.Where(answer => answer.Selected).Select(answer => answer))
+            if (AnythingSelected)
             {
-                if (answer.Value.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+                foreach (var answer in _answers.Where(answer => answer.Selected).Select(answer => answer))
                 {
-                    CorectOrWrongBool = true;
-                    CorrectOrWrongMessage = "Rätt svar!";
-                    PageNavigator.Xp += 10;
+                    if (answer.Value.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        //Logic for right answer
+                        Debug.WriteLine("Rätt svar");
+                        CorectOrWrongBool = true;
+                        CorrectOrWrongMessage = "Rätt svar!";
+                        PageNavigator.Xp += 10;
+                    }
+                    else
+                    {
+                        //Logic for wrong answer
+                        Debug.WriteLine("Fel svar");
+                        CorectOrWrongBool = false;
+                        CorrectOrWrongMessage = "Fel svar";
+
+                    }
                 }
-                else
-                {
-                    CorectOrWrongBool = false;
-                    CorrectOrWrongMessage = "Fel svar!";
-                }
+                PageNavigator.PageResults.Add(CorectOrWrongBool);
+                ShowCorrection = true;
+                ShowCorrectMeButton = false;
             }
-            PageNavigator.PageResults.Add(CorectOrWrongBool);
-            ShowCorrection = true;
-            ShowCorrectMeButton = false;
-        }
+            
+        });
         
         
         //Answer keeps track on the selected answer

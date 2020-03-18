@@ -68,8 +68,6 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Rätt svar");
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Rätt svar!";
-                CorrectOrWrongColor = "#33691E";
-                CorrectOrWrongLight = "#9CCC65";
                 PageNavigator.Xp += 10;
             }
             else
@@ -78,8 +76,6 @@ namespace OnlineStep.ViewModels
                 Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Fel svar";
-                CorrectOrWrongColor = "#EF6C00";
-                CorrectOrWrongLight = "#FFB74D";
 
             }
             PageNavigator.PageResults.Add(CorectOrWrongBool);
@@ -161,13 +157,7 @@ namespace OnlineStep.ViewModels
             return displayCloze;
         }
         public List<ClozeRow> ClozeGuiHelper { get; set; }
-
         public string CorrectOrWrongMessage { set; get; }
-
-        public string CorrectOrWrongColor { set; get; }
-
-        public string CorrectOrWrongLight { set; get; }
-
         public bool CorectOrWrongBool { set; get; }
         public bool ShowCorrection { set; get; }
         public bool ShowCorrectMeButton { set; get; }
@@ -176,9 +166,7 @@ namespace OnlineStep.ViewModels
         public string SentencesPartOne => _sentences[0];
         public string SentencesPartTwo => _sentences[1];
         public string EntryPlaceholder { get; set; }
-
         public string GuessedWord { set; get; }
-
         public double Progress => PageNavigator.GetProgress();
     }
 

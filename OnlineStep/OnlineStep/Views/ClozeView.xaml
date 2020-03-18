@@ -90,7 +90,6 @@
 
         <ContentView
             Margin="0"
-            BackgroundColor="{Binding CorrectOrWrongLight}"
             IsVisible="{Binding ShowCorrection}"
             Opacity="1.0">
             <ContentView.Triggers>
@@ -116,13 +115,11 @@
                     FontSize="24"
                     HorizontalOptions="Start"
                     Text="{Binding CorrectOrWrongMessage}"
-                    TextColor="{Binding CorrectOrWrongColor}"
                     VerticalOptions="Start" />
 
 
                 <Button
                     Margin="16,16,16,8"
-                    BackgroundColor="{Binding CorrectOrWrongColor}"
                     Command="{Binding GoToNextPage}"
                     CornerRadius="8"
                     FontAttributes="None"
