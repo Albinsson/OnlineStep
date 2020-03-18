@@ -33,7 +33,7 @@
             <Label
                 Margin="20,4,16,0"
                 FontAttributes="Bold"
-                FontSize="22"
+                FontSize="28"
                 HorizontalOptions="Center"
                 Opacity="0.85"
                 Text="Vilket svar är rätt?"
@@ -44,17 +44,38 @@
                 Margin="12"
                 HeightRequest="176"
                 HorizontalOptions="Center"
-                Source="bicycles.jpg" />
+                Source="currency.png" />
 
 
+
+            <!--<Label
+                Margin="8"
+                FontSize="22"
+                Text="{Binding Question}"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />-->
+
+
+            <!--  Hardcodded text for the presentation to get it centered  -->
 
             <Label
+                Margin="0"
                 FontSize="22"
                 HorizontalOptions="Center"
-                Text="{Binding Question}" />
+                Text="You need to exchange money if you go "
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+
+            <Label
+                Margin="0,-4,0,0"
+                FontSize="22"
+                HorizontalOptions="Center"
+                Text="to a country that uses a different..."
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+
 
         </StackLayout>
-
 
 
 

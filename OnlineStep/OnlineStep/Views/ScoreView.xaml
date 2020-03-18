@@ -30,16 +30,16 @@
                     <Label
                         Margin="24,4,24,0"
                         FontAttributes="Bold"
-                        FontSize="42"
+                        FontSize="28"
                         HorizontalOptions="CenterAndExpand"
-                        Opacity="0.95"
+                        Opacity="0.85"
                         Text="Grattis!"
                         TextColor="#333333" />
 
                     <Label
-                        Margin="24,-8,24,0"
+                        Margin="24,-12,24,0"
                         FontAttributes="None"
-                        FontSize="28"
+                        FontSize="22"
                         HorizontalOptions="CenterAndExpand"
                         Opacity="0.85"
                         Text="Ny nivå upplåst"
@@ -64,15 +64,15 @@
                     <StackLayout Margin="0" Orientation="Vertical">
                         <Label
                             FontAttributes="Bold"
-                            FontSize="36"
+                            FontSize="28"
                             HorizontalOptions="Center"
                             Opacity="0.85"
                             Style="{StaticResource TextHeadline}"
                             Text="XP"
                             TextColor="#333333" />
                         <Label
-                            Margin="-4,-4,0,0"
-                            FontSize="28"
+                            Margin="-4,-8,0,0"
+                            FontSize="22"
                             HorizontalOptions="Center"
                             Opacity="0.85"
                             Style="{StaticResource TextHeadline}"
@@ -83,15 +83,15 @@
                     <StackLayout Margin="0" Orientation="Vertical">
                         <Label
                             FontAttributes="Bold"
-                            FontSize="36"
+                            FontSize="28"
                             HorizontalOptions="Center"
-                            Opacity="0.95"
+                            Opacity="0.85"
                             Style="{StaticResource TextHeadline}"
                             Text="FRÅGOR"
                             TextColor="#333333" />
                         <Label
-                            Margin="-4,-4,0,0"
-                            FontSize="28"
+                            Margin="-4,-8,0,0"
+                            FontSize="22"
                             HorizontalOptions="Center"
                             Opacity="0.85"
                             Text="{Binding ChapterResult}"
