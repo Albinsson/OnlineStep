@@ -4,11 +4,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:behaviours="clr-namespace:OnlineStep.Assets"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="clr-namespace:OnlineStep.ViewModels;assembly=OnlineStep"
-    xmlns:behaviours="clr-namespace:OnlineStep.Assets"
     mc:Ignorable="d">
+
     <ContentPage.Resources>
         <ResourceDictionary Source="/Styles/Global.xaml" />
         <ResourceDictionary Source="/Styles/Text.xaml" />
@@ -16,121 +17,134 @@
             <behaviours:BoolConverter x:Key="BoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout>
-            <StackLayout Orientation="Vertical" VerticalOptions="Start">
-                <Frame
-                    Margin="16,16,16,0"
-                    Padding="0"
-                    CornerRadius="8"
-                    IsClippedToBounds="True">
-                    <ProgressBar Progress="{Binding Progress}" Style="{StaticResource ProgressBar}" />
-                </Frame>
-                <Frame
-                    Margin="16"
-                    Padding="0"
-                    CornerRadius="8"
-                    HeightRequest="200"
-                    IsClippedToBounds="True"
-                    WidthRequest="400">
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="200"
-                        Source="wave.jpg"
-                        WidthRequest="400" />
-                </Frame>
-            </StackLayout>
-            <StackLayout
-                Margin="16,0"
-                HorizontalOptions="Center"
-                Orientation="Vertical">
-                <Label Text="{Binding Question}" />
-            </StackLayout>
-            <StackLayout VerticalOptions="CenterAndExpand" />
-            <StackLayout
-                HorizontalOptions="Center"
-                Orientation="Horizontal"
-                VerticalOptions="End">
-                <ListView
-                    BackgroundColor="Transparent"
-                    HasUnevenRows="True"
-                    ItemsSource="{Binding Answers}"
-                    SeparatorVisibility="None"
-                    SelectionMode="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame
-                                    Margin="16"
-                                    Padding="0"
-                                    CornerRadius="8" 
-                                    IsClippedToBounds="True">
-                                    <Button
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
-                                        CommandParameter="{Binding Value}"
-                                        Style="{StaticResource McqButton}"
-                                        Text="{Binding Value}">
-                                        <Button.Triggers>
-                                            <DataTrigger
-                                                Binding="{Binding Selected}" 
-                                                TargetType="Button"
-                                                Value="true">
-                                                <Setter Property="Style" Value="{StaticResource McqButtonSelected}" />
-                                            </DataTrigger>
-                                        </Button.Triggers>
-                                    </Button>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+
+    <StackLayout>
 
 
-            <ContentView IsVisible="{Binding ShowCorrectMeButton}">
-                <Button
+        <StackLayout Orientation="Vertical" VerticalOptions="Start">
+            <Frame
+                Margin="16,16,16,0"
+                Padding="0"
+                CornerRadius="8"
+                IsClippedToBounds="True">
+                <ProgressBar Progress="{Binding Progress}" Style="{StaticResource ProgressBar}" />
+            </Frame>
+
+            <Label
+                Margin="20,4,16,0"
+                FontAttributes="Bold"
+                FontSize="22"
+                HorizontalOptions="Center"
+                Opacity="0.85"
+                Text="Vilket svar är rätt?"
+                TextColor="#333333"
+                VerticalOptions="Start" />
+
+            <Image
+                Margin="12"
+                HeightRequest="176"
+                HorizontalOptions="Center"
+                Source="bicycles.jpg" />
+
+
+
+            <Label
+                FontSize="22"
+                HorizontalOptions="Center"
+                Text="{Binding Question}" />
+
+        </StackLayout>
+
+
+
+
+
+        <ListView
+            Margin="8,0,8,0"
+            BackgroundColor="Transparent"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Answers}"
+            SelectionMode="None"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame
+                            Margin="0"
+                            Padding="0"
+                            CornerRadius="8"
+                            IsClippedToBounds="True">
+                            <Button
+                                Margin="8,12,8,0"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:McqViewModel}}, Path=SelectAnswer}"
+                                CommandParameter="{Binding Value}"
+                                CornerRadius="8"
+                                Style="{StaticResource McqButton}"
+                                Text="{Binding Value}">
+                                <Button.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Selected}"
+                                        TargetType="Button"
+                                        Value="true">
+                                        <Setter Property="Style" Value="{StaticResource McqButtonSelected}" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+        <ContentView IsVisible="{Binding ShowCorrectMeButton}">
+
+            <Button
                 Margin="16,16,16,8"
                 Command="{Binding CheckCorrectAnswer}"
+                CornerRadius="8"
                 Text="RÄTTA">
-                    <Button.Triggers>
-                        <DataTrigger
-                            Binding="{Binding AnythingSelected, Converter={StaticResource BoolConverter}}"
-                            TargetType="Button"
-                            Value="true">
-                            <Setter Property="Style" Value="{StaticResource DisabledButton}" />
-                        </DataTrigger>
-                        <DataTrigger
-                            Binding="{Binding AnythingSelected, Converter={StaticResource BoolConverter}}"
-                            TargetType="Button"
-                            Value="false">
-                            <Setter Property="Style" Value="{StaticResource MainPageButton}" />
-                        </DataTrigger>
-                    </Button.Triggers>
-                </Button>
-            </ContentView>
-            
-            
-            <ContentView
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding AnythingSelected, Converter={StaticResource BoolConverter}}"
+                        TargetType="Button"
+                        Value="true">
+                        <Setter Property="Style" Value="{StaticResource DisabledButton}" />
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding AnythingSelected, Converter={StaticResource BoolConverter}}"
+                        TargetType="Button"
+                        Value="false">
+                        <Setter Property="Style" Value="{StaticResource MainPageButton}" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+        </ContentView>
+
+
+        <ContentView
             Margin="0"
             IsVisible="{Binding ShowCorrection}"
             Opacity="1.0">
-                <ContentView.Triggers>
-                    <DataTrigger
+            <ContentView.Triggers>
+                <DataTrigger
                     Binding="{Binding CorectOrWrongBool}"
                     TargetType="ContentView"
                     Value="true">
-                        <Setter Property="Style" Value="{StaticResource Success}" />
-                    </DataTrigger>
-                    <DataTrigger
+                    <Setter Property="Style" Value="{StaticResource Success}" />
+                </DataTrigger>
+                <DataTrigger
                     Binding="{Binding CorectOrWrongBool}"
                     TargetType="ContentView"
                     Value="false">
-                        <Setter Property="Style" Value="{StaticResource Fail}" />
-                    </DataTrigger>
-                </ContentView.Triggers>
-                <StackLayout VerticalOptions="End">
+                    <Setter Property="Style" Value="{StaticResource Fail}" />
+                </DataTrigger>
+            </ContentView.Triggers>
+            <StackLayout VerticalOptions="End">
 
-                    <Label
+                <Label
                     Margin="16,0,16,0"
                     FontAttributes="Bold"
                     FontSize="24"
@@ -138,77 +152,28 @@
                     Text="{Binding CorrectOrWrongMessage}"
                     VerticalOptions="Start" />
 
-                    <Button
+                <Button
                     Margin="16,16,16,8"
                     Command="{Binding GoToNextPage}"
+                    CornerRadius="8"
                     FontAttributes="None"
                     Text="Fortsätt">
-                        <Button.Triggers>
-                            <DataTrigger
+                    <Button.Triggers>
+                        <DataTrigger
                             Binding="{Binding CorectOrWrongBool}"
                             TargetType="Button"
                             Value="true">
-                                <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
-                            </DataTrigger>
-                            <DataTrigger
+                            <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
+                        </DataTrigger>
+                        <DataTrigger
                             Binding="{Binding CorectOrWrongBool}"
                             TargetType="Button"
                             Value="false">
-                                <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
-                            </DataTrigger>
-                        </Button.Triggers>
-                    </Button>
-                </StackLayout>
-            </ContentView>
-
-            <!--<ContentView IsVisible="{Binding ShowCorrection}">
-                <ContentView.Triggers>
-                    <DataTrigger
-                        Binding="{Binding CorectOrWrongBool}"
-                        TargetType="ContentView"
-                        Value="true">
-                        <Setter Property="Style" Value="{StaticResource Success}" />
-                    </DataTrigger>
-                    <DataTrigger
-                        Binding="{Binding CorectOrWrongBool}"
-                        TargetType="ContentView"
-                        Value="false">
-                        <Setter Property="Style" Value="{StaticResource Fail}" />
-                    </DataTrigger>
-                </ContentView.Triggers>
-                <StackLayout VerticalOptions="End">
-                    <Label
-                        Margin="16"
-                        FontAttributes="Bold"
-                        FontSize="24"
-                        HorizontalOptions="Center"
-                        Opacity="1.0"
-                        Text="{Binding CorrectOrWrongMessage}"
-                        VerticalOptions="Start" />
-                    <Frame
-                        Margin="16"
-                        Padding="0"
-                        CornerRadius="8"
-                        IsClippedToBounds="True">
-                        <Button Command="{Binding GoToNextPage}" Text="GÅ TILL NÄSTA">
-                            <Button.Triggers>
-                                <DataTrigger
-                                    Binding="{Binding CorectOrWrongBool}"
-                                    TargetType="Button"
-                                    Value="true">
-                                    <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
-                                </DataTrigger>
-                                <DataTrigger
-                                    Binding="{Binding CorectOrWrongBool}"
-                                    TargetType="Button"
-                                    Value="false">
-                                    <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
-                                </DataTrigger>
-                            </Button.Triggers>
-                        </Button>
-                    </Frame>
-                </StackLayout>
-            </ContentView>-->
-        </StackLayout>
-    </ContentPage.Content>
+                            <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </ContentView>
+    </StackLayout>
 </ContentPage>

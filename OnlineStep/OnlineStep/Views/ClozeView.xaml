@@ -13,61 +13,63 @@
         <ResourceDictionary Source="/Styles/Text.xaml" />
     </ContentPage.Resources>
 
-    <StackLayout Opacity="1.0">
+    <StackLayout>
+
+
         <StackLayout Orientation="Vertical" VerticalOptions="Start">
             <Frame
-                Margin="16,16,16,0"
-                Padding="0"
-                CornerRadius="8"
-                IsClippedToBounds="True">
+                    Margin="16,16,16,0"
+                    Padding="0"
+                    CornerRadius="8"
+                    IsClippedToBounds="True">
                 <ProgressBar
-                    Progress="{Binding Progress}"
-                    ProgressColor="#FFB74D"
-                    Style="{StaticResource Key=ProgressBar}" />
+                        Progress="{Binding Progress}"
+                        ProgressColor="#FFB74D"
+                        Style="{StaticResource Key=ProgressBar}" />
             </Frame>
             <Label
-                Margin="20,4,16,0"
-                FontAttributes="Bold"
-                FontSize="22"
-                HorizontalOptions="Center"
-                Opacity="0.85"
-                Text="Vilket ord saknas?"
-                TextColor="#333333"
-                VerticalOptions="Start" />
+                    Margin="20,4,16,0"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="Center"
+                    Opacity="0.85"
+                    Text="Vilket ord saknas?"
+                    TextColor="#333333"
+                    VerticalOptions="Start" />
             <Image
-                Margin="12"
-                Aspect="AspectFit"
-                HeightRequest="176"
-                Source="{Binding Image}" />
+                    Margin="12"
+                    Aspect="AspectFit"
+                    HeightRequest="176"
+                    Source="{Binding Image}" />
 
         </StackLayout>
 
 
         <ListView
-            HasUnevenRows="True"
-            ItemsSource="{Binding ClozeGuiHelper}"
-            Opacity="1"
-            SelectionMode="None"
-            SeparatorVisibility="None">
+                HasUnevenRows="True"
+                ItemsSource="{Binding ClozeGuiHelper}"
+                Opacity="1"
+                SelectionMode="None"
+                SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ContentView Margin="0,0,0,0">
                             <StackLayout
-                                Margin="0,0,0,0"
-                                HorizontalOptions="CenterAndExpand"
-                                Opacity="1"
-                                Orientation="Horizontal">
+                                    Margin="0,0,0,0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Opacity="1"
+                                    Orientation="Horizontal">
 
                                 <Label FontSize="22" Text="{Binding SentenceFirstPart}" />
 
                                 <Entry
-                                    Margin="-6,0,0,-8"
-                                    FontSize="16"
-                                    HeightRequest="34"
-                                    Keyboard="Plain"
-                                    Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ClozeViewModel}}, Path=GuessedWord}"
-                                    WidthRequest="{Binding EntryLenght}" />
+                                        Margin="-6,0,0,-8"
+                                        FontSize="16"
+                                        HeightRequest="34"
+                                        Keyboard="Plain"
+                                        Text="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ClozeViewModel}}, Path=GuessedWord}"
+                                        WidthRequest="{Binding EntryLenght}" />
 
                                 <Label Text="{Binding SentenceSecondPart}" />
 
@@ -81,28 +83,28 @@
 
         <ContentView IsVisible="{Binding ShowCorrectMeButton}">
             <Button
-                Margin="16,16,16,8"
-                Command="{Binding CheckCorrectAnswer}"
-                Style="{StaticResource MainPageButton}"
-                Text="RÄTTA" />
+                    Margin="16,16,16,8"
+                    Command="{Binding CheckCorrectAnswer}"
+                    Style="{StaticResource MainPageButton}"
+                    Text="RÄTTA" />
         </ContentView>
 
 
         <ContentView
-            Margin="0"
-            IsVisible="{Binding ShowCorrection}"
-            Opacity="1.0">
+                Margin="0"
+                IsVisible="{Binding ShowCorrection}"
+                Opacity="1.0">
             <ContentView.Triggers>
                 <DataTrigger
-                    Binding="{Binding CorectOrWrongBool}"
-                    TargetType="ContentView"
-                    Value="true">
+                        Binding="{Binding CorectOrWrongBool}"
+                        TargetType="ContentView"
+                        Value="true">
                     <Setter Property="Style" Value="{StaticResource Success}" />
                 </DataTrigger>
                 <DataTrigger
-                    Binding="{Binding CorectOrWrongBool}"
-                    TargetType="ContentView"
-                    Value="false">
+                        Binding="{Binding CorectOrWrongBool}"
+                        TargetType="ContentView"
+                        Value="false">
                     <Setter Property="Style" Value="{StaticResource Fail}" />
                 </DataTrigger>
             </ContentView.Triggers>
@@ -110,37 +112,40 @@
 
 
                 <Label
-                    Margin="16,0,16,0"
-                    FontAttributes="Bold"
-                    FontSize="24"
-                    HorizontalOptions="Start"
-                    Text="{Binding CorrectOrWrongMessage}"
-                    VerticalOptions="Start" />
+                        Margin="16,0,16,0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="Start"
+                        Text="{Binding CorrectOrWrongMessage}"
+                        VerticalOptions="Start" />
 
 
                 <Button
-                    Margin="16,16,16,8"
-                    Command="{Binding GoToNextPage}"
-                    CornerRadius="8"
-                    FontAttributes="None"
-                    Text="Fortsätt">
+                        Margin="16,16,16,8"
+                        Command="{Binding GoToNextPage}"
+                        CornerRadius="8"
+                        FontAttributes="None"
+                        Text="Fortsätt">
                     <Button.Triggers>
                         <DataTrigger
-                            Binding="{Binding CorectOrWrongBool}"
-                            TargetType="Button"
-                            Value="true">
+                                Binding="{Binding CorectOrWrongBool}"
+                                TargetType="Button"
+                                Value="true">
                             <Setter Property="Style" Value="{StaticResource CorrectAnswer}" />
                         </DataTrigger>
                         <DataTrigger
-                            Binding="{Binding CorectOrWrongBool}"
-                            TargetType="Button"
-                            Value="false">
+                                Binding="{Binding CorectOrWrongBool}"
+                                TargetType="Button"
+                                Value="false">
                             <Setter Property="Style" Value="{StaticResource WrongAnswer}" />
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
+                
             </StackLayout>
+            
         </ContentView>
+        
     </StackLayout>
 </ContentPage>
 
