@@ -64,30 +64,33 @@
                     <StackLayout Margin="0" Orientation="Vertical">
                         <Label
                             FontAttributes="Bold"
-                            FontSize="42"
+                            FontSize="36"
                             HorizontalOptions="Center"
                             Opacity="0.85"
-                            Text="xp"
+                            Style="{StaticResource TextHeadline}"
+                            Text="XP"
                             TextColor="#333333" />
                         <Label
-                            Margin="0,-4,0,0"
+                            Margin="-4,-4,0,0"
                             FontSize="28"
                             HorizontalOptions="Center"
                             Opacity="0.85"
+                            Style="{StaticResource TextHeadline}"
                             Text="{Binding ChapterXp}"
                             TextColor="#333333" />
                     </StackLayout>
-                    <StackLayout Margin="8" />
+                    <StackLayout Margin="32" />
                     <StackLayout Margin="0" Orientation="Vertical">
                         <Label
                             FontAttributes="Bold"
-                            FontSize="42"
+                            FontSize="36"
                             HorizontalOptions="Center"
                             Opacity="0.95"
-                            Text="frågor"
+                            Style="{StaticResource TextHeadline}"
+                            Text="FRÅGOR"
                             TextColor="#333333" />
                         <Label
-                            Margin="0,-4,0,0"
+                            Margin="-4,-4,0,0"
                             FontSize="28"
                             HorizontalOptions="Center"
                             Opacity="0.85"
