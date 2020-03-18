@@ -116,6 +116,10 @@ namespace OnlineStep.ViewModels
         {
             PageNavigator.PushNextPage(_navigator);
         });
+
+        public double Progress => PageNavigator.GetProgress();
+
+
     }
 }
 
