@@ -40,15 +40,12 @@ namespace OnlineStep.ViewModels
 
         public string[] SplitSentence(string sentence, List<string> missingWords)
         {
-            Debug.WriteLine("Set sentences");
             string missingWord = missingWords[0];
             return sentence.Split(new string[] { missingWord }, StringSplitOptions.None);
         }
 
         public string CreatePlaceholder(string missingWord)
         {
-            Debug.WriteLine(missingWord);
-            Debug.WriteLine("missingWord length " + missingWord.Length);
 
             string placeholder = "";
             for (int i = 0; i < missingWord.Length; i++)
@@ -65,7 +62,7 @@ namespace OnlineStep.ViewModels
             if (GuessedWord.Equals(_missingWord, StringComparison.InvariantCultureIgnoreCase))
             {
                 //Logic for right answer
-                Debug.WriteLine("Rätt svar");
+            
                 CorectOrWrongBool = true;
                 CorrectOrWrongMessage = "Rätt svar!";
                 PageNavigator.Xp += 10;
@@ -73,7 +70,6 @@ namespace OnlineStep.ViewModels
             else
             {
                 //Logic for wrong answer
-                Debug.WriteLine("Fel svar");
                 CorectOrWrongBool = false;
                 CorrectOrWrongMessage = "Fel svar";
 
@@ -103,14 +99,11 @@ namespace OnlineStep.ViewModels
             for (int i = 0; i < words.Length; i++)
             {
                 rowText = rowText + words[i] + " ";
-                Debug.WriteLine("rowText: " + rowText);
-                Debug.WriteLine(i);
-                Debug.WriteLine(words.Length);
                 if (rowText.Length >= rowSize || i+1 == words.Length)
                 {
                     if (rowText.Contains(missingWord) == true)
                     {
-                        Debug.WriteLine("Has missing word");
+                    
                         string[] parts = rowText.Split(new string[] { missingWord }, StringSplitOptions.None);
 
                         if (1 == parts.Length)
@@ -124,7 +117,6 @@ namespace OnlineStep.ViewModels
                         }
 
                         int entry = missingWord.Length * EntryMultiplyer;
-                        Debug.WriteLine("entryLenght " + entry);
 
                         ClozeRow rowWithEntry = new ClozeRow()
                         {
@@ -138,7 +130,6 @@ namespace OnlineStep.ViewModels
                     }
                     else
                     {
-                        Debug.WriteLine("Without missing word");
                         ClozeRow rowWithoutEntry = new ClozeRow()
                         {
                             SentenceFirstPart = rowText,
