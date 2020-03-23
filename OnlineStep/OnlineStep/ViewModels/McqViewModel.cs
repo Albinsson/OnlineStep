@@ -33,6 +33,7 @@ namespace OnlineStep.ViewModels
 
             ShowCorrection = false;
             ShowCorrectMeButton = true;
+            AnythingSelected = false;
         }
         private void CreateAnswerList()
         {
@@ -49,50 +50,57 @@ namespace OnlineStep.ViewModels
         }
 
         public string Title { get; set; }
-
         public string Question { get; set; }
-
+        public string CorrectOrWrongMessage { get; set; }
+        public bool CorectOrWrongBool { get; set; }
+        public bool AnythingSelected { get; set; }
+        public bool ShowCorrection { get; set; }
+        public bool ShowCorrectMeButton { get; set; }
         public ICommand SelectAnswer => new Command<string>((commandAnswer) =>
         {
-            if (!_answers.Any(answer => answer.Selected))
+            if (ShowCorrectMeButton)
             {
-                foreach (var answer in _answers.Where(answer => answer.Value.Equals(commandAnswer)).Select(answer => answer)){ answer.Selected = true; }
-                CheckCorrectAnswer();
+                for (int i = 0; i < _answers.Count; i++)
+                {
+                    _answers[i].Selected = false;
+                }
+                foreach (var answer in _answers.Where(answer => answer.Value.Equals(commandAnswer)).Select(answer => answer)) { answer.Selected = true; }
+                AnythingSelected = true;
             }
         });
 
-        public void CheckCorrectAnswer()
+        public ICommand CheckCorrectAnswer => new Command(() =>
         {
-            foreach (var answer in _answers.Where(answer => answer.Selected).Select(answer => answer))
+            if (AnythingSelected)
             {
-                if (answer.Value.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+                foreach (var answer in _answers.Where(answer => answer.Selected).Select(answer => answer))
                 {
-                    CorectOrWrongBool = true;
-                    CorrectOrWrongMessage = "Du har svarat rätt!";
-                    //TODO: Är dessa nödvändiga? HasPropertyValueChanged
-                    HasPropertyValueChanged = false;
-                    PageNavigator.Xp += 10;
-                }
-                else
-                {
-                    CorectOrWrongBool = false;
-                    CorrectOrWrongMessage = "Tyvärr svarade du fel på frågan...";
-                    //TODO: Är dessa nödvändiga? HasPropertyValueChanged
-                    HasPropertyValueChanged = true;
-                }
-            }
+                    if (answer.Value.Equals(_correctAnswer, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        //Logic for right answer
+                        Debug.WriteLine("Rätt svar");
+                        CorectOrWrongBool = true;
+                        CorrectOrWrongMessage = "Rätt svar!";
+                        PageNavigator.Xp += 10;
+                    }
+                    else
+                    {
+                        //Logic for wrong answer
+                        Debug.WriteLine("Fel svar");
+                        CorectOrWrongBool = false;
+                        CorrectOrWrongMessage = "Fel svar";
 
-            PageNavigator.PageResults.Add(CorectOrWrongBool);
-            ShowCorrection = true;
-            ShowCorrectMeButton = false;
-        }
-        public string CorrectOrWrongMessage { get; set; }
-        public bool CorectOrWrongBool { get; set; }
-        public bool ShowCorrection { get; set; }
-        public bool ShowCorrectMeButton { get; set; }
+                    }
+                }
+                PageNavigator.PageResults.Add(CorectOrWrongBool);
+                ShowCorrection = true;
+                ShowCorrectMeButton = false;
+            }
+            
+        });
         
-        //AnswerModel keeps track on the selected answer
-        //TODO: Rename AnswerModel
+        
+        //Answer keeps track on the selected answer
         private List<Answer> _answers = new List<Answer>();
         public List<Answer> Answers { get => _answers;}
         public class Answer : INotifyPropertyChanged
@@ -100,23 +108,16 @@ namespace OnlineStep.ViewModels
             public string Value { get; set; }
             public bool Selected { get; set; }
             public event PropertyChangedEventHandler PropertyChanged;
-            private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-            {
-                if (PropertyChanged != null)
-                {
-                    PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-                }
-            }
+            
         }
         public ICommand GoToNextPage => new Command(() =>
         {
             PageNavigator.PushNextPage(_navigator);
         });
 
-        //TODO: Är dessa nödvändiga?
-        private bool HasPropertyValueChanged { get; set; }
-        public bool HasPropertyValueChanged1 { get => HasPropertyValueChanged2; set => HasPropertyValueChanged2 = value; }
-        public bool HasPropertyValueChanged2 { get => HasPropertyValueChanged; set => HasPropertyValueChanged = value; }
+        public double Progress => PageNavigator.GetProgress();
+
+
     }
 }
 

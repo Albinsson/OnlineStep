@@ -33,7 +33,7 @@
                 FontAttributes="None"
                 FontSize="20"
                 HorizontalOptions="CenterAndExpand"
-                Opacity="0.5"
+                Opacity="0.55"
                 Style="{DynamicResource TextSubhead}"
                 Text="{Binding WelcomeText}"
                 VerticalOptions="End" />
@@ -41,14 +41,16 @@
             <Button
                 Command="{Binding GoToCourses}"
                 Style="{StaticResource MainPageButton}"
-                Text="Get started" />
+                Text="Kom igång" />
 
             <Label
                 FontAttributes="None"
                 FontSize="18"
                 HorizontalOptions="CenterAndExpand"
+                Opacity="0.85"
                 Style="{DynamicResource TextSubhead}"
-                Text="LOGIN"
+                Text="Logga in"
+                TextColor="Beige"
                 TextDecorations="Underline"
                 VerticalOptions="End" />
 
