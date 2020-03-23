@@ -18,9 +18,7 @@ namespace OnlineStep.ViewModels
         private readonly INavigator _navigator;
         private readonly Mcq _mcq;
         private string _correctAnswer { get; set; }
-
-        
-        
+         
         public McqViewModel(INavigator navigator)
         {
             Debug.WriteLine("McqViewModel Constructor: ");
